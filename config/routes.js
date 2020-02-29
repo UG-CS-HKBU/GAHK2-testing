@@ -25,6 +25,8 @@ module.exports.routes = {
   'POST /user/login': 'UserController.login',
   'POST /user/logout': 'UserController.logout',
 
+
+  'GET /athlete/transcript/': 'AthleteController.transcript',
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *
