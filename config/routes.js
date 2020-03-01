@@ -19,14 +19,18 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': { view: 'pages/homepage' },
+//  '/': { view: 'pages/homepage' },
+
+ '/': 'UserController.homepage',
   
   'GET /user/login': 'UserController.login',
   'POST /user/login': 'UserController.login',
-  'POST /user/logout': 'UserController.logout',
+  'GET /user/logout': 'UserController.logout',
 
 
   'GET /athlete/transcript/': 'AthleteController.transcript',
+  'GET /user/homepage/': 'UserController.homepage',
+
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *

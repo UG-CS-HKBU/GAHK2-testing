@@ -6,13 +6,13 @@
  */
 
 module.exports = {
-// action - transcript    (index page in milestone1)
+// action - transcript    
     transcript: async function (req, res) {
 
         //var models = await Athlete.find();
         var models = await Athlete.find({
-//            limit: 4,
-            sort: 'createdAt DESC'
+//            limit: 1,
+//            sort: 'createdAt DESC'
         });
 
 
