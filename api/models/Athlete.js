@@ -1,5 +1,5 @@
 /**
- * User.js
+ * Athlete.js
  *
  * @description :: A model definition represents a database table/collection.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
@@ -12,22 +12,36 @@ module.exports = {
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-    username: {
-      type: "string",
-      unique: true,
-      required: true
-    },
 
+    atheleteName: {
+      type: "string"
+    },
     
-    password: {
+    athleteID: {
       type: "string"
     },
 
-    role: {
-      type: 'string',
-      isIn: ['admin', 'user', 'visitor'],
-      defaultsTo: 'visitor'
+    competitionEvent: {
+      type: "string"
     },
+
+    chance: {
+      type: "number"
+    },
+
+    dScore: {
+      type: "number"
+    },
+
+    eScore: {
+      type: "number"
+    },
+
+    totalScore: {
+      type: "number"
+    },
+
+
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
@@ -38,11 +52,6 @@ module.exports = {
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
 
-  },
-
-  customToJSON: function() {
-    // Return a shallow copy of this record with the password removed.
-    return _.omit(this, ['password'])
   },
 
 };

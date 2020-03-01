@@ -25,10 +25,18 @@ module.exports = {
             if (err) return res.serverError(err);
     
             req.session.username = req.body.username;
-    
+            req.session.uid = user.id;
+            req.session.role = user.role;
+
+
+            sails.log("Session is ", JSON.stringify(req.session));
             sails.log("[Session] ", req.session);
+
+            if (req.wantsJSON) {
+                return res.redirect('/user/homepage');
+            }
             
-            return res.ok("Login successfully.");
+            //return res.ok("Login successfully.");
     
         });
     
@@ -40,9 +48,18 @@ module.exports = {
         
             if (err) return res.serverError(err);
             
-            return res.ok("Log out successfully.");
+            return res.redirect('/user/homepage')
+            //return res.ok("Log out successfully.");
+
             
         });
+    },
+
+    // action - homepage
+    homepage: async function (req, res) {
+
+        return res.view('user/homepage');
+
     },
 
 };

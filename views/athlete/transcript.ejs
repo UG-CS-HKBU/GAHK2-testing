@@ -1,0 +1,27 @@
+<div class="row">
+    <% athletes.forEach (function(model) { %>
+
+    <div class="card ">
+
+
+            <div class="media-body ">
+
+                <div class="card" style="width: 75rem;">
+                    <ul class="list-group">
+
+                        <li class="list-group-item">Ahtlete Name: <%= model.athleteName %></li>
+                        <li class="list-group-item">Ahtlete ID: <%= model.athleteID %></li>
+                        <li class="list-group-item">Difficult Score: <%= model.dScore %></li>
+                        <li class="list-group-item">Execution Score: <%= model.eScore %></li>
+                        <li class="list-group-item">Total Score: <%= model.totalScore %></li>
+
+                    </ul>
+                </div>
+
+                <p class="mb-0"></p>
+            </div>
+    
+    </div>
+    <%}); %>
+</div>
+<br><br>
