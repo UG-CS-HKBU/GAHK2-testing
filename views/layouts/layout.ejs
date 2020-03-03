@@ -50,13 +50,12 @@
 
 
           <%  if (req.session.role == "admin") {%>
-          <a class="nav-item nav-link" href="http://localhost:1337/estate/admin#">Admin</a>
+          <a class="nav-item nav-link" href="http://localhost:1337/athlete/admin#">Admin</a>
           <a class="nav-item nav-link" href="http://localhost:1337/athlete/transcript#">Transcript</a>
           <%}%>
 
 
           <%  if (req.session.role == "user") {%>
-          <a class="nav-item nav-link" href="http://localhost:1337/user/myRent#">My Grading Record</a>
           <a class="nav-item nav-link" href="http://localhost:1337/estate/create#">Create Score</a>
           <a class="nav-item nav-link" href="http://localhost:1337/athlete/transcript#">Transcript</a>
 

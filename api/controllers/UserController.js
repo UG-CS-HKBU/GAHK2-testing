@@ -61,6 +61,7 @@ module.exports = {
         return res.view('user/homepage');
 
     },
+    
 
 };
 
