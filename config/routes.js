@@ -31,6 +31,10 @@ module.exports.routes = {
   'GET /athlete/transcript/': 'AthleteController.transcript',
   'GET /user/homepage/': 'UserController.homepage',
 
+  'GET /athlete/details/:id': 'AthleteController.details',
+
+  'GET /athlete/admin/': 'AthleteController.admin',
+
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *

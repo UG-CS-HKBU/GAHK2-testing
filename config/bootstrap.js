@@ -52,7 +52,7 @@ module.exports.bootstrap = async function () {
   // For Demo only
 //  if (await Athlete.count() == 0) {
   await Athlete.createEach([
-    { athleteName: "Cheung Ka Ming", athleteID: 001, competitionEvent: "pommel horse", chance: 1, dScore: 7.5, eScore: 9.25, totalScore: 16.25},
+    { athleteName: "Cheung Ka Ming", athleteID: 001, competitionEvent: "pommel horse", chance: 1, dScore: 7, eScore: 8, totalScore: 15},
     { athleteName: "Wong Ho", athleteID: 002, competitionEvent: "pommel horse", chance: 1, dScore: 6, eScore: 8.5, totalScore: 14.5},
     
     // etc.
