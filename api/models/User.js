@@ -29,6 +29,11 @@ module.exports = {
       defaultsTo: 'visitor'
     },
 
+    score: {
+      type: "number"
+    },
+
+
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
     //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
