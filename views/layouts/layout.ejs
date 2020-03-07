@@ -46,15 +46,9 @@
           <a class="nav-item nav-link active" href="http://localhost:1337/user/homepage#">Home <span
               class="sr-only">(current)</span></a>
           
-          <a class="nav-item nav-link active" href="http://localhost:1337/competition/admin#">Admin<span
-              class="sr-only">(current)</span></a>
-
-
-
 
           <%  if (req.session.role == "admin") {%>
-          <a class="nav-item nav-link" href="http://localhost:1337/athlete/admin#">Admin</a>
-          <a class="nav-item nav-link" href="http://localhost:1337/athlete/transcript#">Transcript</a>
+          <a class="nav-item nav-link" href="http://localhost:1337/competition/admin#">Admin</a>
           <%}%>
 
 
@@ -71,7 +65,14 @@
       </div>
 
       <div style="text-align:right">
-     
+        <%  if (req.session.role != undefined) {%>
+          Hi ,
+          <%=req.session.username %>.
+          <a href="/user/logout">(Logout)</a>
+          <%} else{%>
+          <a href="/user/login">(Login)</a> </div>
+        <%} %>
+          
 
 
     </nav>

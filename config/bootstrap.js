@@ -40,8 +40,7 @@ module.exports.bootstrap = async function () {
 
 
 
-  // Create Athlete data from excel provided
-  // codes...
+  
 
 
   if (await Competition.count() > 0) {
@@ -61,49 +60,31 @@ module.exports.bootstrap = async function () {
 
 
 
-  if (await Competition.count() > 0) {
+  if (await User.count() > 0) {
     return;
   }
 
 
-//  if (await User.count() == 0) {
-    // const hash = await sails.bcrypt.hash('123456', saltRounds);
+ //if (await User.count() == 0) {
+    const hash = await sails.bcrypt.hash('123456', saltRounds);
 
-    // await User.createEach([
-    //   { username: "Chief_Judge", password: hash, role: "admin" }
-    //   // etc.
-    // ]);
-//  }
+    await User.createEach([
+      { username: "Chief_Judge", password: hash, role: "admin" }
+      // etc.
+    ]);
+ //}
 
 
 
-  // Athlete (replace Estate):
-  // const athlete1 = await Athlete.findOne({ athleteID: "001" });
-  // const athlete2 = await Athlete.findOne({ athleteID: "002"  });
+ 
 
 
 // Association:
 //  User (Judges: user; Chief_Judge: admin):
-    
-  // const Ejudge1 = await User.findOne({ username: "Ejudge1"});  // newly add
-  // const Ejudge2 = await User.findOne({ username: "Ejudge2"});
-  // const Ejudge3 = await User.findOne({ username: "Ejudge3"});
-  // const Ejudge4 = await User.findOne({ username: "Ejudge4"});
-  // const Ejudge5 = await User.findOne({ username: "Ejudge5"});
-  // const Djudge1 = await User.findOne({ username: "Djudge1"});
-  // const Djudge2 = await User.findOne({ username: "Djudge2"});
   // const Chief_Judge = await User.findOne({ username: "Chief_Judge"});
 
 
-  // await User.addToCollection(Ejudge1.id, 'grades').members([athlete1.id, athlete2.id]);
-  // await User.addToCollection(Ejudge2.id, 'grades').members([athlete1.id, athlete2.id]);
-  // await User.addToCollection(Ejudge3.id, 'grades').members([athlete1.id, athlete2.id]);
-  // await User.addToCollection(Ejudge4.id, 'grades').members([athlete1.id, athlete2.id]);
-  // await User.addToCollection(Ejudge5.id, 'grades').members([athlete1.id, athlete2.id]);
-  // await User.addToCollection(Djudge1.id, 'grades').members([athlete1.id, athlete2.id]);
-  // await User.addToCollection(Djudge2.id, 'grades').members([athlete1.id, athlete2.id]);
 
-  // await User.addToCollection(Chief_Judge.id, 'grades').members([athlete1.id, athlete2.id]);
 
 
   return;
