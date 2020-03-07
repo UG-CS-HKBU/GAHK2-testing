@@ -33,6 +33,7 @@
 <body>
 
   <div class="container">
+    <%  if (req.session.role == "admin") {%>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
 
@@ -43,18 +44,29 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
+
   
           <%  if (req.session.role == "admin") {%>
           <a class="nav-item nav-link" href="http://localhost:1337/user/homepage#">Home</a>
           <a class="nav-item nav-link" href="http://localhost:1337/competition/admin#">Admin</a> 
           <%}%>
+          <a class="nav-item nav-link active" href="http://localhost:1337/user/homepage#">Home <span
+              class="sr-only">(current)</span></a>
 
 
-          <%  if (req.session.role == "user") {%>
+
+
+          <!-- <%  if (req.session.role == "admin") {%> -->
+          <a class="nav-item nav-link" href="http://localhost:1337/athlete/admin#">Admin</a>
+          <a class="nav-item nav-link" href="http://localhost:1337/athlete/transcript#">Transcript</a>
+          <!-- <%}%> -->
+
+
+          <!-- <%  if (req.session.role == "user") {%>
           <a class="nav-item nav-link" href="http://localhost:1337/estate/create#">Create Score</a>
           <a class="nav-item nav-link" href="http://localhost:1337/athlete/transcript#">Transcript</a>
 
-          <%}%>
+          <%}%> -->
 
          
         </div>
@@ -67,14 +79,16 @@
           <%=req.session.username %>.
           <a href="/user/logout">(Logout)</a>
           <%} else{%>
-          <a href="/user/login">(Login)</a> </div>
+          <a href="/user/login">(Login)</a> 
+        </div>
         <%} %>
           
 
 
     </nav>
 
- 
+
+    <%}%>
 
     <%- body %>
 
