@@ -43,11 +43,15 @@ module.exports.routes = {
   'GET /competition/details/:id': 'CompetitionController.details',
   'GET /competition/admin/': 'CompetitionController.admin',
 
+  'GET /competition/json': 'CompetitionController.json',
 
   'GET /competition/updateE1/:id': 'CompetitionController.updateE1',
   'POST /competition/updateE1/:id': 'CompetitionController.updateE1',
 
-  'GET /competition/json': 'CompetitionController.json',
+  'GET /competition/updateE2/:id': 'CompetitionController.updateE2',
+  'POST /competition/updateE2/:id': 'CompetitionController.updateE2',
+
+  
 
   /***************************************************************************
   *                                                                          *

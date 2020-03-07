@@ -25,12 +25,12 @@ module.exports = {
 
     e1Score: {
       type: "number",
-      required: true
+      //required: true
     },
 
     e2Score: {
       type: "number",
-      required: true
+      //required: true
     },
 
 

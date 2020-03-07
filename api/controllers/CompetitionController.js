@@ -96,8 +96,8 @@ module.exports = {
         }
     },
 
-      // action - updateE2
-      updateE2: async function (req, res) {
+    // action - updateE2
+    updateE2: async function (req, res) {
 
         if (req.method == "GET") {
 
@@ -113,152 +113,22 @@ module.exports = {
                 return res.badRequest("Form-data not received.");
 
             var models = await Competition.update(req.params.id).set({
-                eScore: req.body.Competition.eScore,
+                e2Score: req.body.Competition.e2Score,
                
 
-                updatedDate: new Date().toLocaleDateString(),
+                
             }).fetch();
 
             if (models.length == 0) return res.notFound();
 
-            //return res.ok("Record updated");
-            //req.params.id = req.params.id + 1
-            return res.redirect('/competition/updateE2/43');
-  
+            return res.redirect('/competition/updateE2/6');  // hardcode url id
+
 
         }
     },
 
-        // action - updateE3
-        updateE3: async function (req, res) {
 
-            if (req.method == "GET") {
-    
-                var model = await Competition.findOne(req.params.id);
-    
-                if (!model) return res.notFound();
-    
-                return res.view('competition/updateE3', { competition: model });
-    
-            } else {
-    
-                if (!req.body.Competition)
-                    return res.badRequest("Form-data not received.");
-    
-                var models = await Competition.update(req.params.id).set({
-                    eScore: req.body.Competition.eScore,
-                   
-    
-                    updatedDate: new Date().toLocaleDateString(),
-                }).fetch();
-    
-                if (models.length == 0) return res.notFound();
-    
-                //return res.ok("Record updated");
-                //req.params.id = req.params.id + 1
-                return res.redirect('/competition/updateE3/43');
-        
-            }
-        },
-
-           // action - updateE4
-           updateE4: async function (req, res) {
-
-            if (req.method == "GET") {
-    
-                var model = await Competition.findOne(req.params.id);
-    
-                if (!model) return res.notFound();
-    
-                return res.view('competition/updateE4', { competition: model });
-    
-            } else {
-    
-                if (!req.body.Competition)
-                    return res.badRequest("Form-data not received.");
-    
-                var models = await Competition.update(req.params.id).set({
-                    eScore: req.body.Competition.eScore,
-                   
-    
-                    updatedDate: new Date().toLocaleDateString(),
-                }).fetch();
-    
-                if (models.length == 0) return res.notFound();
-    
-                //return res.ok("Record updated");
-                //req.params.id = req.params.id + 1
-                return res.redirect('/competition/updateE4/43');
-      
-    
-            }
-        },
-
-           // action - updateE5
-           updateE5: async function (req, res) {
-
-            if (req.method == "GET") {
-    
-                var model = await Competition.findOne(req.params.id);
-    
-                if (!model) return res.notFound();
-    
-                return res.view('competition/updateE5', { competition: model });
-    
-            } else {
-    
-                if (!req.body.Competition)
-                    return res.badRequest("Form-data not received.");
-    
-                var models = await Competition.update(req.params.id).set({
-                    eScore: req.body.Competition.eScore,
-                   
-    
-                    updatedDate: new Date().toLocaleDateString(),
-                }).fetch();
-    
-                if (models.length == 0) return res.notFound();
-    
-                //return res.ok("Record updated");
-                //req.params.id = req.params.id + 1
-                return res.redirect('/competition/updateE5/43');
-      
-    
-            }
-        },
-
-           // action - updateD2
-           updateD2: async function (req, res) {
-
-            if (req.method == "GET") {
-    
-                var model = await Competition.findOne(req.params.id);
-    
-                if (!model) return res.notFound();
-    
-                return res.view('competition/updateD2', { competition: model });
-    
-            } else {
-    
-                if (!req.body.Competition)
-                    return res.badRequest("Form-data not received.");
-    
-                var models = await Competition.update(req.params.id).set({
-                    eScore: req.body.Competition.eScore,
-                   
-    
-                    updatedDate: new Date().toLocaleDateString(),
-                }).fetch();
-    
-                if (models.length == 0) return res.notFound();
-    
-                //return res.ok("Record updated");
-                //req.params.id = req.params.id + 1
-                return res.redirect('/competition/updateD2/43');
-      
-    
-            }
-        },
+   
 
        
 
