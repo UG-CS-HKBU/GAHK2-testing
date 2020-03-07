@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="row">
+      <!-- The 12 cards -->
+      <div class="col-12">
+        <table class="table">
+  
+          <tbody>
+            <% competition.forEach (function(model) { %>
+            <tr>
+              <th scope="row"><%= model.athleteID %></th>
+             
+              <td>Athelte Name: <%= model.athleteName %></td>
+              <td>Competition Event: <%= model.competitionEvent %></td>
+              <td>E1 Score: <%= model.e1Score %></td>
+              <td>E2 Score: <%= model.e2Score %></td>
+            
+              
+
+              <td><a href="/athlete/transcript/">Edit</a></td>
+
+              
+  
+       
+
+            </tr>
+            <%}); %>
+  
+          </tbody>
+        </table>
+  
+      </div>
+  
+  
+  
+  
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  

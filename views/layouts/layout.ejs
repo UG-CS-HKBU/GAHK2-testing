@@ -16,7 +16,7 @@
     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <style>
     .class3 {
-      background-color: lightsalmon
+      background-color: rgb(243, 243, 243)
     }
 
     .search {
@@ -45,6 +45,9 @@
         <div class="navbar-nav">
           <a class="nav-item nav-link active" href="http://localhost:1337/user/homepage#">Home <span
               class="sr-only">(current)</span></a>
+          
+          <a class="nav-item nav-link active" href="http://localhost:1337/competition/admin#">View/ Edit Scores <span
+              class="sr-only">(current)</span></a>
 
 
 
@@ -68,24 +71,12 @@
       </div>
 
       <div style="text-align:right">
-      <%  if (req.session.role != undefined) {%>
-          Hi ,
-          <%=req.session.username %>.
-          <a href="/user/logout">(Logout)</a>
-          <%} else{%>
-          <a href="/user/login">(Login)</a> </div>
-        <%} %>
+     
 
 
     </nav>
 
-    <div class="jumbotron jumbotron-fluid">
-      <div class="container">
-        <h1 class="display-4">GAHK Scoring System</h1>
-        <p class="lead">GAHK Scoring System is a web-based system to facilitate scoring process in competition
-          </p>
-      </div>
-    </div>
+ 
 
     <%- body %>
 

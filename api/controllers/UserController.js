@@ -61,7 +61,14 @@ module.exports = {
         return res.view('user/homepage');
 
     },
-    
+
+    setJudgeScreen: async function (req, res) {
+
+        return res.view('user/setJudgeScreen');
+
+    },
+
+   
 
 };
 

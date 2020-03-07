@@ -30,10 +30,24 @@ module.exports.routes = {
 
   'GET /athlete/transcript/': 'AthleteController.transcript',
   'GET /user/homepage/': 'UserController.homepage',
+  'GET /user/setJudgeScreen/': 'UserController.setJudgeScreen',
+
+
 
   'GET /athlete/details/:id': 'AthleteController.details',
 
   'GET /athlete/admin/': 'AthleteController.admin',
+
+
+  'POST /competition/create/': 'CompetitionController.create',
+  'GET /competition/details/:id': 'CompetitionController.details',
+  'GET /competition/admin/': 'CompetitionController.admin',
+
+
+  'GET /competition/updateE1/:id': 'CompetitionController.updateE1',
+  'POST /competition/updateE1/:id': 'CompetitionController.updateE1',
+
+  'GET /competition/json': 'CompetitionController.json',
 
   /***************************************************************************
   *                                                                          *
