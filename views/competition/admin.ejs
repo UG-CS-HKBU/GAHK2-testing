@@ -4,23 +4,38 @@
       <div class="col-12">
         <table class="table">
   
+          <thead>
+            <tr>
+              <th scope="col">Sequence</th>
+              <th scope="col">Athlete Name</th>
+              <th scope="col">Competition Event</th>
+              <th scope="col">E1</th>
+              <th scope="col">E2</th>
+              <th scope="col">E3</th>
+              <th scope="col">E4</th>
+              <th scope="col">E5</th>
+              <th scope="col">E6</th>
+              <th scope="col">D2</th>
+              <th scope="col">Edit</th>
+            </tr>
+          </thead>
+          
           <tbody>
             <% competition.forEach (function(model) { %>
             <tr>
               <th scope="row"><%= model.athleteID %></th>
              
-              <td>Athelte Name: <%= model.athleteName %></td>
-              <td>Competition Event: <%= model.competitionEvent %></td>
-              <td>E1 Score: <%= model.e1Score %></td>
-              <td>E2 Score: <%= model.e2Score %></td>
-            
-              
+              <td><%= model.athleteName %></td>
+              <td><%= model.competitionEvent %></td>
+              <td><%= model.e1Score %></td>
+              <td><%= model.e2Score %></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
 
               <td><a href="/athlete/transcript/">Edit</a></td>
-
-              
-  
-       
 
             </tr>
             <%}); %>
