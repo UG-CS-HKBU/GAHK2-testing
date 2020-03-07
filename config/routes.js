@@ -21,19 +21,30 @@ module.exports.routes = {
 
 //  '/': { view: 'pages/homepage' },
 
- '/': 'UserController.homepage',
+ '/': 'UserController.login',
   
+ // User
   'GET /user/login': 'UserController.login',
   'POST /user/login': 'UserController.login',
   'GET /user/logout': 'UserController.logout',
 
-
-  'GET /athlete/transcript/': 'AthleteController.transcript',
   'GET /user/homepage/': 'UserController.homepage',
+  'GET /user/setJudgeScreen/': 'UserController.setJudgeScreen',
 
-  'GET /athlete/details/:id': 'AthleteController.details',
 
-  'GET /athlete/admin/': 'AthleteController.admin',
+  //Competition
+  'POST /competition/create/': 'CompetitionController.create',
+  'GET /competition/admin/': 'CompetitionController.admin',
+
+  'GET /competition/json': 'CompetitionController.json',
+
+  'GET /competition/updateE1/:id': 'CompetitionController.updateE1',
+  'POST /competition/updateE1/:id': 'CompetitionController.updateE1',
+
+  'GET /competition/updateE2/:id': 'CompetitionController.updateE2',
+  'POST /competition/updateE2/:id': 'CompetitionController.updateE2',
+
+  
 
   // judges scoring pages
   'GET /user/d2/': 'UserController.createD2',

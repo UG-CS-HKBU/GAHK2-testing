@@ -1,0 +1,74 @@
+<!--update.ejs-->
+<form action="/competition/updateE1/<%= competition.id %>" method="POST">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-6 col-lg-6 col-xl-6">
+
+               
+                <label>Athlete Name:</label>
+                <input type="string" class="form-control" name="Competition[athleteName]"
+                    value="<%= competition.athleteName%>" required>
+
+                <label>Athlete ID:</label>
+                <input type="string" class="form-control" name="Competition[athleteID]"
+                    value="<%= competition.athleteID%>" required>
+
+                <label>Competition Event:</label>
+                <input type="string" class="form-control" name="Competition[competitionEvent]"
+                    value="<%= competition.competitionEvent%>" required>
+
+
+                <label>E1 Score:</label>
+                <input type="string" class="form-control" name="Competition[e1Score]"
+                    value="<%= competition.e1Score%>" required>
+     
+    
+           
+
+
+            </div>
+
+
+
+
+
+            <div class="col-12 col-sm-6 col-lg-6 col-xl-6">
+                <p><h3>E1</h3></p>
+
+
+                <br><br>
+
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+    <br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</form>
+
+
+

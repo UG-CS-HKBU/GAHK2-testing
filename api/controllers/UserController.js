@@ -47,8 +47,9 @@ module.exports = {
         req.session.destroy(function (err) {
 
             if (err) return res.serverError(err);
+            
+            return res.redirect('/user/login')
 
-            return res.redirect('/user/homepage')
             //return res.ok("Log out successfully.");
 
 
@@ -61,6 +62,15 @@ module.exports = {
         return res.view('user/homepage');
 
     },
+
+
+    setJudgeScreen: async function (req, res) {
+
+        return res.view('user/setJudgeScreen');
+
+    },
+
+   
 
     // action - create
     createD2: async function (req, res) {
