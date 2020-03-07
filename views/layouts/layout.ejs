@@ -43,12 +43,10 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-item nav-link active" href="http://localhost:1337/user/homepage#">Home <span
-              class="sr-only">(current)</span></a>
-          
-
+  
           <%  if (req.session.role == "admin") {%>
           <a class="nav-item nav-link" href="http://localhost:1337/competition/admin#">Admin</a>
+          <a class="nav-item nav-link" href="http://localhost:1337/user/homepage#">Home</a>
           <%}%>
 
 

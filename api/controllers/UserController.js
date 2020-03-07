@@ -48,7 +48,7 @@ module.exports = {
         
             if (err) return res.serverError(err);
             
-            return res.redirect('/user/homepage')
+            return res.redirect('/user/login')
             //return res.ok("Log out successfully.");
 
             
