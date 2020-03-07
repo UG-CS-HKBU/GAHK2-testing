@@ -30,7 +30,26 @@ module.exports = {
 
     e2Score: {
       type: "number",
-      //required: true
+    },
+
+    e3Score: {
+      type: "number",
+    },
+
+    e4Score: {
+      type: "number",
+    },
+
+    e5Score: {
+      type: "number",
+    },
+
+    e6Score: {
+      type: "number",
+    },
+
+    d2Score: {
+      type: "number",
     },
 
 
