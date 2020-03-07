@@ -23,24 +23,17 @@ module.exports.routes = {
 
  '/': 'UserController.login',
   
+ // User
   'GET /user/login': 'UserController.login',
   'POST /user/login': 'UserController.login',
   'GET /user/logout': 'UserController.logout',
 
-
-  'GET /athlete/transcript/': 'AthleteController.transcript',
   'GET /user/homepage/': 'UserController.homepage',
   'GET /user/setJudgeScreen/': 'UserController.setJudgeScreen',
 
 
-
-  'GET /athlete/details/:id': 'AthleteController.details',
-
-  'GET /athlete/admin/': 'AthleteController.admin',
-
-
+  //Competition
   'POST /competition/create/': 'CompetitionController.create',
-  'GET /competition/details/:id': 'CompetitionController.details',
   'GET /competition/admin/': 'CompetitionController.admin',
 
   'GET /competition/json': 'CompetitionController.json',

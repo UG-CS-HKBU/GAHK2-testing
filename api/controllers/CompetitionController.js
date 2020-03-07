@@ -24,23 +24,6 @@ module.exports = {
 },
 
 
-    // action - details
-    details: async function (req, res) {
-
-        var model = await Competition.findOne(req.params.id)     //.populate('buildsFor'); // milestone 2 adjusted
-
-        if (!model) return res.notFound();
-
- 
-  
-        if (req.wantsJSON) {
-            return res.json({ 'competition': model });
-        } else {
-            return res.view("competition/details/", { 'competition': model });
-        }
-
-    },
-
     // action - admin
     admin: async function (req, res) {
 
