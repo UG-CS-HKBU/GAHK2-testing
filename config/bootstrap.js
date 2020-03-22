@@ -48,15 +48,15 @@ module.exports.bootstrap = async function () {
   }
 
 
-  // For Demo only
-//  if (await Athlete.count() == 0) {
-  await Competition.createEach([
-    { athleteName: "Cheung Ka Ming", athleteID: 001, competitionEvent: "pommel horse", e1Score: 0, e2Score: 0},
-    { athleteName: "Wong Ho", athleteID: 002, competitionEvent: "pommel horse", e1Score: 0, e2Score: 0},
+//   // For Demo only
+// //  if (await Athlete.count() == 0) {
+//   await Competition.createEach([
+//     { athleteName: "Cheung Ka Ming", athleteID: 001, competitionEvent: "Pommel Horse", e1Score: 0, e2Score: 0},
+//     { athleteName: "Wong Ho", athleteID: 002, competitionEvent: "Pommel Horse", e1Score: 0, e2Score: 0},
     
-    // etc.
-  ]);
-//}
+//     // etc.
+//   ]);
+// //}
 
 
 

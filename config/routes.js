@@ -44,6 +44,28 @@ module.exports.routes = {
   'GET /competition/updateE2/:id': 'CompetitionController.updateE2',
   'POST /competition/updateE2/:id': 'CompetitionController.updateE2',
 
+  'GET /competition/updateE3/:id': 'CompetitionController.updateE3',
+  'POST /competition/updateE3/:id': 'CompetitionController.updateE3',
+
+  'GET /competition/updateE4/:id': 'CompetitionController.updateE4',
+  'POST /competition/updateE4/:id': 'CompetitionController.updateE4',
+
+  'GET /competition/updateE5/:id': 'CompetitionController.updateE5',
+  'POST /competition/updateE5/:id': 'CompetitionController.updateE5',
+
+  'GET /competition/updateD1/:id': 'CompetitionController.updateD1',
+  'POST /competition/updateD1/:id': 'CompetitionController.updateD1',
+
+  'GET /competition/updateD2/:id': 'CompetitionController.updateD2',
+  'POST /competition/updateD2/:id': 'CompetitionController.updateD2',
+
+  'GET /competition/import_xlsx': 'CompetitionController.import_xlsx',
+  'POST /competition/import_xlsx': 'CompetitionController.import_xlsx',
+  //'POST /competition/export_xlsx': 'CompetitionController.export_xlsx',
+  'GET /competition/export_xlsx': 'CompetitionController.export_xlsx',
+
+  'GET /competition/scoreboard/:id': 'CompetitionController.scoreboard',
+
   
 
   // judges scoring pages

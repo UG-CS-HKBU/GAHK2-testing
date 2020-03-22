@@ -14,9 +14,13 @@
               <th scope="col">E3</th>
               <th scope="col">E4</th>
               <th scope="col">E5</th>
-              <th scope="col">E6</th>
+              <th scope="col">D1</th>
               <th scope="col">D2</th>
+              <th scope="col">Average D Score</th>
+              <th scope="col">Average E Score</th>
+              <th scope="col">Total Score</th>
               <th scope="col">Edit</th>
+              <th scope="col">Publish Score</th>
             </tr>
           </thead>
           
@@ -32,10 +36,14 @@
               <td><%= model.e3Score %></td>
               <td><%= model.e4Score %></td>
               <td><%= model.e5Score %></td>
-              <td><%= model.e6Score %></td>
+              <td><%= model.d1Score %></td>
               <td><%= model.d2Score %></td>
+              <td><%= model.dAvgScore %></td>
+              <td><%= model.eAvgScore %></td>
+              <td><%= model.totalScore %></td>
 
               <td><a href="/athlete/transcript/">Edit</a></td>
+              <td><a href="/competition/scoreboard/<%= model.id %>">Publish Score</a></td>
 
             </tr>
             <%}); %>
@@ -44,6 +52,8 @@
         </table>
   
       </div>
+
+      <a href="/competition/export_xlsx/">Export Final Result</a>
   
   
   
