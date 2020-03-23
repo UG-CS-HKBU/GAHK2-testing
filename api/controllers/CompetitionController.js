@@ -163,6 +163,15 @@ module.exports = {
     //             athleteID: req.body.Competition.athleteID,
     //             competitionEvent: req.body.Competition.competitionEvent,
 
+
+                e1Score: req.body.Competition.e1Score,
+                e2Score: req.body.Competition.e2Score,
+                e3Score: req.body.Competition.e3Score,
+                e4Score: req.body.Competition.e4Score,
+                e5Score: req.body.Competition.e5Score,
+                d1Score: req.body.Competition.d1Score,
+                d2Score: req.body.Competition.d2Score,
+
     //             e1Score: req.body.Competition.e1Score,
     //             e2Score: req.body.Competition.e2Score,
     //             e3Score: req.body.Competition.e3Score,
@@ -170,6 +179,7 @@ module.exports = {
     //             e5Score: req.body.Competition.e5Score,
     //             d1Score: req.body.Competition.d1Score,
     //             e2Score: req.body.Competition.e2Score,
+
 
     //             dAvgScore: req.body.Competition.dAvgScore,
     //             eAvgScore: req.body.Competition.eAvgScore,
@@ -184,11 +194,30 @@ module.exports = {
 
     //         if (models.length == 0) return res.notFound();
 
+
+            //return res.ok("Record updated");
+            return res.ok("Scores updated.");
+
     //         //return res.ok("Record updated");
     //         return res.redirect("/estate/admin/");
 
     //     }
     // },
+
+
+    // action - chiefjudge viewing
+    chiefjudgeView: async function (req, res) {
+
+        if (req.method == "GET") {
+
+            var model = await Competition.findOne(req.params.id);
+
+            if (!model) return res.notFound();
+
+            return res.view('competition/chiefjudgeView', { competition: model });
+        }
+
+    },
 
     // action - import excel file
     import_xlsx: async function (req, res) {
@@ -263,6 +292,7 @@ module.exports = {
             if (!model) return res.notFound();
 
             return res.view('competition/updateE1', { competition: model });
+
 
         } else {
 

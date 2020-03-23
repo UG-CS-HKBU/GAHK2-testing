@@ -31,13 +31,16 @@
           </thead>
           
           <tbody>
-            <% competition.forEach (function(model) { 
-              model.dAvgScore = (model.d1Score + model.d2Score) / 2
+             <% competition.forEach (function(model) { 
+              model.dAvgScore = (model.d1Score + model.d2Score) / 2 ;
 
               sortEScore = [model.e1Score, model.e2Score, model.e3Score, model.e4Score, model.e5Score].sort();
               model.eAvgScore = (sortEScore[1] + sortEScore[2] + sortEScore[3]) / 3;
 
+              model.totalScore = model.dAvgScore + model.eAvgScore ;
+=======
               model.totalScore = model.dAvgScore + model.eAvgScore
+
 
               %>
             <tr>
@@ -49,9 +52,9 @@
               <td><%= model.eAvgScore %></td>
               <td><%= model.totalScore %></td>
               
-              <td><a href="/competition/updateE2/<%= competition.id %>">Edit</a></td>
+              <!-- <td><a href="/competition/updateE2/<%= competition.id %>">Edit</a></td>
 
-              <td><a href="/athlete/transcript/">Edit</a></td>
+              <td><a href="/athlete/transcript/">Edit</a></td> -->
 
 
               <td><a href="/competition/scoreboard/<%= model.id %>">Publish Score</a></td>

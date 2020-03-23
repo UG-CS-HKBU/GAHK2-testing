@@ -13,6 +13,11 @@ module.exports = {
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
 
+
+    // eventName: {
+    //   type: "string"
+    // },
+
     eventNumber: {
       type: "number"
     },
@@ -20,39 +25,40 @@ module.exports = {
     eventName: {
       type: "string"
     },
+
     
-    eventTime: {
-      type: 'ref',
-      columnType: "dateTime"
-    },
+    // eventTime: {
+    //   type: 'ref',
+    //   columnType: "dateTime"
+    // },
 
-    d1Name: {
-      type: "string"
-    },
+    // d1Name: {
+    //   type: "string"
+    // },
 
-    d2Name: {
-      type: "string"
-    },
+    // d2Name: {
+    //   type: "string"
+    // },
 
-    e1Name: {
-      type: "string"
-    },
+    // e1Name: {
+    //   type: "string"
+    // },
 
-    e2Name: {
-      type: "string"
-    },
+    // e2Name: {
+    //   type: "string"
+    // },
 
-    e3Name: {
-      type: "string"
-    },
+    // e3Name: {
+    //   type: "string"
+    // },
 
-    e4Name: {
-      type: "string"
-    },
+    // e4Name: {
+    //   type: "string"
+    // },
 
-    e5Name: {
-      type: "string"
-    },
+    // e5Name: {
+    //   type: "string"
+    // },
 
 
     
@@ -69,10 +75,17 @@ module.exports = {
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
 
+
+    // includes: {
+    //   collection: 'Competition',
+    //   via: 'includes'
+    // },
+
     includes: {
       collection: 'Competition',
       via: 'belongsTo'
     },
+
 
   },
 
