@@ -13,6 +13,10 @@ module.exports = {
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
 
+    eventNumber: {
+      type: "number"
+    },
+
     eventName: {
       type: "string"
     },
@@ -65,10 +69,10 @@ module.exports = {
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
 
-    // includes: {
-    //   collection: 'Competition',
-    //   via: 'includes'
-    // },
+    includes: {
+      collection: 'Competition',
+      via: 'belongsTo'
+    },
 
   },
 

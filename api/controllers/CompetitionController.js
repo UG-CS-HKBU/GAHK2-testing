@@ -42,14 +42,14 @@ module.exports = {
     // action - admin
     admin: async function (req, res) {
 
-        var models = await Competition.find();
+        var model = await Event.findOne(parseInt(req.params.id)).populate('includes');
 
         // Cal avg D and E scores:
-        const dAvg = models.d1Score + models.d2Score
+        // const dAvg = models.d1Score + models.d2Score
         // sails.log("D1 score is : ", models.)
         // sails.log("Average D score is : ", dAvg)
 
-        return res.view('competition/admin', { competition: models });
+        return res.view('competition/admin', { competition: model.includes });
 
     },
 
@@ -80,7 +80,7 @@ module.exports = {
     ranking: async function (req, res) {
 
         var models = await Competition.find({
-            sort: 'e1Score DESC'
+            sort: 'totalScore DESC'
         }
         );
 
@@ -93,8 +93,8 @@ module.exports = {
 
     // action - homepage
     homepage: async function (req, res) {
-
-        return res.view('competition/homepage');
+        var events = await Event.find();
+        return res.view('competition/homepage',{events:events});
 
     },
 
@@ -156,6 +156,8 @@ module.exports = {
     // action - import excel file
     import_xlsx: async function (req, res) {
 
+        var eventId = parseInt(req.params.id);
+
         if (req.method == 'GET')
             return res.view('competition/import_xlsx');
 
@@ -169,11 +171,14 @@ module.exports = {
             var data = XLSX.utils.sheet_to_json(ws);
             console.log(data);
             var models = await Competition.createEach(data).fetch();
+            
             if (models.length == 0) {
                 return res.badRequest("No data imported.");
             }
-
-            return res.redirect('/competition/admin/');
+            for (var i=0;i<models.length;i++) {
+                await Competition.addToCollection(models[i].id, 'belongsTo').members(eventId);
+            }
+            return res.redirect('/competition/admin/'+eventId);
             //return res.ok("Excel file imported.");
         });
     },
