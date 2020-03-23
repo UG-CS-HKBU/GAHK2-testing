@@ -4,10 +4,14 @@
   <br>
   <h1>Event 1</h1>
   <br>
+
+  <button type="button" class="btn btn-primary">Edit</button>
+
   
     <div class="row">
       <!-- The 12 cards -->
       <div class="col-12">
+        <br>
         <table class="table">
   
           <thead>
@@ -37,14 +41,14 @@
               <td><%= model.dAvgScore %></td>
               <td><%= model.eAvgScore %></td>
               <td><%= model.totalScore %></td>
-
-<<<<<<< HEAD
+              
               <td><a href="/competition/updateE2/<%= competition.id %>">Edit</a></td>
-=======
+
               <td><a href="/athlete/transcript/">Edit</a></td>
+
               <td><a href="/competition/scoreboard/<%= model.id %>">Publish Score</a></td>
               <td><a href="/competition/scoreboard/<%= model.id %>">Start Competition</a></td>
->>>>>>> abfee31a1edaec003a446082661cdf59867bdc76
+
 
             </tr>
             <%}); %>

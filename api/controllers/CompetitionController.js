@@ -63,7 +63,7 @@ module.exports = {
     transcript: async function (req, res) {
 
         var models = await Competition.find({
-            sort: 'd1Score DESC'
+            sort: 'e1Score DESC'
         }
         );
 
