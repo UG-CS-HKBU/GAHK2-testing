@@ -13,6 +13,10 @@ module.exports = {
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
 
+    eventNumber: {
+      type: "number"
+    },
+
     eventName: {
       type: "string"
     },
@@ -51,6 +55,9 @@ module.exports = {
     },
 
 
+    
+
+
 
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
@@ -64,7 +71,7 @@ module.exports = {
 
     includes: {
       collection: 'Competition',
-      via: 'includes'
+      via: 'belongsTo'
     },
 
   },
