@@ -21,21 +21,59 @@ module.exports.routes = {
 
 //  '/': { view: 'pages/homepage' },
 
- '/': 'UserController.homepage',
+ '/': 'UserController.login',
   
+ // User
   'GET /user/login': 'UserController.login',
   'POST /user/login': 'UserController.login',
   'GET /user/logout': 'UserController.logout',
 
-
-  'GET /athlete/transcript/': 'AthleteController.transcript',
   'GET /user/homepage/': 'UserController.homepage',
+  'GET /user/setJudgeScreen/': 'UserController.setJudgeScreen',
 
-  'GET /athlete/details/:id': 'AthleteController.details',
 
-  'GET /athlete/admin/': 'AthleteController.admin',
+  //Competition
+  'POST /competition/create/': 'CompetitionController.create',
+  'GET /competition/admin/': 'CompetitionController.admin',
+
+  'GET /competition/json': 'CompetitionController.json',
+
+  'GET /competition/updateE1/:id': 'CompetitionController.updateE1',
+  'POST /competition/updateE1/:id': 'CompetitionController.updateE1',
+
+  'GET /competition/updateE2/:id': 'CompetitionController.updateE2',
+  'POST /competition/updateE2/:id': 'CompetitionController.updateE2',
+
+  'GET /competition/updateE3/:id': 'CompetitionController.updateE3',
+  'POST /competition/updateE3/:id': 'CompetitionController.updateE3',
+
+  'GET /competition/updateE4/:id': 'CompetitionController.updateE4',
+  'POST /competition/updateE4/:id': 'CompetitionController.updateE4',
+
+  'GET /competition/updateE5/:id': 'CompetitionController.updateE5',
+  'POST /competition/updateE5/:id': 'CompetitionController.updateE5',
+
+  'GET /competition/updateD1/:id': 'CompetitionController.updateD1',
+  'POST /competition/updateD1/:id': 'CompetitionController.updateD1',
+
+  'GET /competition/updateD2/:id': 'CompetitionController.updateD2',
+  'POST /competition/updateD2/:id': 'CompetitionController.updateD2',
+
+  'GET /competition/import_xlsx': 'CompetitionController.import_xlsx',
+  'POST /competition/import_xlsx': 'CompetitionController.import_xlsx',
+  //'POST /competition/export_xlsx': 'CompetitionController.export_xlsx',
+  'GET /competition/export_xlsx': 'CompetitionController.export_xlsx',
+
+  'GET /competition/scoreboard/:id': 'CompetitionController.scoreboard',
+  'GET /competition/transcript/': 'CompetitionController.transcript',
+  'GET /competition/homepage/': 'CompetitionController.homepage',
+
+  
 
   // judges scoring pages
+  'GET /user/d1/': 'UserController.createD1',
+  'POST /user/d1/': 'UserController.createD1',
+
   'GET /user/d2/': 'UserController.createD2',
   'POST /user/d2/': 'UserController.createD2',
 

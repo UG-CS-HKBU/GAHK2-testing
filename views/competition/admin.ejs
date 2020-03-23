@@ -1,0 +1,75 @@
+
+
+<div class="container">
+  <br>
+  <h1>Event 1</h1>
+  <br>
+
+  <button type="button" class="btn btn-primary">Edit</button>
+
+  
+    <div class="row">
+      <!-- The 12 cards -->
+      <div class="col-12">
+        <br>
+        <table class="table">
+  
+          <thead>
+            <tr>
+              <th scope="col">Sequence</th>
+              <th scope="col">Athlete Name</th>
+              <th scope="col">Competition Event</th>
+
+              <th scope="col">Average D Score</th>
+              <th scope="col">Average E Score</th>
+              <th scope="col">Total Score</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+
+            </tr>
+          </thead>
+          
+          <tbody>
+            <% competition.forEach (function(model) { %>
+            <tr>
+              <th scope="row"><%= model.athleteID %></th>
+             
+              <td><%= model.athleteName %></td>
+              <td><%= model.competitionEvent %></td>
+
+              <td><%= model.dAvgScore %></td>
+              <td><%= model.eAvgScore %></td>
+              <td><%= model.totalScore %></td>
+              
+              <td><a href="/competition/updateE2/<%= competition.id %>">Edit</a></td>
+
+              <td><a href="/athlete/transcript/">Edit</a></td>
+
+              <td><a href="/competition/scoreboard/<%= model.id %>">Publish Score</a></td>
+              <td><a href="/competition/scoreboard/<%= model.id %>">Start Competition</a></td>
+
+
+            </tr>
+            <%}); %>
+  
+          </tbody>
+        </table>
+  
+      </div>
+
+    
+  
+  
+  
+  
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  

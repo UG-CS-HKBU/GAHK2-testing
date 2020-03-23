@@ -16,7 +16,7 @@
     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <style>
     .class3 {
-      background-color: lightsalmon
+      background-color: rgb(243, 243, 243)
     }
 
     .search {
@@ -44,16 +44,17 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-item nav-link active" href="http://localhost:1337/user/homepage#">Home <span
-              class="sr-only">(current)</span></a>
+
+  
+          <%  if (req.session.role == "admin") {%>
+          <a class="nav-item nav-link" href="http://localhost:1337/competition/homepage#">Home</a>
+          <a class="nav-item nav-link" href="http://localhost:1337/competition/admin#">Admin</a> 
+          <a class="nav-item nav-link" href="http://localhost:1337/competition/import_xlsx#">Upload Competition Excel File</a> 
+          <a class="nav-item nav-link" href="http://localhost:1337/competition/transcript#">Transcript</a> 
+          <%}%>
 
 
 
-
-          <!-- <%  if (req.session.role == "admin") {%> -->
-          <a class="nav-item nav-link" href="http://localhost:1337/athlete/admin#">Admin</a>
-          <a class="nav-item nav-link" href="http://localhost:1337/athlete/transcript#">Transcript</a>
-          <!-- <%}%> -->
 
 
           <!-- <%  if (req.session.role == "user") {%>
@@ -63,13 +64,12 @@
           <%}%> -->
 
          
-
         </div>
 
       </div>
 
       <div style="text-align:right">
-      <%  if (req.session.role != undefined) {%>
+        <%  if (req.session.role != undefined) {%>
           Hi ,
           <%=req.session.username %>.
           <a href="/user/logout">(Logout)</a>
@@ -77,11 +77,14 @@
           <a href="/user/login">(Login)</a> 
         </div>
         <%} %>
+          
 
 
     </nav>
 
+
     <%}%>
+
     <%- body %>
 
 
