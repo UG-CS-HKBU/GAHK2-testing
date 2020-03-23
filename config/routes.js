@@ -65,8 +65,9 @@ module.exports.routes = {
   'GET /competition/export_xlsx': 'CompetitionController.export_xlsx',
 
   'GET /competition/scoreboard/:id': 'CompetitionController.scoreboard',
-  'GET /competition/transcript/': 'CompetitionController.transcript',
+  'GET /competition/ranking/': 'CompetitionController.ranking',
   'GET /competition/homepage/': 'CompetitionController.homepage',
+  'GET /competition/start/:id': 'CompetitionController.start',
 
   
 
