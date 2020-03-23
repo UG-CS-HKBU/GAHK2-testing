@@ -42,7 +42,7 @@ module.exports.bootstrap = async function () {
 
   
 
-
+  // Competition api:
   if (await Competition.count() > 0) {
     return;
   }
@@ -59,7 +59,7 @@ module.exports.bootstrap = async function () {
 // //}
 
 
-
+  // User api:
   if (await User.count() > 0) {
     return;
   }
@@ -81,6 +81,26 @@ module.exports.bootstrap = async function () {
       { username: "Chief_Judge", password: hash, role: "chiefJudge" },
       { username: "Admin1", password: hash, role: "admin" },
       { username: "Admin2", password: hash, role: "admin" }
+
+      // etc.
+    ]);
+ //}
+
+
+    // Event api:
+  if (await Event.count() > 0) {
+    return;
+  }
+
+
+ //if (await User.count() == 0) {
+
+    await Event.createEach([
+
+      // { username: "Djudge2", password: hash, role: "user" },
+      { eventName: "Pommel Horse", d1Name: "DJudge1", d2Name: "DJudge2", e1Name: "EJudge1", e2Name: "EJudge2", e3Name: "EJudge3", e4Name: "EJudge4", e5Name: "EJudge5",  },
+      { eventName: "Ring", d1Name: "DJudge1R", d2Name: "DJudge2R", e1Name: "EJudge1R", e2Name: "EJudge2R", e3Name: "EJudge3R", e4Name: "EJudge4R", e5Name: "EJudge5R",  },
+    
 
       // etc.
     ]);
