@@ -33,7 +33,8 @@ module.exports = {
             sails.log("[Session] ", req.session);
 
             if (req.wantsJSON) {
-                return res.redirect('/user/homepage');
+                return res.redirect('/competition/homepage');
+                //return res.redirect('/user/homepage');
             }
 
             //return res.ok("Login successfully.");

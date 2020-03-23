@@ -22,6 +22,17 @@ module.exports = {
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
+    atheleteName: {
+      type: "string"
+    },
+    
+    athleteID: {
+      type: "string"
+    },
+
+    competitionEvent: {
+      type: "string"
+    },
 
     e1Score: {
       type: "number",
@@ -44,7 +55,7 @@ module.exports = {
       type: "number",
     },
 
-    e6Score: {
+    d1Score: {
       type: "number",
     },
 
@@ -52,18 +63,19 @@ module.exports = {
       type: "number",
     },
 
-
-    atheleteName: {
-      type: "string"
-    },
-    
-    athleteID: {
-      type: "string"
+    dAvgScore: {
+      type: "number",
     },
 
-    competitionEvent: {
-      type: "string"
+    eAvgScore: {
+      type: "number",
     },
+
+    totalScore: {
+      type: "number",
+    },
+
+
 
 
   },
