@@ -23,6 +23,17 @@ module.exports.routes = {
 
  '/': 'UserController.login',
   
+ //socket
+ 'GET /init-chat': 'CompetitionController.newConversationReading',
+ 'GET /score': 'CompetitionController.showScore',
+
+ 'GET /api/chat-conversation-count': 'CompetitionController.chatBotUsageStats',
+ 'GET /api/get-daily-usage-stats': 'CompetitionController.chatBotUsageStats',
+
+ 'GET /api/v1/chat-conversation-count': 'CompetitionController.chatBotUsageStats',
+ 'GET /api/v1/get-daily-usage-stats': 'CompetitionController.chatBotUsageStats',
+
+
  // User
   'GET /user/login': 'UserController.login',
   'POST /user/login': 'UserController.login',
@@ -37,6 +48,9 @@ module.exports.routes = {
   'GET /competition/admin/': 'CompetitionController.admin',
 
   'GET /competition/json': 'CompetitionController.json',
+
+  'GET /competition/update/:id': 'CompetitionController.update',
+  'POST /competition/update/:id': 'CompetitionController.update',
 
   'GET /competition/updateE1/:id': 'CompetitionController.updateE1',
   'POST /competition/updateE1/:id': 'CompetitionController.updateE1',

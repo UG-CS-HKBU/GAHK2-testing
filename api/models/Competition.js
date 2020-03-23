@@ -74,6 +74,8 @@ module.exports = {
     totalScore: {
       type: "number",
     },
+    
+    
 
     startTime:{
       type: 'ref',
@@ -87,8 +89,21 @@ module.exports = {
 
 
 
-
   },
+
+  // afterCreate(entry, cb) {
+  //   sails.sockets.broadcast('feed', 'new_entry', entry);
+  //   cb();
+  // },
+
+  afterUpdate(model, cb) {
+    console.log(model);
+
+    if (model.startTime != null && model.endTime == null) {
+      sails.sockets.broadcast('feed', 'start', model);
+    }
+    cb();
+  }
 
 };
 

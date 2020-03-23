@@ -71,7 +71,7 @@ module.exports = {
 
     },
 
-   
+
 
     // action - create
     createD1: async function (req, res) {
