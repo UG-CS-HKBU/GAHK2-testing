@@ -74,6 +74,19 @@ module.exports = {
    
 
     // action - create
+    createD1: async function (req, res) {
+        
+        if (req.method == "GET")
+            return res.view('user/d1');
+
+        if (!req.body.User)
+            return res.badRequest("Form-data not received.");
+
+        await User.createD2(req.body.User);
+
+        return res.ok("Successfully created!");
+    },
+
     createD2: async function (req, res) {
         
         if (req.method == "GET")
@@ -86,6 +99,7 @@ module.exports = {
 
         return res.ok("Successfully created!");
     },
+
 
     // action - create
     createE1: async function (req, res) {
