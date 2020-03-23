@@ -164,13 +164,13 @@ module.exports = {
     //             competitionEvent: req.body.Competition.competitionEvent,
 
 
-                e1Score: req.body.Competition.e1Score,
-                e2Score: req.body.Competition.e2Score,
-                e3Score: req.body.Competition.e3Score,
-                e4Score: req.body.Competition.e4Score,
-                e5Score: req.body.Competition.e5Score,
-                d1Score: req.body.Competition.d1Score,
-                d2Score: req.body.Competition.d2Score,
+     //           e1Score: req.body.Competition.e1Score,
+       //         e2Score: req.body.Competition.e2Score,
+         //       e3Score: req.body.Competition.e3Score,
+           //     e4Score: req.body.Competition.e4Score,
+             //   e5Score: req.body.Competition.e5Score,
+               // d1Score: req.body.Competition.d1Score,
+                //d2Score: req.body.Competition.d2Score,
 
     //             e1Score: req.body.Competition.e1Score,
     //             e2Score: req.body.Competition.e2Score,
@@ -196,7 +196,7 @@ module.exports = {
 
 
             //return res.ok("Record updated");
-            return res.ok("Scores updated.");
+     //       return res.ok("Scores updated.");
 
     //         //return res.ok("Record updated");
     //         return res.redirect("/estate/admin/");
