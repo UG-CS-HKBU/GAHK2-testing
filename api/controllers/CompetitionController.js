@@ -59,6 +59,28 @@ module.exports = {
 
     },
 
+    // action - transcript
+    transcript: async function (req, res) {
+
+        var models = await Competition.find({
+            sort: 'd1Score DESC'
+        }
+        );
+
+        // Cal avg D and E scores:
+
+
+        return res.view('competition/transcript', { competition: models });
+
+    },
+
+    // action - homepage
+    homepage: async function (req, res) {
+
+        return res.view('competition/homepage');
+
+    },
+
     // action - import excel file
     import_xlsx: async function (req, res) {
 

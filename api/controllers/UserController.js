@@ -33,7 +33,7 @@ module.exports = {
             sails.log("[Session] ", req.session);
 
             if (req.wantsJSON) {
-                return res.redirect('/competition/import_xlsx');
+                return res.redirect('/competition/homepage');
                 //return res.redirect('/user/homepage');
             }
 
