@@ -75,6 +75,16 @@ module.exports = {
       type: "number",
     },
 
+    startTime:{
+      type: 'ref',
+      columnType: "dateTime"
+    },
+
+    endTime:{
+      type: 'ref',
+      columnType: "dateTime"
+    },
+
 
 
 

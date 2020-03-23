@@ -17,12 +17,27 @@ module.exports = {
 
         await Competition.create(req.body.Competition);
 
-
-
-
         return res.redirect("/competition/create/");
     },
 
+    // action - start
+    start: async function (req, res) {
+        var model = await Competition.findOne(req.params.id);
+
+        model.startTime = new Date();
+        await Competition.update(req.params.id).set(model);
+        return res.redirect('/competition/admin');
+    },
+
+
+        // action - start
+        start: async function (req, res) {
+            var model = await Competition.findOne(req.params.id);
+    
+            model.startTime = new Date();
+            await Competition.update(req.params.id).set(model);
+            return res.redirect('/competition/admin');
+        },
 
     // action - admin
     admin: async function (req, res) {
@@ -30,7 +45,9 @@ module.exports = {
         var models = await Competition.find();
 
         // Cal avg D and E scores:
-
+        const dAvg = models.d1Score + models.d2Score
+        // sails.log("D1 score is : ", models.)
+        // sails.log("Average D score is : ", dAvg)
 
         return res.view('competition/admin', { competition: models });
 
@@ -59,8 +76,8 @@ module.exports = {
 
     },
 
-    // action - transcript
-    transcript: async function (req, res) {
+    // action - ranking
+    ranking: async function (req, res) {
 
         var models = await Competition.find({
             sort: 'e1Score DESC'
@@ -70,7 +87,7 @@ module.exports = {
         // Cal avg D and E scores:
 
 
-        return res.view('competition/transcript', { competition: models });
+        return res.view('competition/ranking', { competition: models });
 
     },
 
@@ -80,6 +97,14 @@ module.exports = {
         return res.view('competition/homepage');
 
     },
+
+    // action - waiting
+    waiting: async function (req, res) {
+
+        return res.view('competition/waiting');
+
+    },
+
 
     // action - import excel file
     import_xlsx: async function (req, res) {
