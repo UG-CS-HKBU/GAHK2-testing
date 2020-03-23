@@ -79,14 +79,14 @@ module.exports = {
     // action - admin
     admin: async function (req, res) {
 
-        var models = await Competition.find();
+        var model = await Event.findOne(parseInt(req.params.id)).populate('includes');
 
         // Cal avg D and E scores:
         // const dAvg = models.d1Score + models.d2Score
         // sails.log("D1 score is : ", models.)
         // sails.log("Average D score is : ", dAvg)
 
-        return res.view('competition/admin', { competition: models });
+        return res.view('competition/admin', { competition: model.includes });
 
     },
 
@@ -130,8 +130,8 @@ module.exports = {
 
     // action - homepage
     homepage: async function (req, res) {
-
-        return res.view('competition/homepage');
+        var events = await Event.find();
+        return res.view('competition/homepage',{events:events});
 
     },
 
@@ -142,26 +142,27 @@ module.exports = {
 
     },
 
-    // action - 
-    update: async function (req, res) {
+    // // action - 
+    // update: async function (req, res) {
 
-        if (req.method == "GET") {
+    //     if (req.method == "GET") {
 
-            var model = await Competition.findOne(req.params.id);
+    //         var model = await Competition.findOne(req.params.id);
 
-            if (!model) return res.notFound();
+    //         if (!model) return res.notFound();
 
-            return res.view('competition/update', { competition: model });
+    //         return res.view('competition/update', { competition: model });
 
-        } else {
+    //     } else {
 
-            if (!req.body.Competition)
-                return res.badRequest("Form-data not received.");
+    //         if (!req.body.Competition)
+    //             return res.badRequest("Form-data not received.");
 
-            var models = await Competition.update(req.params.id).set({
-                athleteName: req.body.Competition.athleteName,
-                athleteID: req.body.Competition.athleteID,
-                competitionEvent: req.body.Competition.competitionEvent,
+    //         var models = await Competition.update(req.params.id).set({
+    //             athleteName: req.body.Competition.athleteName,
+    //             athleteID: req.body.Competition.athleteID,
+    //             competitionEvent: req.body.Competition.competitionEvent,
+
 
                 e1Score: req.body.Competition.e1Score,
                 e2Score: req.body.Competition.e2Score,
@@ -171,24 +172,37 @@ module.exports = {
                 d1Score: req.body.Competition.d1Score,
                 d2Score: req.body.Competition.d2Score,
 
-                dAvgScore: req.body.Competition.dAvgScore,
-                eAvgScore: req.body.Competition.eAvgScore,
-                totalScore: req.body.Competition.totalScore,
+    //             e1Score: req.body.Competition.e1Score,
+    //             e2Score: req.body.Competition.e2Score,
+    //             e3Score: req.body.Competition.e3Score,
+    //             e4Score: req.body.Competition.e4Score,
+    //             e5Score: req.body.Competition.e5Score,
+    //             d1Score: req.body.Competition.d1Score,
+    //             e2Score: req.body.Competition.e2Score,
+
+
+    //             dAvgScore: req.body.Competition.dAvgScore,
+    //             eAvgScore: req.body.Competition.eAvgScore,
+    //             totalScore: req.body.Competition.totalScore,
              
-                startTime: req.body.Competition.startTime,
-                endTime: req.body.Competition.endTime,
+    //             startTime: req.body.Competition.startTime,
+    //             endTime: req.body.Competition.endTime,
 
-                //createdDate: req.body.Estate.createdDate,
-                //updatedDate: new Date().toLocaleDateString(),
-            }).fetch();
+    //             //createdDate: req.body.Estate.createdDate,
+    //             //updatedDate: new Date().toLocaleDateString(),
+    //         }).fetch();
 
-            if (models.length == 0) return res.notFound();
+    //         if (models.length == 0) return res.notFound();
+
 
             //return res.ok("Record updated");
             return res.ok("Scores updated.");
 
-        }
-    },
+    //         //return res.ok("Record updated");
+    //         return res.redirect("/estate/admin/");
+
+    //     }
+    // },
 
 
     // action - chiefjudge viewing
@@ -208,6 +222,8 @@ module.exports = {
     // action - import excel file
     import_xlsx: async function (req, res) {
 
+        var eventId = parseInt(req.params.id);
+
         if (req.method == 'GET')
             return res.view('competition/import_xlsx');
 
@@ -221,11 +237,14 @@ module.exports = {
             var data = XLSX.utils.sheet_to_json(ws);
             console.log(data);
             var models = await Competition.createEach(data).fetch();
+            
             if (models.length == 0) {
                 return res.badRequest("No data imported.");
             }
-
-            return res.redirect('/competition/admin/');
+            for (var i=0;i<models.length;i++) {
+                await Competition.addToCollection(models[i].id, 'belongsTo').members(eventId);
+            }
+            return res.redirect('/competition/admin/'+eventId);
             //return res.ok("Excel file imported.");
         });
     },

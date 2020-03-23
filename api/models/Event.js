@@ -13,9 +13,19 @@ module.exports = {
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
 
+
     // eventName: {
     //   type: "string"
     // },
+
+    eventNumber: {
+      type: "number"
+    },
+
+    eventName: {
+      type: "string"
+    },
+
     
     // eventTime: {
     //   type: 'ref',
@@ -51,6 +61,9 @@ module.exports = {
     // },
 
 
+    
+
+
 
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
@@ -62,10 +75,17 @@ module.exports = {
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
 
+
     // includes: {
     //   collection: 'Competition',
     //   via: 'includes'
     // },
+
+    includes: {
+      collection: 'Competition',
+      via: 'belongsTo'
+    },
+
 
   },
 
