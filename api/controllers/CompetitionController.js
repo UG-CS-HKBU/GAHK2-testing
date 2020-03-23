@@ -82,7 +82,7 @@ module.exports = {
         var models = await Competition.find();
 
         // Cal avg D and E scores:
-        const dAvg = models.d1Score + models.d2Score
+        // const dAvg = models.d1Score + models.d2Score
         // sails.log("D1 score is : ", models.)
         // sails.log("Average D score is : ", dAvg)
 
@@ -117,7 +117,7 @@ module.exports = {
     ranking: async function (req, res) {
 
         var models = await Competition.find({
-            sort: 'e1Score DESC'
+            sort: 'totalScore DESC'
         }
         );
 
@@ -169,7 +169,7 @@ module.exports = {
                 e4Score: req.body.Competition.e4Score,
                 e5Score: req.body.Competition.e5Score,
                 d1Score: req.body.Competition.d1Score,
-                e2Score: req.body.Competition.e2Score,
+                d2Score: req.body.Competition.d2Score,
 
                 dAvgScore: req.body.Competition.dAvgScore,
                 eAvgScore: req.body.Competition.eAvgScore,
@@ -185,9 +185,24 @@ module.exports = {
             if (models.length == 0) return res.notFound();
 
             //return res.ok("Record updated");
-            return res.redirect("/estate/admin/");
+            return res.ok("Scores updated.");
 
         }
+    },
+
+
+    // action - chiefjudge viewing
+    chiefjudgeView: async function (req, res) {
+
+        if (req.method == "GET") {
+
+            var model = await Competition.findOne(req.params.id);
+
+            if (!model) return res.notFound();
+
+            return res.view('competition/chiefjudgeView', { competition: model });
+        }
+
     },
 
     // action - import excel file
@@ -258,6 +273,7 @@ module.exports = {
             if (!model) return res.notFound();
 
             return res.view('competition/updateE1', { competition: model });
+
 
         } else {
 

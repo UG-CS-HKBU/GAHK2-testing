@@ -1,0 +1,86 @@
+<!--update.ejs-->
+<form action="/competition/chiefjudgeView/<%= competition.id %>" method="POST">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-6 col-lg-6 col-xl-6">
+
+
+                <h3><%= competition.competitionEvent%> </h3>
+                <ul class="list-group">
+
+                    <li class="list-group-item">Ahtlete Name: <%= competition.athleteName%></li>
+                    <li class="list-group-item">Ahtlete ID: <%= competition.athleteID%></li>
+                    <li class="list-group-item">Ahtlete grade: <%= competition.competitionEvent%></li>
+                    <br><br>
+
+                </ul>
+                <h5> Difficulty score : </h5>
+                <ul class="list-group">
+
+                    <li class="list-group-item">D judge 1: <input name="d1Score" value="<%= competition.d1Score %>" readonly/></li>
+                    <li class="list-group-item">D judge 2: <%= competition.d2Score %></li>
+                    <li class="list-group-item">D Average Score: <%= competition.dAvgScore %></li>
+                    <br><br>
+
+                </ul>
+
+                <h5> Execution score : </h5>
+                <ul class="list-group">
+
+                    <li class="list-group-item">E judge 1: <%= competition.e1Score %></li>
+                    <li class="list-group-item">E judge 2: <%= competition.e2Score %></li>
+                    <li class="list-group-item">E judge 3: <%= competition.e3Score %></li>
+                    <li class="list-group-item">E judge 4: <%= competition.e4Score %></li>
+                    <li class="list-group-item">E judge 5: <%= competition.e5Score %></li>
+                    <li class="list-group-item">E Average Score: <%= competition.eAvgScore %></li>
+                    <br><br>
+
+                </ul>
+
+                <br>
+                <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                <!-- <button type="button" class="btn btn-primary">Edit</button> -->
+                <a class="btn btn-primary" href="http://localhost:1337/competition/update/<%= competition.id%>" role="button">Edit</a>
+           
+
+            </div>
+
+
+            <div class="col-12 col-sm-6 col-lg-6 col-xl-6">
+                <p><h3>Final score: <%= competition.totalScore %></h3></p>
+
+
+                <br><br>
+
+
+                
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+    <br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</form>
+
