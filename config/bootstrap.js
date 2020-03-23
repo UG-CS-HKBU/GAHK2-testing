@@ -78,7 +78,7 @@ module.exports.bootstrap = async function () {
       // { username: "Ejudge5", password: hash, role: "user" },
       // { username: "Djudge1", password: hash, role: "user" },
       // { username: "Djudge2", password: hash, role: "user" },
-      { username: "Chief_Judge", password: hash, role: "admin" },
+      { username: "Chief_Judge", password: hash, role: "chiefJudge" },
       { username: "Admin1", password: hash, role: "admin" },
       { username: "Admin2", password: hash, role: "admin" }
 
