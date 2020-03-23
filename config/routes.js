@@ -72,6 +72,9 @@ module.exports.routes = {
   
 
   // judges scoring pages
+  'GET /user/d1/': 'UserController.createD1',
+  'POST /user/d1/': 'UserController.createD1',
+
   'GET /user/d2/': 'UserController.createD2',
   'POST /user/d2/': 'UserController.createD2',
 

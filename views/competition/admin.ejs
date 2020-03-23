@@ -44,10 +44,15 @@
               <td><%= model.dAvgScore %></td>
               <td><%= model.eAvgScore %></td>
               <td><%= model.totalScore %></td>
+              
+              <td><a href="/competition/updateE2/<%= competition.id %>">Edit</a></td>
+
+              <td><a href="/athlete/transcript/">Edit</a></td>
 
 
               <td><a href="/competition/scoreboard/<%= model.id %>">Publish Score</a></td>
               <td><a href="/competition/satrt/<%= model.id %>">Start Competition</a></td>
+
 
             </tr>
             <%}); %>
