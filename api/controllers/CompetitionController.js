@@ -6,6 +6,43 @@
  */
 
 module.exports = {
+    //socket
+    showScore: async function (req, res) {
+
+        return res.view("scoreList/score");
+
+    },
+
+    newConversationReading: async function (req, res) {
+
+        var reading = await BotUsage.create({
+            name: "Bot " + Math.floor(Math.random() * 10),
+            totalConversation: Math.floor(Math.random() * 20 + 10)
+        }).fetch();
+
+        return res.json(reading);
+
+    },
+
+    chatBotUsageStats: async function (req, res) {
+        try {
+
+            if (!req.isSocket) {
+                console.log('Only a client socket can subscribe');
+            }
+
+            // const totalConversation = await CommonService.getQuery('select count(*) from botUsage');
+
+            const totalConversation = await BotUsage.find();
+
+            sails.sockets.join(req.socket, 'feed');
+            res.send({success: true, totalConversation});
+
+        } catch (e) {
+            res.send({ error: true, message: e.stack });
+        }
+    },
+
     // action - create
     create: async function (req, res) {
 
