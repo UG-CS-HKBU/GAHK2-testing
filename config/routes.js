@@ -23,6 +23,17 @@ module.exports.routes = {
 
  '/': 'UserController.login',
   
+ //socket
+ 'GET /init-chat': 'CompetitionController.newConversationReading',
+ 'GET /score': 'CompetitionController.showScore',
+
+ 'GET /api/chat-conversation-count': 'CompetitionController.chatBotUsageStats',
+ 'GET /api/get-daily-usage-stats': 'CompetitionController.chatBotUsageStats',
+
+ 'GET /api/v1/chat-conversation-count': 'CompetitionController.chatBotUsageStats',
+ 'GET /api/v1/get-daily-usage-stats': 'CompetitionController.chatBotUsageStats',
+
+
  // User
   'GET /user/login': 'UserController.login',
   'POST /user/login': 'UserController.login',
