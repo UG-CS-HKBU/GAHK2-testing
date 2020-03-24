@@ -93,26 +93,26 @@ module.exports.routes = {
   
 
   // judges scoring pages
-  'GET /user/d1/': 'UserController.createD1',
-  'POST /user/d1/': 'UserController.createD1',
+  // 'GET /user/d1/': 'UserController.createD1',
+  // 'POST /user/d1/': 'UserController.createD1',
 
-  'GET /user/d2/': 'UserController.createD2',
-  'POST /user/d2/': 'UserController.createD2',
+  // 'GET /user/d2/': 'UserController.createD2',
+  // 'POST /user/d2/': 'UserController.createD2',
 
-  'GET /user/e1/': 'UserController.createE1',
-  'POST /user/e1/': 'UserController.createE1',
+  // 'GET /user/e1/': 'UserController.createE1',
+  // 'POST /user/e1/': 'UserController.createE1',
 
-  'GET /user/e2/': 'UserController.createE2',
-  'POST /user/e2/': 'UserController.createE2',
+  // 'GET /user/e2/': 'UserController.createE2',
+  // 'POST /user/e2/': 'UserController.createE2',
 
-  'GET /user/e3/': 'UserController.createE3',
-  'POST /user/e3/': 'UserController.createE3',
+  // 'GET /user/e3/': 'UserController.createE3',
+  // 'POST /user/e3/': 'UserController.createE3',
 
-  'GET /user/e4/': 'UserController.createE4',
-  'POST /user/e4/': 'UserController.createE4',
+  // 'GET /user/e4/': 'UserController.createE4',
+  // 'POST /user/e4/': 'UserController.createE4',
 
-  'GET /user/e5/': 'UserController.createE5',
-  'POST /user/e5/': 'UserController.createE5',
+  // 'GET /user/e5/': 'UserController.createE5',
+  // 'POST /user/e5/': 'UserController.createE5',
 
 
   /***************************************************************************
