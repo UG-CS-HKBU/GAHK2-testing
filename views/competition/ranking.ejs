@@ -1,74 +1,75 @@
 <div class="container">
-    <div class="row">
-      <!-- The 12 cards -->
-      <div class="col-12">
-        <table class="table">
-  
-          <thead>
-            <tr>
-              <th scope="col">Sequence</th>
-              <th scope="col">Athlete Name</th>
-              <th scope="col">Competition Event</th>
-              <th scope="col">E1</th>
-              <th scope="col">E2</th>
-              <th scope="col">E3</th>
-              <th scope="col">E4</th>
-              <th scope="col">E5</th>
-              <th scope="col">D1</th>
-              <th scope="col">D2</th>
-              <th scope="col">Average D Score</th>
-              <th scope="col">Average E Score</th>
-              <th scope="col">Total Score</th>
+  <div class="row">
+    <!-- The 12 cards -->
+    <div class="col-12">
+      <table class="table">
 
-            </tr>
-          </thead>
-          
-          <tbody>
-            <% competition.forEach (function(model) { 
-              model.dAvgScore = (model.d1Score + model.d2Score) / 2
+        <thead>
+          <tr>
+            <th scope="col">Sequence</th>
+            <th scope="col">Athlete Name</th>
+            <th scope="col">Competition Event</th>
+            <th scope="col">E1</th>
+            <th scope="col">E2</th>
+            <th scope="col">E3</th>
+            <th scope="col">E4</th>
+            <th scope="col">E5</th>
+            <th scope="col">D1</th>
+            <th scope="col">D2</th>
+            <th scope="col">Average D Score</th>
+            <th scope="col">Average E Score</th>
+            <th scope="col">Total Score</th>
 
-              sortEScore = [model.e1Score, model.e2Score, model.e3Score, model.e4Score, model.e5Score].sort();
-              model.eAvgScore = (sortEScore[1] + sortEScore[2] + sortEScore[3]) / 3;  
-              
-              %>
-            <tr>
-              <th scope="row"><%= model.athleteID %></th>
-             
-              <td><%= model.athleteName %></td>
-              <td><%= model.competitionEvent %></td>
-              <td><%= model.e1Score %></td>
-              <td><%= model.e2Score %></td>
-              <td><%= model.e3Score %></td>
-              <td><%= model.e4Score %></td>
-              <td><%= model.e5Score %></td>
-              <td><%= model.d1Score %></td>
-              <td><%= model.d2Score %></td>
-              <td><%= model.dAvgScore %></td>
-              <td><%= model.eAvgScore %></td>
-              <td><%= model.totalScore %></td>
+          </tr>
+        </thead>
+        
+        <tbody>
+          <% competition.forEach (function(model) { 
+            model.dAvgScore = (model.d1Score + model.d2Score) / 2 ;
+
+            sortEScore = [model.e1Score, model.e2Score, model.e3Score, model.e4Score, model.e5Score].sort();
+            model.eAvgScore = (sortEScore[1] + sortEScore[2] + sortEScore[3]) / 3;  
+
+            model.totalScore = model.dAvgScore + model.eAvgScore ;
+            
+            %>
+          <tr>
+            <th scope="row"><%= model.athleteID %></th>
+           
+            <td><%= model.athleteName %></td>
+            <td><%= model.competitionEvent %></td>
+            <td><%= model.e1Score %></td>
+            <td><%= model.e2Score %></td>
+            <td><%= model.e3Score %></td>
+            <td><%= model.e4Score %></td>
+            <td><%= model.e5Score %></td>
+            <td><%= model.d1Score %></td>
+            <td><%= model.d2Score %></td>
+            <td><%= model.dAvgScore %></td>
+            <td><%= model.eAvgScore %></td>
+            <td><%= model.totalScore %></td>
 
 
 
-            </tr>
-            <%}); %>
-  
-          </tbody>
-        </table>
-  
-      </div>
+          </tr>
+          <%}); %>
 
-      <a href="/competition/export_xlsx/">Export Final Result</a>
-  
-  
-  
-  
+        </tbody>
+      </table>
+
     </div>
+
+    <a href="/competition/export_xlsx/">Export Final Result</a>
+
+
+
+
   </div>
-  
-  
-  
-  
-  
-  
-  
-  
+</div>
+
+
+
+
+
+
+

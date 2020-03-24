@@ -57,12 +57,7 @@ module.exports = {
         });
     },
 
-    // action - homepage
-    homepage: async function (req, res) {
 
-        return res.view('user/homepage');
-
-    },
 
 
     setJudgeScreen: async function (req, res) {
@@ -71,7 +66,7 @@ module.exports = {
 
     },
 
-   
+
 
     // action - create
     createD1: async function (req, res) {

@@ -96,6 +96,17 @@ module.exports = {
   //   cb();
   // },
 
+  beforeUpdate(model, cb) {
+    model.dAvgScore = (model.d1Score + model.d2Score) / 2 ;
+
+    let sortEScore = [model.e1Score, model.e2Score, model.e3Score, model.e4Score, model.e5Score].sort();
+    model.eAvgScore = (sortEScore[1] + sortEScore[2] + sortEScore[3]) / 3;
+
+    model.totalScore = model.dAvgScore + model.eAvgScore ;
+
+    cb();
+  },
+
   afterUpdate(model, cb) {
     console.log(model);
 
