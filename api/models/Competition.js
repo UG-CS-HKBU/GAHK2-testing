@@ -22,7 +22,7 @@ module.exports = {
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-    athleteName: {
+    atheleteName: {
       type: "string"
     },
     
@@ -85,11 +85,6 @@ module.exports = {
     endTime:{
       type: 'ref',
       columnType: "dateTime"
-    },
-
-    belongsTo: {
-      collection: 'Event',
-      via: 'includes'
     },
 
 
