@@ -1,5 +1,6 @@
 
-<h1>Please wait for competition to start...</h1>
+<h1>Please wait for competition to start...<%=req.params.judge%></h1>
+
 <script>
     window.onload = function () {
         io.socket.get('/api/chat-conversation-count', function (data, jwr) {
@@ -11,7 +12,10 @@
             console.log('Successfully subscribed.');
 
             io.socket.on('start', function test(resp) {
-                window.location.assign()
+
+                console.log(resp);
+
+                // <a href='/competition/updateD1/1'></a>
             });
         });
     };

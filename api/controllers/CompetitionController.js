@@ -67,16 +67,26 @@ module.exports = {
     },
 
 
+    // action - start
+    start: async function (req, res) {
+        var model = await Competition.findOne(req.params.id);
+
+        model.startTime = new Date();
+        await Competition.update(req.params.id).set(model);
+        return res.redirect('/competition/admin');
+    },
 
     // action - admin
     admin: async function (req, res) {
 
         var models = await Competition.find();
 
-        var isStarted = false; 
+        // Cal avg D and E scores:
+        // const dAvg = models.d1Score + models.d2Score
+        // sails.log("D1 score is : ", models.)
+        // sails.log("Average D score is : ", dAvg)
 
-        return res.view('competition/admin', { competition: model.includes });
-
+        return res.view('competition/admin', { competition: models });
 
     },
 
@@ -112,6 +122,7 @@ module.exports = {
         );
 
         // Cal avg D and E scores:
+
 
         return res.view('competition/ranking', { competition: models });
 
@@ -193,7 +204,6 @@ module.exports = {
         }
 
     },
-
 
     // action - import excel file
     import_xlsx: async function (req, res) {

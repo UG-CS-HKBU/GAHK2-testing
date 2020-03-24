@@ -45,10 +45,7 @@ module.exports.routes = {
 
   //Competition
   'POST /competition/create/': 'CompetitionController.create',
-
-  'GET /competition/admin/:id': 'CompetitionController.admin',
-  'POST /competition/admin/:id': 'CompetitionController.admin',
-
+  'GET /competition/admin/': 'CompetitionController.admin',
 
   'GET /competition/json': 'CompetitionController.json',
 
@@ -89,7 +86,7 @@ module.exports.routes = {
   'GET /competition/ranking/': 'CompetitionController.ranking',
   'GET /competition/homepage/': 'CompetitionController.homepage',
   'GET /competition/start/:id': 'CompetitionController.start',
-
+  'GET /competition/:judge/waiting': 'CompetitionController.waiting',
   
 
   // judges scoring pages
