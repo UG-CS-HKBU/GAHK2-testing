@@ -30,26 +30,15 @@ module.exports = {
     },
 
 
-    // action - start
-    start: async function (req, res) {
-        var model = await Competition.findOne(req.params.id);
-
-        model.startTime = new Date();
-        await Competition.update(req.params.id).set(model);
-        return res.redirect('/competition/admin');
-    },
 
     // action - admin
     admin: async function (req, res) {
 
         var model = await Event.findOne(parseInt(req.params.id)).populate('includes');
 
-        // Cal avg D and E scores:
-        // const dAvg = models.d1Score + models.d2Score
-        // sails.log("D1 score is : ", models.)
-        // sails.log("Average D score is : ", dAvg)
-
-        return res.view('competition/admin', { competition: model.includes });
+        var isStarted = false;
+        
+        return res.view('competition/admin', { competition: model.includes, 'isCompetitionStarted' : isStarted });
 
     },
 
@@ -85,7 +74,6 @@ module.exports = {
         );
 
         // Cal avg D and E scores:
-
 
         return res.view('competition/ranking', { competition: models });
 
