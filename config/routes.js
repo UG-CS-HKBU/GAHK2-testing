@@ -86,7 +86,7 @@ module.exports.routes = {
   'GET /competition/ranking/': 'CompetitionController.ranking',
   'GET /competition/homepage/': 'CompetitionController.homepage',
   'GET /competition/start/:id': 'CompetitionController.start',
-
+  'GET /competition/:judge/waiting': 'CompetitionController.waiting',
   
 
   // judges scoring pages
