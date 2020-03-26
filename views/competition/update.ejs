@@ -1,0 +1,114 @@
+<!--update.ejs-->
+<form action="/competition/update/<%= competition.id %>" method="POST">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-6 col-lg-6 col-xl-6">
+
+
+                <h3><%= competition.competitionEvent%> </h3>
+                <ul class="list-group">
+
+                    <li class="list-group-item">Ahtlete Name: <%= competition.athleteName%></li>
+                    <li class="list-group-item">Ahtlete ID: <%= competition.athleteID%></li>
+                    <li class="list-group-item">Ahtlete grade: <%= competition.competitionEvent%></li>
+                    <br><br>
+
+                </ul>
+
+                <h5> Difficulty score : </h5>
+                <ul class="list-group">
+
+                    <li class="list-group-item">D judge 1: <input name="Competition[d1Score]" value="<%= competition.d1Score %>" /></li>
+                    <li class="list-group-item">D judge 2: <input name="Competition[d2Score]" value="<%= competition.d2Score %>" /></li>
+                    <li class="list-group-item">D Average Score: <input name="Competition[dAvgScore]" value="<%= competition.dAvgScore %>" /></li>
+                    <br><br>
+
+                </ul>
+
+
+                <!-- <h5> Difficulty score : </h5>
+                <ul class="list-group">
+
+                    <div>
+                        <label>D judge 1: </label>
+                        <input type="number" class="form-control" name="Competition[d1Score]" placeholder="0.0" step="0.1" min="0" max="10" required>
+                    </div>
+                    <div>
+                        <label>D judge 2: </label>
+                        <input type="number" class="form-control" name="Competition[d2Score]" placeholder="0.0" step="0.1" min="0" max="10" required>
+                    </div> -->
+                   
+
+                <!-- </ul> -->
+                <br><br>
+
+                <h5> Execution score : </h5>
+                <ul class="list-group">
+
+                    <li class="list-group-item">E judge 1: <input name="Competition[e1Score]" value="<%= competition.e1Score %>" /></li>
+                    <li class="list-group-item">E judge 2: <input name="Competition[e2Score]" value="<%= competition.e2Score %>" /></li>
+                    <li class="list-group-item">E judge 3: <input name="Competition[e3Score]" value="<%= competition.e3Score %>" /></li>
+                    <li class="list-group-item">E judge 5: <input name="Competition[e4Score]" value="<%= competition.e4Score %>" /></li>
+                    <li class="list-group-item">E judge 5: <input name="Competition[e5Score]" value="<%= competition.e5Score %>" /></li>
+                    <li class="list-group-item">E Average Score: <input name="Competition[eAvgScore]" value="<%= competition.eAvgScore %>" /></li>
+                </ul>
+
+                <!-- <h5> Execution score : </h5>
+                <ul class="list-group">
+
+                    <div>
+                        <label>E judge 1: </label>
+                        <input type="number" class="form-control" name="Competition[e1Score]" placeholder="0.0" step="0.1" min="0" max="10" required>
+                    </div>
+                    <div>
+                        <label>E judge 2: </label>
+                        <input type="number" class="form-control" name="Competition[e2Score]" placeholder="0.0" step="0.1" min="0" max="10" required>
+                    </div>
+                    <div>
+                        <label>E judge 3: </label>
+                        <input type="number" class="form-control" name="Competition[e3Score]" placeholder="0.0" step="0.1" min="0" max="10" required>
+                    </div>
+                    <div>
+                        <label>E judge 4: </label>
+                        <input type="number" class="form-control" name="Competition[e4Score]" placeholder="0.0" step="0.1" min="0" max="10" required>
+                    </div>
+                    <div>
+                        <label>E judge 5: </label>
+                        <input type="number" class="form-control" name="Competition[e5Score]" placeholder="0.0" step="0.1" min="0" max="10" required>
+                    </div>
+                    
+
+                </ul> -->
+                <br>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <!-- <button type="button" class="btn btn-primary">Edit</button> -->
+                <!-- <a class="btn btn-primary" href="http://localhost:1337/competition/" role="button">Edit</a> -->
+           
+
+            </div>
+
+
+            
+        </div>
+    </div>
+
+    <br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</form>

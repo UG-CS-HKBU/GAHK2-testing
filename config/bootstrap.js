@@ -75,17 +75,7 @@ module.exports.bootstrap = async function () {
     const hash = await sails.bcrypt.hash('123456', saltRounds);
 
     await User.createEach([
-
-    //  { username: "Chief_Judge", password: hash, role: "admin" }
-      // { username: "Ejudge1", password: hash, role: "user" },         // newly add
-      // { username: "Ejudge2", password: hash, role: "user" },
-      // { username: "Ejudge3", password: hash, role: "user" },
-      // { username: "Ejudge4", password: hash, role: "user" },
-      // { username: "Ejudge5", password: hash, role: "user" },
-      // { username: "Djudge1", password: hash, role: "user" },
-      // { username: "Djudge2", password: hash, role: "user" },
-      { username: "Chief_Judge", password: hash, role: "chiefJudge" },
-      { username: "Admin1", password: hash, role: "admin" },
+      { username: "Admin", password: hash, role: "admin" },
       { username: "Admin2", password: hash, role: "admin" }
 
       // etc.
@@ -108,6 +98,8 @@ module.exports.bootstrap = async function () {
       { eventNumber: 2, eventName: "Ring", d1Name: "DJudge1R", d2Name: "DJudge2R", e1Name: "EJudge1R", e2Name: "EJudge2R", e3Name: "EJudge3R", e4Name: "EJudge4R", e5Name: "EJudge5R",  },
       { eventNumber: 3, eventName: "Parallel Bars", d1Name: "DJudge1P", d2Name: "DJudge2P", e1Name: "EJudge1P", e2Name: "EJudge2P", e3Name: "EJudge3P", e4Name: "EJudge4P", e5Name: "EJudge5P",  },
       { eventNumber: 4, eventName: "Horizontal Bar", d1Name: "DJudge1H", d2Name: "DJudge2H", e1Name: "EJudge1H", e2Name: "EJudge2H", e3Name: "EJudge3H", e4Name: "EJudge4H", e5Name: "EJudge5H",  },
+      { eventNumber: 5, eventName: "Floor Exercise", d1Name: "DJudge1F", d2Name: "DJudge2F", e1Name: "EJudge1F", e2Name: "EJudge2F", e3Name: "EJudge3F", e4Name: "EJudge4F", e5Name: "EJudge5F",  },
+      { eventNumber: 6, eventName: "Vault", d1Name: "DJudge1V", d2Name: "DJudge2V", e1Name: "EJudge1V", e2Name: "EJudge2V", e3Name: "EJudge3V", e4Name: "EJudge4V", e5Name: "EJudge5V",  },
 
       // etc.
     ]);

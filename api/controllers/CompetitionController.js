@@ -36,9 +36,7 @@ module.exports = {
 
         var model = await Event.findOne(parseInt(req.params.id)).populate('includes');
 
-        var isStarted = false;
-
-        return res.view('competition/admin', { competition: model.includes, 'isCompetitionStarted' : isStarted });
+        return res.view('competition/admin', { competition: model.includes });
 
     },
 
@@ -183,7 +181,7 @@ module.exports = {
 
             if (models.length == 0) return res.notFound();
 
-            return res.ok("Give Score successfully.");
+            return res.ok("Pending for approval of Chief Judge...");
             //return res.redirect('/competition/updateE1/6');  // hardcode url id
 
             //return res.ok("Record updated");
@@ -223,7 +221,7 @@ module.exports = {
 
             if (models.length == 0) return res.notFound();
 
-            return res.ok("Give Score successfully.");
+            return res.ok("Pending for approval of Chief Judge...");
             //return res.redirect('/competition/updateE2/6');  // hardcode url id
 
 
@@ -253,7 +251,7 @@ module.exports = {
 
             if (models.length == 0) return res.notFound();
 
-            return res.ok("Give Score successfully.");
+            return res.ok("Pending for approval of Chief Judge...");
 
         }
     },
@@ -281,7 +279,7 @@ module.exports = {
 
             if (models.length == 0) return res.notFound();
 
-            return res.ok("Give Score successfully.");
+            return res.ok("Pending for approval of Chief Judge...");
 
         }
     },
@@ -309,7 +307,7 @@ module.exports = {
 
             if (models.length == 0) return res.notFound();
 
-            return res.ok("Give Score successfully.");
+            return res.ok("Pending for approval of Chief Judge...");
 
         }
     },
@@ -337,7 +335,7 @@ module.exports = {
 
             if (models.length == 0) return res.notFound();
 
-            return res.ok("Give Score successfully.");
+            return res.ok("Pending for approval of Chief Judge...");
 
         }
     },
@@ -365,10 +363,79 @@ module.exports = {
 
             if (models.length == 0) return res.notFound();
 
-            return res.ok("Give Score successfully.");
+            return res.ok("Pending for approval of Chief Judge...");
 
         }
     },
+
+
+        // action - 
+        update: async function (req, res) {
+
+            if (req.method == "GET") {
+    
+                var model = await Competition.findOne(req.params.id);
+    
+                if (!model) return res.notFound();
+    
+                return res.view('competition/update', { competition: model });
+    
+            } else {
+    
+                if (!req.body.Competition)
+                    return res.badRequest("Form-data not received.");
+    
+                var models = await Competition.update(req.params.id).set({
+                    athleteName: req.body.Competition.athleteName,
+                    athleteID: req.body.Competition.athleteID,
+                    competitionEvent: req.body.Competition.competitionEvent,
+    
+                    e1Score: req.body.Competition.e1Score,
+                    e2Score: req.body.Competition.e2Score,
+                    e3Score: req.body.Competition.e3Score,
+                    e4Score: req.body.Competition.e4Score,
+                    e5Score: req.body.Competition.e5Score,
+                    d1Score: req.body.Competition.d1Score,
+                    d2Score: req.body.Competition.d2Score,
+    
+                    dAvgScore: req.body.Competition.dAvgScore,
+                    eAvgScore: req.body.Competition.eAvgScore,
+                    totalScore: req.body.Competition.totalScore,
+                 
+                    startTime: req.body.Competition.startTime,
+                    endTime: req.body.Competition.endTime,
+    
+                    //createdDate: req.body.Estate.createdDate,
+                    //updatedDate: new Date().toLocaleDateString(),
+                }).fetch();
+    
+                if (models.length == 0) return res.notFound();
+    
+                //return res.ok("Record updated");
+                return res.ok("Scores updated.");
+    
+            }
+        },
+    
+    
+    
+    
+    
+        // action - chiefjudge viewing
+        chiefjudgeView: async function (req, res) {
+    
+            if (req.method == "GET") {
+    
+                var model = await Competition.findOne(req.params.id);
+    
+                if (!model) return res.notFound();
+    
+                return res.view('competition/chiefjudgeView', { competition: model });
+            }
+    
+        },
+    
+    
 
 
 

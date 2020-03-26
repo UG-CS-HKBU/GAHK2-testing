@@ -71,6 +71,10 @@ module.exports = {
       type: "number",
     },
 
+    deduction: {
+      type: "number",
+    },
+
     totalScore: {
       type: "number",
     },

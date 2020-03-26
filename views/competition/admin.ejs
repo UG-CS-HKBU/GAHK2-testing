@@ -2,10 +2,8 @@
 
 <div class="container">
   <br>
-  <h1>Event 1</h1>
+  <h1></h1>
   <br>
-
-  <button type="button" class="btn btn-primary">Edit</button>
 
   
     <div class="row">
@@ -16,21 +14,21 @@
   
           <thead>
             <tr>
-              <th scope="col">Sequence</th>
+              <th scope="col"></th>
               <th scope="col">Athlete Name</th>
               <th scope="col">Competition Event</th>
-
+              
+              <th scope="col">D</th>
               <th scope="col">E1</th>
               <th scope="col">E2</th>
               <th scope="col">E3</th>
               <th scope="col">E4</th>
               <th scope="col">E5</th>
-              <th scope="col">D1</th>
-              <th scope="col">D2</th>
+              <th scope="col">Deduction</th>
 
-              <th scope="col">Average D Score</th>
+
               <th scope="col">Average E Score</th>
-              <th scope="col">Total Score</th>
+              <th scope="col">Final Score</th>
               <th scope="col"></th>
               <th scope="col"></th>
               <th scope="col"></th>
@@ -41,33 +39,29 @@
           
           <tbody>
             <% competition.forEach (function(model) { 
-              model.dAvgScore = (model.d1Score + model.d2Score) / 2
-
+              <!-- model.dAvgScore = (model.d1Score + model.d2Score) / 2 -->
               sortEScore = [model.e1Score, model.e2Score, model.e3Score, model.e4Score, model.e5Score].sort();
               model.eAvgScore = (sortEScore[1] + sortEScore[2] + sortEScore[3]) / 3;
-
-              model.totalScore = model.dAvgScore + model.eAvgScore
+              model.totalScore = model.d1Score + (10 - model.eAvgScore) - model.deduction;  
 
               %>
             <tr>
-              <th scope="row"><%= model.athleteID %></th>
+              <th scope="row"></th>
              
               <td><%= model.athleteName %></td>
               <td><%= model.competitionEvent %></td>
 
+              <td><%= model.d1Score %></td>
               <td><%= model.e1Score %></td>
               <td><%= model.e2Score %></td>
               <td><%= model.e3Score %></td>
               <td><%= model.e4Score %></td>
               <td><%= model.e5Score %></td>
-              <td><%= model.d1Score %></td>
-              <td><%= model.d2Score %></td>
+              <td></td>
 
-              <td><%= model.dAvgScore %></td>
               <td><%= model.eAvgScore %></td>
               <td><%= model.totalScore %></td>
               
-              <td><a href="/competition/updateE2/<%= competition.id %>">Edit</a></td>
 
               <td><a href="/competition/scoreboard/<%= model.id %>">Publish Score</a></td>
               <td><a href="/competition/satrt/<%= model.id %>">Start Competition</a></td>
