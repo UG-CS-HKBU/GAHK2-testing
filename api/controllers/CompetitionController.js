@@ -6,43 +6,6 @@
  */
 
 module.exports = {
-    //socket
-    showScore: async function (req, res) {
-
-        return res.view("scoreList/score");
-
-    },
-
-    newConversationReading: async function (req, res) {
-
-        var reading = await BotUsage.create({
-            name: "Bot " + Math.floor(Math.random() * 10),
-            totalConversation: Math.floor(Math.random() * 20 + 10)
-        }).fetch();
-
-        return res.json(reading);
-
-    },
-
-    chatBotUsageStats: async function (req, res) {
-        try {
-
-            if (!req.isSocket) {
-                console.log('Only a client socket can subscribe');
-            }
-
-            // const totalConversation = await CommonService.getQuery('select count(*) from botUsage');
-
-            const totalConversation = await BotUsage.find();
-
-            sails.sockets.join(req.socket, 'feed');
-            res.send({success: true, totalConversation});
-
-        } catch (e) {
-            res.send({ error: true, message: e.stack });
-        }
-    },
-
     // action - create
     create: async function (req, res) {
 
@@ -63,30 +26,27 @@ module.exports = {
 
         model.startTime = new Date();
         await Competition.update(req.params.id).set(model);
-        return res.redirect('/competition/admin');
+        return res.redirect('competition/admin/');
+        //return res.redirect('competition/admin/', { 'competition': model });
+
     },
 
-
-    // action - start
-    start: async function (req, res) {
-        var model = await Competition.findOne(req.params.id);
-
-        model.startTime = new Date();
-        await Competition.update(req.params.id).set(model);
-        return res.redirect('/competition/admin');
-    },
 
     // action - admin
     admin: async function (req, res) {
 
-        var models = await Competition.find();
+        var model = await Event.findOne(parseInt(req.params.id)).populate('includes');
 
-        // Cal avg D and E scores:
-        // const dAvg = models.d1Score + models.d2Score
-        // sails.log("D1 score is : ", models.)
-        // sails.log("Average D score is : ", dAvg)
+        return res.view('competition/admin', { competition: model.includes });
 
-        return res.view('competition/admin', { competition: models });
+    },
+
+    // action - chiefJUdge
+    chiefJudge: async function (req, res) {
+
+        var model = await Event.findOne(parseInt(req.params.id)).populate('includes');
+
+        return res.view('competition/chiefJudge', { competition: model.includes });
 
     },
 
@@ -118,20 +78,33 @@ module.exports = {
 
         var models = await Competition.find({
             sort: 'totalScore DESC'
-        }
-        );
+            //sort: 'totalScore DESC'
+        });
 
         // Cal avg D and E scores:
-
 
         return res.view('competition/ranking', { competition: models });
 
     },
 
-    // action - homepage
+    // action - homepage (for Admin)
     homepage: async function (req, res) {
+        var events = await Event.find();
+        return res.view('competition/homepage', { events: events });
 
-        return res.view('competition/homepage');
+    },
+
+    // action - homepageS (for Secretary)
+    homepageS: async function (req, res) {
+        var events = await Event.find();
+        return res.view('competition/homepageS', { events: events });
+
+    },
+
+     // action - homepageC (for Chief_Judge) not used
+     homepageCJ: async function (req, res) {
+        var events = await Event.find();
+        return res.view('competition/homepageCJ', { events: events });
 
     },
 
@@ -142,71 +115,28 @@ module.exports = {
 
     },
 
-    // action - 
-    update: async function (req, res) {
+    // action - [hasn't used]
+    submitToAdmin: async function (req, res) {
 
-        if (req.method == "GET") {
+        var model = await Competition.findOne(req.params.id);
 
-            var model = await Competition.findOne(req.params.id);
+        model.endTime = new Date();
+        await Competition.update(req.params.id).set(model);
+        return res.ok("Scores have submitted to Admin.");
 
-            if (!model) return res.notFound();
-
-            return res.view('competition/update', { competition: model });
-
-        } else {
-
-            if (!req.body.Competition)
-                return res.badRequest("Form-data not received.");
-
-            var models = await Competition.update(req.params.id).set({
-                athleteName: req.body.Competition.athleteName,
-                athleteID: req.body.Competition.athleteID,
-                competitionEvent: req.body.Competition.competitionEvent,
-
-                e1Score: req.body.Competition.e1Score,
-                e2Score: req.body.Competition.e2Score,
-                e3Score: req.body.Competition.e3Score,
-                e4Score: req.body.Competition.e4Score,
-                e5Score: req.body.Competition.e5Score,
-                d1Score: req.body.Competition.d1Score,
-                d2Score: req.body.Competition.d2Score,
-
-                dAvgScore: req.body.Competition.dAvgScore,
-                eAvgScore: req.body.Competition.eAvgScore,
-                totalScore: req.body.Competition.totalScore,
-             
-                startTime: req.body.Competition.startTime,
-                endTime: req.body.Competition.endTime,
-
-                //createdDate: req.body.Estate.createdDate,
-                //updatedDate: new Date().toLocaleDateString(),
-            }).fetch();
-
-            if (models.length == 0) return res.notFound();
-
-            //return res.ok("Record updated");
-            return res.ok("Scores updated.");
-
-        }
-    },
-
-
-    // action - chiefjudge viewing
-    chiefjudgeView: async function (req, res) {
-
-        if (req.method == "GET") {
-
-            var model = await Competition.findOne(req.params.id);
-
-            if (!model) return res.notFound();
-
-            return res.view('competition/chiefjudgeView', { competition: model });
-        }
+        // if (req.wantsJSON) {
+        //     return res.json({ 'competition': model });
+        // } else {
+        //     return res.view("competition/submitToAdmin", { 'competition': model });
+        // }
 
     },
+
 
     // action - import excel file
     import_xlsx: async function (req, res) {
+
+        var eventId = parseInt(req.params.id);
 
         if (req.method == 'GET')
             return res.view('competition/import_xlsx');
@@ -221,12 +151,22 @@ module.exports = {
             var data = XLSX.utils.sheet_to_json(ws);
             console.log(data);
             var models = await Competition.createEach(data).fetch();
+
             if (models.length == 0) {
                 return res.badRequest("No data imported.");
             }
+            for (var i = 0; i < models.length; i++) {
+                await Competition.addToCollection(models[i].id, 'belongsTo').members(eventId);
+            }
 
-            return res.redirect('/competition/admin/');
-            //return res.ok("Excel file imported.");
+            // return res.redirect('/competition/admin/' + eventId);
+
+            if (req.session.role == "admin") {
+                return res.redirect('/competition/admin/' + eventId);
+            } else if (req.session.role == "secretary"){
+                return res.redirect('/competition/homepageS/');
+            }
+            
         });
     },
 
@@ -243,16 +183,22 @@ module.exports = {
                 athleteName: model.athleteName,
                 athleteID: model.athleteID,
                 competitionEvent: model.competitionEvent,
+
+                d1Score: model.d1Score,
                 e1Score: model.e1Score,
                 e2Score: model.e2Score,
                 e3Score: model.e3Score,
                 e4Score: model.e4Score,
                 e5Score: model.e5Score,
-                d1Score: model.d1Score,
-                d2Score: model.d2Score,
-                dAvgScore: model.dAvgScore,
                 eAvgScore: model.eAvgScore,
+                               
+                // d2Score: model.d2Score,
+                // dAvgScore: model.dAvgScore,  
+                deduction: model.deduction,
                 totalScore: model.totalScore,
+                // startTime: model.startTime,
+                // endTime: model.endTime,
+                
             }
         }));
         XLSX.utils.book_append_sheet(wb, ws, "final_result");
@@ -274,7 +220,6 @@ module.exports = {
 
             return res.view('competition/updateE1', { competition: model });
 
-
         } else {
 
             if (!req.body.Competition)
@@ -289,7 +234,7 @@ module.exports = {
 
             if (models.length == 0) return res.notFound();
 
-            return res.ok("Give Score successfully.");
+            return res.ok("Pending for approval of Chief Judge...");
             //return res.redirect('/competition/updateE1/6');  // hardcode url id
 
             //return res.ok("Record updated");
@@ -329,7 +274,7 @@ module.exports = {
 
             if (models.length == 0) return res.notFound();
 
-            return res.ok("Give Score successfully.");
+            return res.ok("Pending for approval of Chief Judge...");
             //return res.redirect('/competition/updateE2/6');  // hardcode url id
 
 
@@ -359,7 +304,7 @@ module.exports = {
 
             if (models.length == 0) return res.notFound();
 
-            return res.ok("Give Score successfully.");
+            return res.ok("Pending for approval of Chief Judge...");
 
         }
     },
@@ -387,7 +332,7 @@ module.exports = {
 
             if (models.length == 0) return res.notFound();
 
-            return res.ok("Give Score successfully.");
+            return res.ok("Pending for approval of Chief Judge...");
 
         }
     },
@@ -415,7 +360,7 @@ module.exports = {
 
             if (models.length == 0) return res.notFound();
 
-            return res.ok("Give Score successfully.");
+            return res.ok("Pending for approval of Chief Judge...");
 
         }
     },
@@ -438,12 +383,13 @@ module.exports = {
 
             var models = await Competition.update(req.params.id).set({
                 d1Score: req.body.Competition.d1Score,
+                endTimeD: req.body.Competition.endTimeD,
 
             }).fetch();
 
             if (models.length == 0) return res.notFound();
 
-            return res.ok("Give Score successfully.");
+            return res.ok("Pending for approval of Chief Judge...");
 
         }
     },
@@ -471,10 +417,168 @@ module.exports = {
 
             if (models.length == 0) return res.notFound();
 
-            return res.ok("Give Score successfully.");
+            return res.ok("Pending for approval of Chief Judge...");
 
         }
     },
+
+    // action - Pls ignore it (not used!)
+    updateDeduction: async function (req, res) {
+
+        if (req.method == "GET") {
+
+            var model = await Competition.findOne(req.params.id);
+
+            if (!model) return res.notFound();
+
+            return res.view('competition/updateDeduction', { competition: model });
+
+        } else {
+
+            if (!req.body.Competition)
+                return res.badRequest("Form-data not received.");
+
+            var models = await Competition.update(req.params.id).set({
+
+                deduction: req.body.Competition.deduction,
+
+            }).fetch();
+
+            if (models.length == 0) return res.notFound();
+
+
+            if (req.wantsJSON) {
+                return res.json({ 'competition': model });
+            } else {
+                return res.redirect("competition/update/", { 'competition': model });
+                //return res.view("competition/scoreboard/", { 'competition': model });
+            }
+
+        }
+    },
+
+    // action - update (Chief Judge)
+    update: async function (req, res) {
+
+        if (req.method == "GET") {
+
+            var model = await Competition.findOne(req.params.id);
+
+            if (!model) return res.notFound();
+
+            return res.view('competition/update', { competition: model });
+
+        } else {
+
+            if (!req.body.Competition)
+                return res.badRequest("Form-data not received.");
+
+            var models = await Competition.update(req.params.id).set({
+                athleteName: req.body.Competition.athleteName,
+                athleteID: req.body.Competition.athleteID,
+                competitionEvent: req.body.Competition.competitionEvent,
+
+                e1Score: req.body.Competition.e1Score,
+                e2Score: req.body.Competition.e2Score,
+                e3Score: req.body.Competition.e3Score,
+                e4Score: req.body.Competition.e4Score,
+                e5Score: req.body.Competition.e5Score,
+                d1Score: req.body.Competition.d1Score,
+                d2Score: req.body.Competition.d2Score,
+
+                deduction: req.body.Competition.deduction,
+                dAvgScore: req.body.Competition.dAvgScore,
+                eAvgScore: req.body.Competition.eAvgScore,
+                totalScore: req.body.Competition.totalScore,
+
+                startTime: req.body.Competition.startTime,
+                endTime: req.body.Competition.endTime,
+
+                //createdDate: req.body.Estate.createdDate,
+                //updatedDate: new Date().toLocaleDateString(),
+            }).fetch();
+
+            if (models.length == 0) return res.notFound();
+
+
+            if (req.wantsJSON) {
+                return res.json({ 'competition': model });
+            } else {
+                return res.ok("Scores updated.");
+                //return res.redirect('competition/submitToAdmin/', { competition: model });
+                //return res.view("competition/scoreboard/", { 'competition': model });
+            }
+
+            //return res.ok("Scores updated.");
+
+        }
+    },
+
+       // action - Pls ignore it (not used!)
+       updateFinalScore: async function (req, res) {
+
+        if (req.method == "GET") {
+
+            var model = await Competition.findOne(req.params.id);
+
+            if (!model) return res.notFound();
+
+            return res.view('competition/update', { competition: model });
+
+        } else {
+
+            if (!req.body.Competition)
+                return res.badRequest("Form-data not received.");
+
+            var models = await Competition.update(req.params.id).set({
+               
+                totalScore: req.body.Competition.totalScore,
+                // endTime: req.body.Competition.endTime,
+
+            }).fetch();
+
+            if (models.length == 0) return res.notFound();
+
+
+            if (req.wantsJSON) {
+                return res.json({ 'competition': model });
+            } else {
+                return res.ok("Final score updated.");
+                //return res.redirect('competition/submitToAdmin/', { competition: model });
+                //return res.view("competition/scoreboard/", { 'competition': model });
+            }
+
+
+        }
+    },
+
+
+
+
+
+    // action - chiefjudge viewing
+    chiefjudgeView: async function (req, res) {
+
+        if (req.method == "GET") {
+
+            var model = await Competition.findOne(req.params.id);
+
+            if (!model) return res.notFound();
+
+
+            if (req.wantsJSON) {
+                return res.json({ 'competition': model });
+            } else {
+                return res.view('competition/chiefjudgeView', { competition: model });
+            }
+
+
+            //return res.view('competition/chiefjudgeView', { competition: model });
+        }
+
+    },
+
+
 
 
 

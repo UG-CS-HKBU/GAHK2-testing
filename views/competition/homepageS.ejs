@@ -1,0 +1,25 @@
+<br>
+<h1>Competition Event</h1>
+<br>
+<table class="table">
+    <thead>
+      <tr>
+
+      </tr>
+    </thead>
+    <tbody>
+      <% events.forEach(function(event){ %>
+        <tr>
+          <td><h3><a href="/competition/import_xlsx/<%=event.id%>"> <%=event.eventName%> </a> </h3></td>
+          <!-- <td><h3><a href="/competition/admin/<%=event.id%>">Admin</a></h3></td> -->
+        </tr>
+
+      <% }); %>
+    </tbody>
+  </table>
+
+
+
+
+
+
