@@ -93,9 +93,9 @@ module.exports.routes = {
 
   'GET /competition/scoreboard/:id': 'CompetitionController.scoreboard',
   'GET /competition/ranking/': 'CompetitionController.ranking',
-  'GET /competition/homepage/': 'CompetitionController.homepage',
-  'GET /competition/homepageCJ/': 'CompetitionController.homepageCJ',
-  'GET /competition/homepageS/': 'CompetitionController.homepageS',
+  'GET /competition/homepage': 'CompetitionController.homepage',
+  'GET /competition/homepageCJ': 'CompetitionController.homepageCJ',
+  'GET /competition/homepageS': 'CompetitionController.homepageS',
   'GET /competition/start/:id': 'CompetitionController.start',
   'GET /competition/waiting/': 'CompetitionController.waiting',
   'GET /competition/scoreboard/:id': 'CompetitionController.scoreboard',

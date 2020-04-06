@@ -72,11 +72,11 @@ module.exports = {
     // action - admin
     admin: async function (req, res) {
 
-        var models = await Competition.find();
+        var model = await Event.findOne(req.params.id).populate('includes');
 
-        var isStarted = false; 
+        //var isStarted = false; 
 
-        return res.view('competition/admin', { competition: model.includes });
+        return res.view('competition/admin', { 'competition': model.includes });
 
     },
 
@@ -179,6 +179,8 @@ module.exports = {
 
         if (req.method == 'GET')
             return res.view('competition/import_xlsx');
+
+        let eventId = parseInt(req.params.id) || 0;
 
         req.file('file').upload({ maxBytes: 10000000 }, async function whenDone(err, uploadedFiles) {
             if (err) { return res.serverError(err); }
