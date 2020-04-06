@@ -8,9 +8,23 @@
                         <b><%=competition.competitionEvent%></b>
                     </h2>
                     <h2>
-                        <b><%=competition.athleteID%></b>
+                        <b></b>
                     </h2>
                 </div>
+
+                <%  
+      
+                    <!-- model.dAvgScore = (model.d1Score + model.d2Score) / 2 -->
+                    sortEScore = [competition.e1Score, competition.e2Score, competition.e3Score, competition.e4Score, competition.e5Score].sort();
+                    competition.eAvgScore = 10 - (sortEScore[1] + sortEScore[2] + sortEScore[3]) / 3;
+                    competition.totalScore = competition.d1Score + competition.eAvgScore - competition.deduction;
+          
+                    temp = competition.totalScore.toString(); 
+                    temp = temp.slice(0, (temp.indexOf("."))+4); 
+                    competition.totalScore = Number(temp);
+                     
+                    
+                    %>
 
 
                 <div class="media">
@@ -25,8 +39,9 @@
                             <ul class="list-group">
 
                                 <li class="list-group-item"><b>Athlete Name: </b><%= competition.athleteName %></li>
-                                <li class="list-group-item"><b>Average D Score: </b><%= competition.dAvgScore %></li>
-                                <li class="list-group-item"><b>Average E Score: </b><%= competition.eAvgScore %></li>
+                                <li class="list-group-item"><b>Difficulty: </b><%= competition.d1Score %></li>
+                                <li class="list-group-item"><b>Execution: </b><%= competition.eAvgScore %></li>
+                                <li class="list-group-item"><b>Extra Deduction: </b><%= competition.deduction %></li>
                                 <li class="list-group-item"><b>Final Score: </b><%= competition.totalScore %></li>
 
 

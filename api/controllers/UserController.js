@@ -33,8 +33,15 @@ module.exports = {
             sails.log("[Session] ", req.session);
 
             if (req.wantsJSON) {
-                return res.redirect('/competition/homepage');
-                //return res.redirect('/user/homepage');
+
+                if (req.session.role == "admin") {
+                    return res.redirect('/competition/homepage');
+                } else if (req.session.role == "secretary"){
+                    return res.redirect('/competition/homepageS');
+                } else if (req.session.role == "chiefJudge"){
+                    return res.redirect('/competition/homepageCJ');
+                };
+                //return res.redirect('/competition/homepage');
             }
 
             //return res.ok("Login successfully.");
@@ -48,7 +55,7 @@ module.exports = {
         req.session.destroy(function (err) {
 
             if (err) return res.serverError(err);
-            
+
             return res.redirect('/user/login')
 
             //return res.ok("Log out successfully.");
@@ -60,17 +67,11 @@ module.exports = {
 
 
 
-    setJudgeScreen: async function (req, res) {
-
-        return res.view('user/setJudgeScreen');
-
-    },
-
 
 
     // action - create
     createD1: async function (req, res) {
-        
+
         if (req.method == "GET")
             return res.view('user/d1');
 
@@ -83,7 +84,7 @@ module.exports = {
     },
 
     createD2: async function (req, res) {
-        
+
         if (req.method == "GET")
             return res.view('user/d2');
 

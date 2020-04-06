@@ -81,6 +81,10 @@ module.exports = {
     
     
 
+    ranking: {
+      type: "number",
+    },
+
     startTime:{
       type: 'ref',
       columnType: "dateTime"
@@ -91,6 +95,15 @@ module.exports = {
       columnType: "dateTime"
     },
 
+    endTimeD:{
+      type: 'ref',
+      columnType: "dateTime"
+    },
+   
+    belongsTo: {
+      collection: 'Event',
+      via: 'includes'
+    },
 
 
   },
@@ -101,12 +114,13 @@ module.exports = {
   // },
 
   beforeUpdate(model, cb) {
-    model.dAvgScore = (model.d1Score + model.d2Score) / 2 ;
+    // model.dAvgScore = (model.d1Score + model.d2Score) / 2 ;
+    
 
     let sortEScore = [model.e1Score, model.e2Score, model.e3Score, model.e4Score, model.e5Score].sort();
     model.eAvgScore = (sortEScore[1] + sortEScore[2] + sortEScore[3]) / 3;
 
-    model.totalScore = model.dAvgScore + model.eAvgScore ;
+    model.totalScore = parseFloat((model.d1Score + model.eAvgScore).toPrecision(4));
 
     cb();
   },
