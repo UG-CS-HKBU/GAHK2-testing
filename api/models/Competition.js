@@ -118,7 +118,7 @@ module.exports = {
     
 
     let sortEScore = [model.e1Score, model.e2Score, model.e3Score, model.e4Score, model.e5Score].sort();
-    model.eAvgScore = (sortEScore[1] + sortEScore[2] + sortEScore[3]) / 3;
+    model.eAvgScore = 10 - (sortEScore[1] + sortEScore[2] + sortEScore[3]) / 3;
 
     model.totalScore = parseFloat((model.d1Score + model.eAvgScore).toPrecision(4));
 
