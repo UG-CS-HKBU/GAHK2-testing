@@ -42,30 +42,24 @@ module.exports.bootstrap = async function () {
 
   
 
-  // Competition api:
+
   if (await Competition.count() > 0) {
     return;
   }
 
 
-   // For Demo only
-//  if (await Athlete.count() == 0) {
-  // await Competition.createEach([
-  //   { athleteName: "Cheung Ka Ming", athleteID: 001, e1Score: 0, e2Score: 0},
-  //   { athleteName: "Wong Ho", athleteID: 002, e1Score: 0, e2Score: 0},
-  //   { athleteName: "Wong Ha Yu", athleteID: 001, e1Score: 0, e2Score: 0},
-  //   { athleteName: "Lee Wing", athleteID: 002, e1Score: 0, e2Score: 0},
-  //   { athleteName: "Lok Hing", athleteID: 001, e1Score: 0, e2Score: 0},
-  //   { athleteName: "Lee Wing", athleteID: 002, e1Score: 0, e2Score: 0},
-  //   { athleteName: "Ha Sing", athleteID: 001, e1Score: 0, e2Score: 0},
-  //   { athleteName: "Wu Hoi", athleteID: 002, e1Score: 0, e2Score: 0},
+//   // For Demo only
+// //  if (await Athlete.count() == 0) {
+//   await Competition.createEach([
+//     { athleteName: "Cheung Ka Ming", athleteID: 001, competitionEvent: "Pommel Horse", e1Score: 0, e2Score: 0},
+//     { athleteName: "Wong Ho", athleteID: 002, competitionEvent: "Pommel Horse", e1Score: 0, e2Score: 0},
     
-  //   // etc.
-  // ]);
-//}
+//     // etc.
+//   ]);
+// //}
 
 
-  // User api:
+
   if (await User.count() > 0) {
     return;
   }
@@ -112,22 +106,9 @@ module.exports.bootstrap = async function () {
 
  
 // Association:
-  //  const pommelHorse = await Event.findOne({ eventName: "Pommel Horse"});
-  //  const ring = await Event.findOne({ eventName: "Ring"});
-  //  const parallelBars = await Event.findOne({ eventName: "Parallel Bars"});
-  //  const horizontalBar = await Event.findOne({ eventName: "Horizontal Bar"});
+//  User (Judges: user; Chief_Judge: admin):
+  // const Chief_Judge = await User.findOne({ username: "Chief_Judge"});
 
-
-  // const competitionOne = await Competition.findOne({ competitionEvent: "Pommel Horse" });
-  // const competitionTwo = await Competition.findOne({ competitionEvent: "Ring" });
-  // const competitionThree = await Competition.findOne({ competitionEvent: "Parallel Bars" });
-  // const competitionFour = await Competition.findOne({ competitionEvent: "Horizontal Bar" });
-
-
-  // await Event.addToCollection(pommelHorse.id, 'includes').members(competitionOne.id);
-  // await Event.addToCollection(ring.id, 'includes').members(competitionTwo.id);
-  // await Event.addToCollection(parallelBars.id, 'includes').members(competitionThree.id);
-  // await Event.addToCollection(horizontalBar.id, 'includes').members(competitionFour.id);
 
 
 

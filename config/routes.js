@@ -23,6 +23,17 @@ module.exports.routes = {
 
  '/': 'UserController.login',
   
+ //socket
+ 'GET /init-chat': 'CompetitionController.newConversationReading',
+ 'GET /score': 'CompetitionController.showScore',
+
+ 'GET /api/chat-conversation-count': 'CompetitionController.chatBotUsageStats',
+ 'GET /api/get-daily-usage-stats': 'CompetitionController.chatBotUsageStats',
+
+ 'GET /api/v1/chat-conversation-count': 'CompetitionController.chatBotUsageStats',
+ 'GET /api/v1/get-daily-usage-stats': 'CompetitionController.chatBotUsageStats',
+
+
  // User
   'GET /user/login': 'UserController.login',
   'POST /user/login': 'UserController.login',
@@ -34,8 +45,10 @@ module.exports.routes = {
 
   //Competition
   'POST /competition/create/': 'CompetitionController.create',
+
   'GET /competition/admin/:id': 'CompetitionController.admin',
   'POST /competition/admin/:id': 'CompetitionController.admin',
+
 
   'GET /competition/json': 'CompetitionController.json',
 
@@ -66,8 +79,8 @@ module.exports.routes = {
   'GET /competition/updateD2/:id': 'CompetitionController.updateD2',
   'POST /competition/updateD2/:id': 'CompetitionController.updateD2',
 
-  '/competition/import_xlsx/:id': 'CompetitionController.import_xlsx',
-  // 'POST /competition/import_xlsx': 'CompetitionController.import_xlsx',
+  'GET /competition/import_xlsx': 'CompetitionController.import_xlsx',
+  'POST /competition/import_xlsx': 'CompetitionController.import_xlsx',
   //'POST /competition/export_xlsx': 'CompetitionController.export_xlsx',
   'GET /competition/export_xlsx': 'CompetitionController.export_xlsx',
 

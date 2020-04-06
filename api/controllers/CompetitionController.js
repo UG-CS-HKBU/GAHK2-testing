@@ -6,6 +6,43 @@
  */
 
 module.exports = {
+    //socket
+    showScore: async function (req, res) {
+
+        return res.view("scoreList/score");
+
+    },
+
+    newConversationReading: async function (req, res) {
+
+        var reading = await BotUsage.create({
+            name: "Bot " + Math.floor(Math.random() * 10),
+            totalConversation: Math.floor(Math.random() * 20 + 10)
+        }).fetch();
+
+        return res.json(reading);
+
+    },
+
+    chatBotUsageStats: async function (req, res) {
+        try {
+
+            if (!req.isSocket) {
+                console.log('Only a client socket can subscribe');
+            }
+
+            // const totalConversation = await CommonService.getQuery('select count(*) from botUsage');
+
+            const totalConversation = await BotUsage.find();
+
+            sails.sockets.join(req.socket, 'feed');
+            res.send({success: true, totalConversation});
+
+        } catch (e) {
+            res.send({ error: true, message: e.stack });
+        }
+    },
+
     // action - create
     create: async function (req, res) {
 
@@ -34,7 +71,9 @@ module.exports = {
     // action - admin
     admin: async function (req, res) {
 
-        var model = await Event.findOne(parseInt(req.params.id)).populate('includes');
+        var models = await Competition.find();
+
+        var isStarted = false; 
 
         return res.view('competition/admin', { competition: model.includes });
 
@@ -79,8 +118,8 @@ module.exports = {
 
     // action - homepage
     homepage: async function (req, res) {
-        var events = await Event.find();
-        return res.view('competition/homepage',{events:events});
+
+        return res.view('competition/homepage');
 
     },
 
@@ -91,12 +130,72 @@ module.exports = {
 
     },
 
-    
+    // action - 
+    update: async function (req, res) {
+
+        if (req.method == "GET") {
+
+            var model = await Competition.findOne(req.params.id);
+
+            if (!model) return res.notFound();
+
+            return res.view('competition/update', { competition: model });
+
+        } else {
+
+            if (!req.body.Competition)
+                return res.badRequest("Form-data not received.");
+
+            var models = await Competition.update(req.params.id).set({
+                athleteName: req.body.Competition.athleteName,
+                athleteID: req.body.Competition.athleteID,
+                competitionEvent: req.body.Competition.competitionEvent,
+
+                e1Score: req.body.Competition.e1Score,
+                e2Score: req.body.Competition.e2Score,
+                e3Score: req.body.Competition.e3Score,
+                e4Score: req.body.Competition.e4Score,
+                e5Score: req.body.Competition.e5Score,
+                d1Score: req.body.Competition.d1Score,
+                d2Score: req.body.Competition.d2Score,
+
+                dAvgScore: req.body.Competition.dAvgScore,
+                eAvgScore: req.body.Competition.eAvgScore,
+                totalScore: req.body.Competition.totalScore,
+             
+                startTime: req.body.Competition.startTime,
+                endTime: req.body.Competition.endTime,
+
+                //createdDate: req.body.Estate.createdDate,
+                //updatedDate: new Date().toLocaleDateString(),
+            }).fetch();
+
+            if (models.length == 0) return res.notFound();
+
+            //return res.ok("Record updated");
+            return res.ok("Scores updated.");
+
+        }
+    },
+
+
+    // action - chiefjudge viewing
+    chiefjudgeView: async function (req, res) {
+
+        if (req.method == "GET") {
+
+            var model = await Competition.findOne(req.params.id);
+
+            if (!model) return res.notFound();
+
+            return res.view('competition/chiefjudgeView', { competition: model });
+        }
+
+    },
+
 
     // action - import excel file
     import_xlsx: async function (req, res) {
-
-        var eventId = parseInt(req.params.id);
 
         if (req.method == 'GET')
             return res.view('competition/import_xlsx');
@@ -111,14 +210,11 @@ module.exports = {
             var data = XLSX.utils.sheet_to_json(ws);
             console.log(data);
             var models = await Competition.createEach(data).fetch();
-            
             if (models.length == 0) {
                 return res.badRequest("No data imported.");
             }
-            for (var i=0;i<models.length;i++) {
-                await Competition.addToCollection(models[i].id, 'belongsTo').members(eventId);
-            }
-            return res.redirect('/competition/admin/'+eventId);
+
+            return res.redirect('/competition/admin/');
             //return res.ok("Excel file imported.");
         });
     },
@@ -166,6 +262,7 @@ module.exports = {
             if (!model) return res.notFound();
 
             return res.view('competition/updateE1', { competition: model });
+
 
         } else {
 
