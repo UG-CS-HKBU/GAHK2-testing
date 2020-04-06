@@ -40,7 +40,6 @@
         <tbody>
           <% competition.forEach (function(model) { 
       
-          <!-- model.dAvgScore = (model.d1Score + model.d2Score) / 2 -->
           sortEScore = [model.e1Score, model.e2Score, model.e3Score, model.e4Score, model.e5Score].sort();
           model.eAvgScore = 10 - (sortEScore[1] + sortEScore[2] + sortEScore[3]) / 3;
           model.totalScore = model.d1Score + model.eAvgScore - model.deduction;
@@ -64,18 +63,9 @@
             <td><%= model.endTimeD %></td>
             <td><%= model.endTime %></td>
 
-            <!-- <td><%= model.d1Score %></td>
-            <td><%= model.e1Score %></td>
-            <td><%= model.e2Score %></td>
-            <td><%= model.e3Score %></td>
-            <td><%= model.e4Score %></td>
-            <td><%= model.e5Score %></td>
-            <td><%= model.deduction%></td> -->
 
-            <!-- <td><%= model.eAvgScore %></td> -->
-            <!-- <td><%= model.totalScore %></td> -->
 
-            <% if(model.endTime == null && model.endTimeD == null && model.startTime == null) { %>
+            <% if(model.endTime == null || model.endTimeD == null || model.startTime == null) { %>
             <td>-</td>
             <td>-</td>
             <td>-</td>

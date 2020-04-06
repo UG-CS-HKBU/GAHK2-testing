@@ -101,8 +101,10 @@ module.exports = {
 
     },
 
-     // action - homepageC (for Chief_Judge) not used
+     // action - homepageC (for Chief_Judge) 
      homepageCJ: async function (req, res) {
+
+       
         var events = await Event.find();
         return res.view('competition/homepageCJ', { events: events });
 
@@ -115,14 +117,14 @@ module.exports = {
 
     },
 
-    // action - [hasn't used]
-    submitToAdmin: async function (req, res) {
+    // action - [Pls ignore, not used!]
+    // submitToAdmin: async function (req, res) {
 
-        var model = await Competition.findOne(req.params.id);
+    //     var model = await Competition.findOne(req.params.id);
 
-        model.endTime = new Date();
-        await Competition.update(req.params.id).set(model);
-        return res.ok("Scores have submitted to Admin.");
+    //     model.endTime = new Date();
+    //     await Competition.update(req.params.id).set(model);
+    //     return res.ok("Scores have submitted to Admin.");
 
         // if (req.wantsJSON) {
         //     return res.json({ 'competition': model });
@@ -130,7 +132,7 @@ module.exports = {
         //     return res.view("competition/submitToAdmin", { 'competition': model });
         // }
 
-    },
+    // },
 
 
     // action - import excel file
@@ -383,7 +385,8 @@ module.exports = {
 
             var models = await Competition.update(req.params.id).set({
                 d1Score: req.body.Competition.d1Score,
-                endTimeD: req.body.Competition.endTimeD,
+                //endTimeD: req.body.Competition.endTimeD,
+                endTimeD: new Date(),
 
             }).fetch();
 
@@ -492,7 +495,8 @@ module.exports = {
                 totalScore: req.body.Competition.totalScore,
 
                 startTime: req.body.Competition.startTime,
-                endTime: req.body.Competition.endTime,
+                endTime: new Date(),
+                // endTime: req.body.Competition.endTime,
 
                 //createdDate: req.body.Estate.createdDate,
                 //updatedDate: new Date().toLocaleDateString(),

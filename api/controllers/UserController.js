@@ -38,7 +38,9 @@ module.exports = {
                     return res.redirect('/competition/homepage');
                 } else if (req.session.role == "secretary"){
                     return res.redirect('/competition/homepageS');
-                }
+                } else if (req.session.role == "chiefJudge"){
+                    return res.redirect('/competition/homepageCJ');
+                };
                 //return res.redirect('/competition/homepage');
             }
 

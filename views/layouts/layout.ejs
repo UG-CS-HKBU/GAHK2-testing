@@ -33,7 +33,7 @@
 <body>
 
   <div class="container">
-    <%  if (req.session.role == "admin") {%>
+    <%  if (req.session.role != undefined) {%>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
 
@@ -52,12 +52,13 @@
           <%} %>
 
           <%  if (req.session.role == "secretary") {%>
-          <a class="nav-item nav-link" href="http://localhost:1337/competition/homepageS#">Upload Excel File</a>
+          <a class="nav-item nav-link" href="http://localhost:1337/competition/homepageS#">Home</a>
           <%} %>
 
          
           <%  if (req.session.role == "chiefJudge") {%>
-            <a class="nav-item nav-link" href="http://localhost:1337/competition/homepageCJ#">Event</a>
+            <a class="nav-item nav-link" href="http://localhost:1337/competition/homepageCJ#">Home</a>
+            <a class="nav-item nav-link" href="http://localhost:1337/competition/ranking#">Ranking</a>
           <%} %>
 
 
