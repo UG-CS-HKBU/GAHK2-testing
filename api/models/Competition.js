@@ -113,14 +113,13 @@ module.exports = {
   //   cb();
   // },
 
-  beforeUpdate(model, cb) {
-    // model.dAvgScore = (model.d1Score + model.d2Score) / 2 ;
-    
+  beforeUpdate(model, cb) {  
 
-    let sortEScore = [model.e1Score, model.e2Score, model.e3Score, model.e4Score, model.e5Score].sort();
-    model.eAvgScore = 10 - (sortEScore[1] + sortEScore[2] + sortEScore[3]) / 3;
+    // me comment to try update total Score:
+    // let sortEScore = [model.e1Score, model.e2Score, model.e3Score, model.e4Score, model.e5Score].sort();
+    // model.eAvgScore = 10 - (sortEScore[1] + sortEScore[2] + sortEScore[3]) / 3;
 
-    model.totalScore = parseFloat((model.d1Score + model.eAvgScore).toPrecision(4));
+    // model.totalScore = parseFloat((model.d1Score + model.eAvgScore).toPrecision(4));
 
     cb();
   },
