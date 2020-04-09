@@ -100,6 +100,14 @@ module.exports = {
     // action - scoreboard
     scoreboard: async function (req, res) {
 
+        // for displaying rank (among all competition):
+        var models = await Competition.find({
+            sort: 'totalScore DESC'
+        });
+
+
+
+        // for displaying details of 1 SINGLE competition
         var model = await Competition.findOne(req.params.id); // milestone 2 adjusted
 
         if (!model) return res.notFound();
@@ -107,7 +115,8 @@ module.exports = {
         if (req.wantsJSON) {
             return res.json({ 'competition': model });
         } else {
-            return res.view("competition/scoreboard/", { 'competition': model });
+            return res.view("competition/scoreboard/", { 'competition': model, 'allCompetition': models });
+            //return res.view("user/myRent/", { 'user': model, 'haveUrented': 0 });
         }
 
     },

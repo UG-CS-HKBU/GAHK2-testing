@@ -115,7 +115,7 @@ module.exports = {
 
   beforeUpdate(model, cb) {  
 
-    // me comment to try update total Score:
+    // me comment try to update total Score:
     // let sortEScore = [model.e1Score, model.e2Score, model.e3Score, model.e4Score, model.e5Score].sort();
     // model.eAvgScore = 10 - (sortEScore[1] + sortEScore[2] + sortEScore[3]) / 3;
 
