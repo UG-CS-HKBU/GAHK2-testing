@@ -1,0 +1,22 @@
+<h1>Please wait for competition to start...E2</h1>
+<script>
+    window.onload = function () {
+        io.socket.get('<%=req.path%>', function (data, jwr) {
+
+            if (jwr.error) {
+                console.error('Could not subscribe:' + jwr.error);
+                return;
+            }
+            console.log('Successfully subscribed.');
+
+            io.socket.on('start', function test(resp) {
+                console.log('Switch.');
+
+
+                window.location = "/competition/updateE2/" + resp.id;
+            });
+
+
+        });
+    };
+</script>
