@@ -6,6 +6,44 @@
  */
 
 module.exports = {
+    //socket
+    showScore: async function (req, res) {
+
+        return res.view("scoreList/score");
+
+    },
+
+    newConversationReading: async function (req, res) {
+
+        var reading = await BotUsage.create({
+            name: "Bot " + Math.floor(Math.random() * 10),
+            totalConversation: Math.floor(Math.random() * 20 + 10)
+        }).fetch();
+
+        return res.json(reading);
+
+    },
+
+    chatBotUsageStats: async function (req, res) {
+        try {
+
+            if (!req.isSocket) {
+                console.log('Only a client socket can subscribe');
+            }
+
+            // const totalConversation = await CommonService.getQuery('select count(*) from botUsage');
+
+            //const totalConversation = await BotUsage.find();
+
+            sails.sockets.join(req.socket, 'feed');
+            console.log('join feed');
+            res.send({ success: true });
+
+        } catch (e) {
+            res.send({ error: true, message: e.stack });
+        }
+    },
+
     // action - create
     create: async function (req, res) {
 
@@ -22,11 +60,13 @@ module.exports = {
 
     // action - start
     start: async function (req, res) {
-        var model = await Competition.findOne(req.params.id);
+        var model = await Competition.findOne(req.params.id).populate('belongsTo');
 
-        model.startTime = new Date();
-        await Competition.update(req.params.id).set(model);
-        return res.redirect('competition/admin/');
+        //model.startTime = new Date();
+        await Competition.update(req.params.id).set({startTime:new Date()}).fetch();
+        //return res.view('competition/updateD1/', { 'competition': model.id });
+        //return res.redirect('updateD1/17/');
+        return res.redirect('/competition/admin/'+model.belongsTo[0].id);
         //return res.redirect('competition/admin/', { 'competition': model });
 
     },
@@ -35,9 +75,11 @@ module.exports = {
     // action - admin
     admin: async function (req, res) {
 
-        var model = await Event.findOne(parseInt(req.params.id)).populate('includes');
+        var model = await Event.findOne(req.params.id).populate('includes');
 
-        return res.view('competition/admin', { competition: model.includes });
+        //var isStarted = false; 
+
+        return res.view('competition/admin', { 'competition': model.includes });
 
     },
 
@@ -101,10 +143,10 @@ module.exports = {
 
     },
 
-     // action - homepageC (for Chief_Judge) 
-     homepageCJ: async function (req, res) {
+    // action - homepageC (for Chief_Judge) 
+    homepageCJ: async function (req, res) {
 
-       
+
         var events = await Event.find();
         return res.view('competition/homepageCJ', { events: events });
 
@@ -112,11 +154,69 @@ module.exports = {
 
     // action - waiting
     waiting: async function (req, res) {
+        sails.sockets.join(req.socket, 'feed');
+        return res.view('competition/waiting', { competition: models });
 
-        return res.view('competition/waiting');
 
     },
 
+    waitingD1: async function (req, res) {
+        if (req.isSocket) {
+            sails.sockets.join(req, 'feed');
+            return res.ok("socket joined");
+        }
+        return res.view('competition/waitingD1');
+        
+    },
+    waitingE1: async function (req, res) {
+        if (req.isSocket) {
+            sails.sockets.join(req, 'feed');
+            return res.ok("socket joined");
+        }
+        return res.view('competition/waitingE1');
+
+
+    },
+
+    waitingE2: async function (req, res) {
+        if (req.isSocket) {
+            sails.sockets.join(req, 'feed');
+            return res.ok("socket joined");
+        }
+        return res.view('competition/waitingE2');
+
+
+    },
+    waitingE3: async function (req, res) {
+        if (req.isSocket) {
+            sails.sockets.join(req, 'feed');
+            return res.ok("socket joined");
+        }
+        return res.view('competition/waitingE3');
+
+
+    },
+
+    waitingE4: async function (req, res) {
+        if (req.isSocket) {
+            sails.sockets.join(req, 'feed');
+            return res.ok("socket joined");
+        }
+        return res.view('competition/waitingE4');
+
+
+    },
+    waitingE5: async function (req, res) {
+        if (req.isSocket) {
+            sails.sockets.join(req, 'feed');
+            return res.ok("socket joined");
+        }
+        return res.view('competition/waitingE5');
+
+    // action - [Pls ignore, not used!]
+    // submitToAdmin: async function (req, res) {
+
+    },
     // action - [Pls ignore, not used!]
     // submitToAdmin: async function (req, res) {
 
@@ -126,11 +226,11 @@ module.exports = {
     //     await Competition.update(req.params.id).set(model);
     //     return res.ok("Scores have submitted to Admin.");
 
-        // if (req.wantsJSON) {
-        //     return res.json({ 'competition': model });
-        // } else {
-        //     return res.view("competition/submitToAdmin", { 'competition': model });
-        // }
+    // if (req.wantsJSON) {
+    //     return res.json({ 'competition': model });
+    // } else {
+    //     return res.view("competition/submitToAdmin", { 'competition': model });
+    // }
 
     // },
 
@@ -142,6 +242,8 @@ module.exports = {
 
         if (req.method == 'GET')
             return res.view('competition/import_xlsx');
+
+        let eventId = parseInt(req.params.id) || 0;
 
         req.file('file').upload({ maxBytes: 10000000 }, async function whenDone(err, uploadedFiles) {
             if (err) { return res.serverError(err); }
@@ -165,10 +267,10 @@ module.exports = {
 
             if (req.session.role == "admin") {
                 return res.redirect('/competition/admin/' + eventId);
-            } else if (req.session.role == "secretary"){
+            } else if (req.session.role == "secretary") {
                 return res.redirect('/competition/homepageS/');
             }
-            
+
         });
     },
 
@@ -193,14 +295,12 @@ module.exports = {
                 e4Score: model.e4Score,
                 e5Score: model.e5Score,
                 eAvgScore: model.eAvgScore,
-                               
                 // d2Score: model.d2Score,
                 // dAvgScore: model.dAvgScore,  
                 deduction: model.deduction,
                 totalScore: model.totalScore,
                 // startTime: model.startTime,
                 // endTime: model.endTime,
-                
             }
         }));
         XLSX.utils.book_append_sheet(wb, ws, "final_result");
@@ -518,8 +618,8 @@ module.exports = {
         }
     },
 
-       // action - Pls ignore it (not used!)
-       updateFinalScore: async function (req, res) {
+    // action - Pls ignore it (not used!)
+    updateFinalScore: async function (req, res) {
 
         if (req.method == "GET") {
 
@@ -535,7 +635,6 @@ module.exports = {
                 return res.badRequest("Form-data not received.");
 
             var models = await Competition.update(req.params.id).set({
-               
                 totalScore: req.body.Competition.totalScore,
                 // endTime: req.body.Competition.endTime,
 

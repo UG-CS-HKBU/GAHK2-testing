@@ -11,6 +11,8 @@ competition.totalScore = Number(temp);
 
 totalScoreList = [];
 
+i = 0;
+
 
 %>
 
@@ -22,7 +24,7 @@ totalScoreList = [];
 
         <thead>
           <tr>
-            <th scope="col"></th>
+            <th scope="col">Rank</th>
             <th scope="col">Athlete Name</th>
             <th scope="col">Competition Event</th>
 
@@ -36,8 +38,7 @@ totalScoreList = [];
 
         <tbody>
           <% competition.forEach ( function(model) {
-              <!-- model.dAvgScore = (model.d1Score + model.d2Score) / 2 -->
-              
+            
               sortEScore = [model.e1Score, model.e2Score, model.e3Score, model.e4Score, model.e5Score].sort();
               model.eAvgScore = 10 - (sortEScore[1] + sortEScore[2] + sortEScore[3]) / 3;
               model.totalScore = model.d1Score + model.eAvgScore - model.deduction;
@@ -46,21 +47,24 @@ totalScoreList = [];
               temp = temp.slice(0, (temp.indexOf("."))+4); 
               model.totalScore = Number(temp);
               
-              totalScoreList.push(model.totalScore);
-              totalScoreList.sort();
-              totalScoreList.reverse();
+              <!-- totalScoreList.push(model.totalScore); -->
+              <!-- totalScoreList.sort(); -->
+              <!-- totalScoreList.reverse(); -->
 
-              model.ranking = totalScoreList.indexOf(model.totalScore) + 1;
+              <!-- model.ranking = totalScoreList.indexOf(model.totalScore) + 1; -->
+
+              i = i+1;
+              model.ranking = i;
              %>
 
 
           <tr>
-            <th scope="row"></th>
+            <th scope="row"><%= model.ranking %></th>
 
             <td><%= model.athleteName %></td>
             <td><%= model.competitionEvent %></td>
 
-            <% if(model.endTime == null) { %>
+            <% if(model.endTime == null || model.endTimeD == null || model.startTime == null) { %>
             <td>--</td>
             <td>--</td>
             <td>--</td>

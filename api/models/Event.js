@@ -13,10 +13,6 @@ module.exports = {
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
 
-    eventNumber: {
-      type: "number"
-    },
-
     eventName: {
       type: "string"
     },
@@ -53,9 +49,6 @@ module.exports = {
     e5Name: {
       type: "string"
     },
-
-
-    
 
 
 

@@ -82,11 +82,11 @@ module.exports.routes = {
 
   'GET /competition/scoreboard/:id': 'CompetitionController.scoreboard',
   'GET /competition/ranking/': 'CompetitionController.ranking',
-  'GET /competition/homepage/': 'CompetitionController.homepage',
-  'GET /competition/homepageCJ/': 'CompetitionController.homepageCJ',
-  'GET /competition/homepageS/': 'CompetitionController.homepageS',
+  'GET /competition/homepage': 'CompetitionController.homepage',
+  'GET /competition/homepageCJ': 'CompetitionController.homepageCJ',
+  'GET /competition/homepageS': 'CompetitionController.homepageS',
   'GET /competition/start/:id': 'CompetitionController.start',
-  'GET /competition/waiting/': 'CompetitionController.waiting',
+  //'GET /competition/waiting/': 'CompetitionController.waiting',
   'GET /competition/scoreboard/:id': 'CompetitionController.scoreboard',
   'POST /competition/scoreboard/:id': 'CompetitionController.scoreboard',
 
@@ -94,6 +94,13 @@ module.exports.routes = {
   'POST /competition/submitToAdmin/:id': 'CompetitionController.submitToAdmin',
 
   
+//waiting page
+  '/competition/waitingD1': 'CompetitionController.waitingD1',
+  '/competition/waitingE1': 'CompetitionController.waitingE1',
+  '/competition/waitingE2': 'CompetitionController.waitingE2',
+  '/competition/waitingE3': 'CompetitionController.waitingE3',
+  '/competition/waitingE4': 'CompetitionController.waitingE4',
+  '/competition/waitingE5': 'CompetitionController.waitingE5',
 
   // judges scoring pages
   'GET /user/d1/': 'UserController.createD1',
