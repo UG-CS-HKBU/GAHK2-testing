@@ -239,12 +239,12 @@ module.exports = {
     // action - import excel file
     import_xlsx: async function (req, res) {
 
-        var eventId = parseInt(req.params.id);
+        let eventId = parseInt(req.params.id) || 0;
 
         if (req.method == 'GET')
             return res.view('competition/import_xlsx');
 
-        let eventId = parseInt(req.params.id) || 0;
+        
 
         req.file('file').upload({ maxBytes: 10000000 }, async function whenDone(err, uploadedFiles) {
             if (err) { return res.serverError(err); }

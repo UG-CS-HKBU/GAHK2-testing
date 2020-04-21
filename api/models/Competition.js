@@ -107,7 +107,7 @@ module.exports = {
       via: 'includes'
     },
 
-
+   },
 
   beforeUpdate(model, cb) {
     // model.dAvgScore = (model.d1Score + model.d2Score) / 2 ;
@@ -130,4 +130,5 @@ module.exports = {
     cb();
   }
 
-  }};
+};
+// };
