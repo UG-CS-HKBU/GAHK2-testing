@@ -165,16 +165,41 @@ module.exports = {
             sails.sockets.join(req, 'feed');
             return res.ok("socket joined");
         }
+
+        var model = await Competition.findOne({
+            startTime:{'!=':null},
+            endTime: null
+        });
+
+        if (model) {
+            return res.redirect("/competition/updateD1/"+model.id)
+        }
+        
         return res.view('competition/waitingD1');
         
     },
     waitingE1: async function (req, res) {
+   //     if (req.isSocket) {
+     //       sails.sockets.join(req, 'feed');
+       //     return res.ok("socket joined");
+       // }
+        //return res.view('competition/waitingE1');
+
         if (req.isSocket) {
             sails.sockets.join(req, 'feed');
             return res.ok("socket joined");
         }
-        return res.view('competition/waitingE1');
 
+        var model = await Competition.findOne({
+            startTime:{'!=':null},
+            endTime: null
+        });
+
+        if (model) {
+            return res.redirect("/competition/updateE1/"+model.id)
+        }
+        
+        return res.view('competition/waitingE1');
 
     },
 
@@ -183,8 +208,17 @@ module.exports = {
             sails.sockets.join(req, 'feed');
             return res.ok("socket joined");
         }
-        return res.view('competition/waitingE2');
 
+        var model = await Competition.findOne({
+            startTime:{'!=':null},
+            endTime: null
+        });
+
+        if (model) {
+            return res.redirect("/competition/updateE2/"+model.id)
+        }
+        
+        return res.view('competition/waitingE2');
 
     },
     waitingE3: async function (req, res) {
@@ -192,9 +226,17 @@ module.exports = {
             sails.sockets.join(req, 'feed');
             return res.ok("socket joined");
         }
+
+        var model = await Competition.findOne({
+            startTime:{'!=':null},
+            endTime: null
+        });
+
+        if (model) {
+            return res.redirect("/competition/updateE3/"+model.id)
+        }
+        
         return res.view('competition/waitingE3');
-
-
     },
 
     waitingE4: async function (req, res) {
@@ -202,8 +244,17 @@ module.exports = {
             sails.sockets.join(req, 'feed');
             return res.ok("socket joined");
         }
-        return res.view('competition/waitingE4');
 
+        var model = await Competition.findOne({
+            startTime:{'!=':null},
+            endTime: null
+        });
+
+        if (model) {
+            return res.redirect("/competition/updateE4/"+model.id)
+        }
+        
+        return res.view('competition/waitingE4');
 
     },
     waitingE5: async function (req, res) {
@@ -211,9 +262,17 @@ module.exports = {
             sails.sockets.join(req, 'feed');
             return res.ok("socket joined");
         }
+
+        var model = await Competition.findOne({
+            startTime:{'!=':null},
+            endTime: null
+        });
+
+        if (model) {
+            return res.redirect("/competition/updateE5/"+model.id)
+        }
+        
         return res.view('competition/waitingE5');
-
-
     },
     // action - [Pls ignore, not used!]
     // submitToAdmin: async function (req, res) {
@@ -474,6 +533,8 @@ module.exports = {
             var model = await Competition.findOne(req.params.id);
 
             if (!model) return res.notFound();
+            
+          // if(model.endTimeD == null || model.endTime ==null ) return res.ok("Pending for approval of Chief Judge...");
 
             return res.view('competition/updateD1', { competition: model });
 
