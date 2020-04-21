@@ -1,8 +1,7 @@
-
-<h1>Please wait for competition to start...</h1>
+<h1>Please wait for competition to start...E4</h1>
 <script>
     window.onload = function () {
-        io.socket.get('/api/chat-conversation-count', function (data, jwr) {
+        io.socket.get('<%=req.path%>', function (data, jwr) {
 
             if (jwr.error) {
                 console.error('Could not subscribe:' + jwr.error);
@@ -11,9 +10,13 @@
             console.log('Successfully subscribed.');
 
             io.socket.on('start', function test(resp) {
-                window.location.assign()
+                console.log('Switch.');
+
+
+                window.location = "/competition/updateE4/" + resp.id;
             });
+
+
         });
     };
 </script>
-
