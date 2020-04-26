@@ -322,9 +322,10 @@ module.exports = {
 
             if (req.session.role == "admin") {
                 return res.redirect('/competition/admin/' + eventId);
-            } else if (req.session.role == "secretary") {
-                return res.redirect('/competition/homepageS/');
-            }
+            } 
+            // else if (req.session.role == "secretary") {
+            //     return res.redirect('/competition/homepageS/');
+            // }
 
         });
     },
