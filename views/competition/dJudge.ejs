@@ -16,8 +16,8 @@
               <th scope="col">Athlete Name</th>
               <th scope="col">Competition Event</th>
               <th scope="col">Start Time</th>
-              <th scope="col"> D Judge End Time</th>
-              <th scope="col"> C Judge End Time</th>
+              <th scope="col">End Time</th>
+              <!-- <th scope="col"> C Judge End Time</th> -->
   
               <th scope="col">D</th>
               <th scope="col">E1</th>
@@ -54,24 +54,12 @@
               <td><%= model.athleteName %></td>
               <td><%= model.competitionEvent %></td>
               <td><%= model.startTime %></td>
-              <td><%= model.endTimeD %></td>
               <td><%= model.endTime %></td>
+              <!-- <td><%= model.endTime %></td> -->
   
   
   
-              <% if(model.endTime == null || model.endTimeD == null || model.startTime == null) { %>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-              <td>-</td>
-  
-              <td>-</td>
-  
-              <% } else { %>
+               
               <td><%= model.d1Score %></td>
               <td><%= model.e1Score %></td>
               <td><%= model.e2Score %></td>
@@ -82,15 +70,19 @@
               <td><%= model.deduction%></td>
   
               <td><%= model.totalScore %></td>
-              <% }%>
+             
   
   
   
               <% if(model.startTime == null) { %>
               <td><a href="/competition/start/<%= model.id %>">Start Competition</a></td>
-              <% } %>
+              
+              <% } else { %>
+              <td><a href="/competition/updateD1/<%= model.id %>">Give D Score</a></td>  
+              <td><a href="/competition/updateAll/<%= model.id %>">Finalize all scores</a></td>
+              <% }%>                
   
-              <% if(model.endTime != null && model.endTimeD != null && model.startTime != null ) { %>
+              <% if(model.endTime != null && model.startTime != null ) { %>
               <td><a href="/competition/scoreboard/<%= model.id %>">Publish Score</a></td>
               <% } %>
   

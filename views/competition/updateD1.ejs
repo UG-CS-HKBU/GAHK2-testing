@@ -1,30 +1,9 @@
-<!--update.ejs-->
+<!--updateD1.ejs-->
 
-<%  
-      
-sortEScore = [competition.e1Score, competition.e2Score, competition.e3Score, competition.e4Score, competition.e5Score].sort();
-competition.eAvgScore = 10 - (sortEScore[1] + sortEScore[2] + sortEScore[3]) / 3;
-
-temp = competition.eAvgScore.toString(); 
-temp = temp.slice(0, (temp.indexOf("."))+4); 
-competition.eAvgScore = Number(temp);
-
-
-competition.totalScore = competition.d1Score + competition.eAvgScore;
-temp2 = competition.totalScore.toString(); 
-temp2 = temp2.slice(0, (temp.indexOf("."))+5); 
-competition.totalScore = Number(temp2);
- 
-
-%>
-
-
-<form action="/competition/update/<%= competition.id %>" method="POST">
-
+<form action="/competition/updateD1/<%= competition.id %>" method="POST">
 
     <div class="container">
         <div class="row">
-
             <div class="col-12 col-sm-6 col-lg-6 col-xl-6">
 
 
@@ -36,113 +15,41 @@ competition.totalScore = Number(temp2);
                     <li class="list-group-item">Ahtlete grade: <%= competition.competitionEvent%></li>
                     <br><br>
 
-                </ul>
-
-
-
-                <h5> Difficulty score : </h5>
-                <ul class="list-group">
-                    <li class="list-group-item">Difficulty Score: <input type="number" name="Competition[d1Score]" placeholder="0.0" step="0.1" min="0" width="50" required></li>
-                    <!-- <li class="list-group-item">D judge : <%= competition.d1Score %></li> -->
-                    <!-- <li class="list-group-item">D judge 2: <%= competition.d2Score %></li>
-                    <li class="list-group-item">D Average Score: <%= competition.dAvgScore %></li> -->
-                    <br><br>
 
                 </ul>
-
-                <h5> Execution score : </h5>
-                <ul class="list-group">
-
-                    <li class="list-group-item">E judge 1: <%= competition.e1Score %></li>
-                    <li class="list-group-item">E judge 2: <%= competition.e2Score %></li>
-                    <li class="list-group-item">E judge 3: <%= competition.e3Score %></li>
-                    <li class="list-group-item">E judge 4: <%= competition.e4Score %></li>
-                    <li class="list-group-item">E judge 5: <%= competition.e5Score %></li>
-                    <li class="list-group-item">E Average Score: <input name="Competition[eAvgScore]" value="<%= competition.eAvgScore %>" /></li>
-                    <!-- <li class="list-group-item">E Average Score: <%= competition.eAvgScore %></li> -->
-                    <br><br>
-
-                </ul>
-    
-                <h5> Score (<b>excluding</b> Extra Deduction) : </h5>
-                <ul class="list-group">
-                    <!-- <li class="list-group-item">Final Score (without Deduction): <input name="Competition[totalScore]" value="<%= competition.totalScore %>" /></li> -->
-                    <li class="list-group-item">Final score: <%= competition.totalScore %></li>
-                </ul>
-
-                <br><br>
-
-                <h5> Extra Deduction : </h5>
-                <ul class="list-group">
-
-                    <li class="list-group-item">Extra Deduction: <input type="number" name="Competition[deduction]" placeholder="0.0" step="0.1" min="0" width="50" required></li>
-
+                
+                <h3> Difficulty score : </h3>
+                <div>
+                    <input type="number" name="Competition[d1Score]" placeholder="0.0" step="0.1" min="0" width="50" required>
                     
-                </ul>
-
-                <% competition.totalScore = competition.d1Score + competition.eAvgScore - competition.deduction; %>
+                </div>
 
 
-                <br><br>
-
-                <h5> Final score (<b>***including***</b> Extra Deduction) : </h5>   
-                    <!-- <li class="list-group-item">Final Score (<b>including</b> Deduction): <input name="Competition[totalScore]" placeholder="0.000" step="0.001" min="0" width="20" required/></li> -->
-                    <li class="list-group-item">Final Score (<b>including</b> Deduction): <input type="number" name="Competition[totalScore]" placeholder="0.000" step="0.001" min="0" width="50" required></li>
                 <br>
+                <button type="submit" class="btn btn-primary">Submit</button>
 
-
-
-
-                <!-- <h5> Execution score : </h5>
-                <ul class="list-group">
-
-                    <div>
-                        <label>E judge 1: </label>
-                        <input type="number" class="form-control" name="Competition[e1Score]" placeholder="0.0" step="0.1" min="0" max="10" required>
-                    </div>
-                    <div>
-                        <label>E judge 2: </label>
-                        <input type="number" class="form-control" name="Competition[e2Score]" placeholder="0.0" step="0.1" min="0" max="10" required>
-                    </div>
-                    <div>
-                        <label>E judge 3: </label>
-                        <input type="number" class="form-control" name="Competition[e3Score]" placeholder="0.0" step="0.1" min="0" max="10" required>
-                    </div>
-                    <div>
-                        <label>E judge 4: </label>
-                        <input type="number" class="form-control" name="Competition[e4Score]" placeholder="0.0" step="0.1" min="0" max="10" required>
-                    </div>
-                    <div>
-                        <label>E judge 5: </label>
-                        <input type="number" class="form-control" name="Competition[e5Score]" placeholder="0.0" step="0.1" min="0" max="10" required>
-                    </div>
-                    
-
-                </ul> -->
-                <br>
-
-                <a class="btn btn-primary" href="http://localhost:1337/competition/update/<%= competition.id%>"
-                    role="button">E1</a>
-                <a class="btn btn-primary" href="http://localhost:1337/competition/update/<%= competition.id%>"
-                    role="button">E2</a>
-                <a class="btn btn-primary" href="http://localhost:1337/competition/update/<%= competition.id%>"
-                    role="button">E3</a>
-                <a class="btn btn-primary" href="http://localhost:1337/competition/update/<%= competition.id%>"
-                    role="button">E4</a>
-                <a class="btn btn-primary" href="http://localhost:1337/competition/update/<%= competition.id%>"
-                    role="button">E5</a>
-
-                <button type="submit" class="btn btn-danger">Submit</button>
-                <!-- <button type="button" class="btn btn-primary"
-                    onclick="Finalize('<%= competition.id %>')">Finalize</button><br><br> -->
-
-
-                <!-- <button type="button" class="btn btn-primary">Edit</button> -->
-                <!-- <a class="btn btn-primary" href="http://localhost:1337/competition/" role="button">Edit</a> -->
 
 
             </div>
 
+
+
+
+
+            <div class="col-12 col-sm-6 col-lg-6 col-xl-6">
+                <p>
+                    <h3>D</h3>
+                </p>
+
+
+                <br><br>
+
+
+
+
+
+
+            </div>
 
 
         </div>
@@ -153,6 +60,17 @@ competition.totalScore = Number(temp2);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 </form>
-
-

@@ -1,4 +1,4 @@
-<!--update.ejs-->
+<!--updateAll.ejs-->
 
 <%  
       
@@ -6,20 +6,18 @@ sortEScore = [competition.e1Score, competition.e2Score, competition.e3Score, com
 competition.eAvgScore = 10 - (sortEScore[1] + sortEScore[2] + sortEScore[3]) / 3;
 
 temp = competition.eAvgScore.toString(); 
-temp = temp.slice(0, (temp.indexOf("."))+4); 
+temp = temp.slice(0, (temp.indexOf("."))+5); 
 competition.eAvgScore = Number(temp);
 
 
 competition.totalScore = competition.d1Score + competition.eAvgScore;
-temp2 = competition.totalScore.toString(); 
-temp2 = temp2.slice(0, (temp2.indexOf("."))+5); 
-competition.totalScore = Number(temp2);
+
  
 
 %>
 
 
-<form action="/competition/update/<%= competition.id %>" method="POST">
+<form action="/competition/updateAll/<%= competition.id %>" method="POST">
 
 
     <div class="container">
@@ -42,7 +40,7 @@ competition.totalScore = Number(temp2);
 
                 <h5> Difficulty score : </h5>
                 <ul class="list-group">
-
+                    <!-- <li class="list-group-item">Difficulty Score: <input type="number" name="Competition[d1Score]" placeholder="0.0" step="0.1" min="0" width="50" required></li> -->
                     <li class="list-group-item">D judge : <%= competition.d1Score %></li>
                     <!-- <li class="list-group-item">D judge 2: <%= competition.d2Score %></li>
                     <li class="list-group-item">D Average Score: <%= competition.dAvgScore %></li> -->

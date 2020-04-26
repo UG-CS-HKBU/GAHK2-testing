@@ -66,7 +66,7 @@ module.exports = {
         await Competition.update(req.params.id).set({startTime:new Date()}).fetch();
         //return res.view('competition/updateD1/', { 'competition': model.id });
         //return res.redirect('updateD1/17/');
-        return res.redirect('/competition/admin/'+model.belongsTo[0].id);
+        return res.redirect('/competition/dJudge/'+model.belongsTo[0].id);
         //return res.redirect('competition/admin/', { 'competition': model });
 
     },
@@ -531,8 +531,9 @@ module.exports = {
     updateD1: async function (req, res) {
 
         if (req.method == "GET") {
-
+            
             var model = await Competition.findOne(req.params.id);
+            // var model2 = await Competition.findOne(req.params.id).populate('belongsTo');
 
             if (!model) return res.notFound();
             
@@ -546,15 +547,31 @@ module.exports = {
                 return res.badRequest("Form-data not received.");
 
             var models = await Competition.update(req.params.id).set({
+                athleteName: req.body.Competition.athleteName,
+                athleteID: req.body.Competition.athleteID,
+                competitionEvent: req.body.Competition.competitionEvent,
+
+                e1Score: req.body.Competition.e1Score,
+                e2Score: req.body.Competition.e2Score,
+                e3Score: req.body.Competition.e3Score,
+                e4Score: req.body.Competition.e4Score,
+                e5Score: req.body.Competition.e5Score,
                 d1Score: req.body.Competition.d1Score,
-                //endTimeD: req.body.Competition.endTimeD,
-                endTime: new Date(),
+
+                dAvgScore: req.body.Competition.dAvgScore,
+                eAvgScore: req.body.Competition.eAvgScore,
+                totalScore: req.body.Competition.totalScore,
+
+                startTime: req.body.Competition.startTime,
+                endTimeD: new Date(),
 
             }).fetch();
 
             if (models.length == 0) return res.notFound();
 
-            return res.ok("Pending for approval of D Judge...");
+            return res.redirect('/competition/homepageD/');
+            // return res.ok("D Score is updated...");
+            // return res.redirect('/competition/dJudge/'+model.belongsTo[0].id);
 
         }
     },
@@ -764,6 +781,64 @@ module.exports = {
         return res.view('competition/dJudge', { 'competition': model.includes });
 
     },
+
+        // action - updateAll (D Judge update all scores)
+        updateAll: async function (req, res) {
+
+            if (req.method == "GET") {
+    
+                var model = await Competition.findOne(req.params.id);
+    
+                if (!model) return res.notFound();
+    
+                return res.view('competition/updateAll', { competition: model });
+    
+            } else {
+    
+                if (!req.body.Competition)
+                    return res.badRequest("Form-data not received.");
+    
+                var models = await Competition.update(req.params.id).set({
+                    athleteName: req.body.Competition.athleteName,
+                    athleteID: req.body.Competition.athleteID,
+                    competitionEvent: req.body.Competition.competitionEvent,
+    
+                    e1Score: req.body.Competition.e1Score,
+                    e2Score: req.body.Competition.e2Score,
+                    e3Score: req.body.Competition.e3Score,
+                    e4Score: req.body.Competition.e4Score,
+                    e5Score: req.body.Competition.e5Score,
+                    d1Score: req.body.Competition.d1Score,
+    
+                    deduction: req.body.Competition.deduction,
+                    dAvgScore: req.body.Competition.dAvgScore,
+                    eAvgScore: req.body.Competition.eAvgScore,
+                    totalScore: req.body.Competition.totalScore,
+    
+                    startTime: req.body.Competition.startTime,
+                    endTime: new Date(),
+                    // endTime: req.body.Competition.endTime,
+    
+                    //createdDate: req.body.Estate.createdDate,
+                    //updatedDate: new Date().toLocaleDateString(),
+                }).fetch();
+    
+                if (models.length == 0) return res.notFound();
+    
+    
+                if (req.wantsJSON) {
+                    return res.json({ 'competition': model });
+                } else {
+                    return res.redirect('/competition/homepageD/');
+                    // return res.ok("Scores updated.");
+                    //return res.redirect('competition/submitToAdmin/', { competition: model });
+                    //return res.view("competition/scoreboard/", { 'competition': model });
+                }
+    
+                //return res.ok("Scores updated.");
+    
+            }
+        },
 
 
 

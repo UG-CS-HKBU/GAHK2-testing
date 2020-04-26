@@ -46,6 +46,9 @@ module.exports.routes = {
   'GET /competition/update/:id': 'CompetitionController.update',
   'POST /competition/update/:id': 'CompetitionController.update',
 
+  'GET /competition/updateAll/:id': 'CompetitionController.updateAll',
+  'POST /competition/updateAll/:id': 'CompetitionController.updateAll',
+
   'GET /competition/updateFinalScore/:id': 'CompetitionController.updateFinalScore',
   'POST /competition/updateFinalScore/:id': 'CompetitionController.updateFinalScore',
 
