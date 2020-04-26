@@ -103,14 +103,6 @@ module.exports = {
     // action - scoreboard
     scoreboard: async function (req, res) {
 
-        // for displaying rank (among all competition):
-        var models = await Competition.find({
-            sort: 'totalScore DESC'
-        });
-
-
-
-        // for displaying details of 1 SINGLE competition
         var model = await Competition.findOne(req.params.id); // milestone 2 adjusted
 
         if (!model) return res.notFound();
@@ -118,8 +110,7 @@ module.exports = {
         if (req.wantsJSON) {
             return res.json({ 'competition': model });
         } else {
-            return res.view("competition/scoreboard/", { 'competition': model, 'allCompetition': models });
-            //return res.view("user/myRent/", { 'user': model, 'haveUrented': 0 });
+            return res.view("competition/scoreboard/", { 'competition': model });
         }
 
     },
@@ -301,16 +292,13 @@ module.exports = {
     // },
 
 
-
     // action - import excel file
     import_xlsx: async function (req, res) {
-
-        let eventId = parseInt(req.params.id) || 0;
 
         if (req.method == 'GET')
             return res.view('competition/import_xlsx');
 
-        
+        let eventId = parseInt(req.params.id) || 0;
 
         req.file('file').upload({ maxBytes: 10000000 }, async function whenDone(err, uploadedFiles) {
             if (err) { return res.serverError(err); }
@@ -362,12 +350,14 @@ module.exports = {
                 e4Score: model.e4Score,
                 e5Score: model.e5Score,
                 eAvgScore: model.eAvgScore,
+
                 // d2Score: model.d2Score,
                 // dAvgScore: model.dAvgScore,  
                 deduction: model.deduction,
                 totalScore: model.totalScore,
                 // startTime: model.startTime,
                 // endTime: model.endTime,
+
             }
         }));
         XLSX.utils.book_append_sheet(wb, ws, "final_result");
@@ -388,6 +378,7 @@ module.exports = {
             if (!model) return res.notFound();
 
             return res.view('competition/updateE1', { competition: model });
+
 
         } else {
 
@@ -477,7 +468,7 @@ module.exports = {
 
         }
     },
-//  vadvs
+
     // action - updateE4
     updateE4: async function (req, res) {
 
@@ -594,7 +585,40 @@ module.exports = {
         }
     },
 
+    // action - Pls ignore it (not used!)
+    updateDeduction: async function (req, res) {
 
+        if (req.method == "GET") {
+
+            var model = await Competition.findOne(req.params.id);
+
+            if (!model) return res.notFound();
+
+            return res.view('competition/updateDeduction', { competition: model });
+
+        } else {
+
+            if (!req.body.Competition)
+                return res.badRequest("Form-data not received.");
+
+            var models = await Competition.update(req.params.id).set({
+
+                deduction: req.body.Competition.deduction,
+
+            }).fetch();
+
+            if (models.length == 0) return res.notFound();
+
+
+            if (req.wantsJSON) {
+                return res.json({ 'competition': model });
+            } else {
+                return res.redirect("competition/update/", { 'competition': model });
+                //return res.view("competition/scoreboard/", { 'competition': model });
+            }
+
+        }
+    },
 
     // action - update (Chief Judge)
     update: async function (req, res) {
@@ -632,7 +656,10 @@ module.exports = {
 
                 startTime: req.body.Competition.startTime,
                 endTime: new Date(),
- 
+                // endTime: req.body.Competition.endTime,
+
+                //createdDate: req.body.Estate.createdDate,
+                //updatedDate: new Date().toLocaleDateString(),
             }).fetch();
 
             if (models.length == 0) return res.notFound();
@@ -654,71 +681,40 @@ module.exports = {
     // action - Pls ignore it (not used!)
     updateFinalScore: async function (req, res) {
 
-    //     if (req.method == "GET") {
+        if (req.method == "GET") {
 
-    //         var model = await Competition.findOne(req.params.id);
+            var model = await Competition.findOne(req.params.id);
 
-    //         if (!model) return res.notFound();
+            if (!model) return res.notFound();
 
-    //         return res.view('competition/update', { competition: model });
+            return res.view('competition/update', { competition: model });
 
-    //     } else {
+        } else {
 
-    //         if (!req.body.Competition)
-    //             return res.badRequest("Form-data not received.");
+            if (!req.body.Competition)
+                return res.badRequest("Form-data not received.");
 
             var models = await Competition.update(req.params.id).set({
+
                 totalScore: req.body.Competition.totalScore,
                 // endTime: req.body.Competition.endTime,
 
             }).fetch();
 
-    //         }).fetch();
+            if (models.length == 0) return res.notFound();
 
-    //         if (models.length == 0) return res.notFound();
 
-    //         if (req.wantsJSON) {
-    //             return res.json({ 'competition': model });
-    //         } else {
-    //             return res.ok("Final score updated.");
-    //         }
-    //     }
-     },
+            if (req.wantsJSON) {
+                return res.json({ 'competition': model });
+            } else {
+                return res.ok("Final score updated.");
+                //return res.redirect('competition/submitToAdmin/', { competition: model });
+                //return res.view("competition/scoreboard/", { 'competition': model });
+            }
 
-        // action - Pls ignore it (not used!)
-        // updateDeduction: async function (req, res) {
 
-        //     if (req.method == "GET") {
-    
-        //         var model = await Competition.findOne(req.params.id);
-    
-        //         if (!model) return res.notFound();
-    
-        //         return res.view('competition/updateDeduction', { competition: model });
-    
-        //     } else {
-    
-        //         if (!req.body.Competition)
-        //             return res.badRequest("Form-data not received.");
-    
-        //         var models = await Competition.update(req.params.id).set({
-    
-        //             deduction: req.body.Competition.deduction,
-    
-        //         }).fetch();
-    
-        //         if (models.length == 0) return res.notFound();
-    
-    
-        //         if (req.wantsJSON) {
-        //             return res.json({ 'competition': model });
-        //         } else {
-        //             return res.redirect("competition/update/", { 'competition': model });
-        //             //return res.view("competition/scoreboard/", { 'competition': model });
-        //         }
-    
-        //     }
-        // },
+        }
+    },
 
 
 
