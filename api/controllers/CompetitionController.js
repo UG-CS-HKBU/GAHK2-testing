@@ -396,7 +396,7 @@ module.exports = {
 
             if (models.length == 0) return res.notFound();
 
-            return res.ok("Pending for approval of Chief Judge...");
+            return res.ok("Pending for approval of D Judge...");
             //return res.redirect('/competition/updateE1/6');  // hardcode url id
 
             //return res.ok("Record updated");
@@ -436,7 +436,7 @@ module.exports = {
 
             if (models.length == 0) return res.notFound();
 
-            return res.ok("Pending for approval of Chief Judge...");
+            return res.ok("Pending for approval of D Judge...");
             //return res.redirect('/competition/updateE2/6');  // hardcode url id
 
 
@@ -466,7 +466,7 @@ module.exports = {
 
             if (models.length == 0) return res.notFound();
 
-            return res.ok("Pending for approval of Chief Judge...");
+            return res.ok("Pending for approval of D Judge...");
 
         }
     },
@@ -494,7 +494,7 @@ module.exports = {
 
             if (models.length == 0) return res.notFound();
 
-            return res.ok("Pending for approval of Chief Judge...");
+            return res.ok("Pending for approval of D Judge...");
 
         }
     },
@@ -522,7 +522,7 @@ module.exports = {
 
             if (models.length == 0) return res.notFound();
 
-            return res.ok("Pending for approval of Chief Judge...");
+            return res.ok("Pending for approval of D Judge...");
 
         }
     },
@@ -554,7 +554,7 @@ module.exports = {
 
             if (models.length == 0) return res.notFound();
 
-            return res.ok("Pending for approval of Chief Judge...");
+            return res.ok("Pending for approval of D Judge...");
 
         }
     },
