@@ -137,11 +137,11 @@ module.exports = {
     },
 
     // action - homepageS (for Secretary)
-    homepageS: async function (req, res) {
-        var events = await Event.find();
-        return res.view('competition/homepageS', { events: events });
+    // homepageS: async function (req, res) {
+    //     var events = await Event.find();
+    //     return res.view('competition/homepageS', { events: events });
 
-    },
+    // },
 
     // action - homepageC (for Chief_Judge) 
     homepageCJ: async function (req, res) {
@@ -321,7 +321,8 @@ module.exports = {
             // return res.redirect('/competition/admin/' + eventId);
 
             if (req.session.role == "admin") {
-                return res.redirect('/competition/admin/' + eventId);
+                return res.redirect('/competition/homepage/');
+                // return res.redirect('/competition/admin/' + eventId);
             } 
             // else if (req.session.role == "secretary") {
             //     return res.redirect('/competition/homepageS/');
@@ -744,10 +745,25 @@ module.exports = {
     },
 
 
+    // action - homepageD (for D_Judge) 
+    homepageD: async function (req, res) {
+
+        var events = await Event.find();
+        return res.view('competition/homepageD', { events: events });
+
+    },
 
 
+    // action - dJudge
+    dJudge: async function (req, res) {
 
+        var model = await Event.findOne(req.params.id).populate('includes');
 
+        //var isStarted = false; 
+
+        return res.view('competition/dJudge', { 'competition': model.includes });
+
+    },
 
 
 

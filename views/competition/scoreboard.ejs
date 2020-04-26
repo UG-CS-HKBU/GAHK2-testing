@@ -1,7 +1,4 @@
 
-
-
-
 <div class="container">
     <div class="row">
         <div class="card col-12">
@@ -9,44 +6,47 @@
 
                 <div>
                     <h2>
-                        <b><%=competition.competitionEvent%></b>
+                        International Men's - <%=competition.competitionEvent%>
                     </h2>
                     <h2>
                         <b></b>
                     </h2>
                 </div>
 
-               
+              
+                <!-- <div class="media"> -->
 
+                    <!-- <div class="media-body"> -->
 
-                
+                        <!-- <div class="card" style="width: 18rem;"> -->
+                            
 
-
-
-
-                <div class="media">
-
-                    <div class="media-body">
-
-                        <div class="card" style="width: 18rem;">
-                            <ul class="list-group">
-
-                            <ul class="list-group">
-                                <h1></h1>
-                                <li class="list-group-item"><b>Athlete Name: </b><%= competition.athleteName %></li>
-                                <li class="list-group-item"><b>Difficulty: </b><%= competition.d1Score %></li>
+                            <!-- <ul class="list-group"> -->
+                                
+                                <h1><b><%= competition.athleteName %></b></h1>
+                                
+                                
+                                <div> 
+                                    <b>Difficulty: <%= competition.d1Score %></b>
+                                    <b>Execution: <%= competition.eAvgScore %></b>
+                                </div>
+                               
+                                <b>Extra Deduction: </b><%= competition.deduction %>
+                                <h2><b>Final Score: <%= competition.totalScore %></b></h2>
+                                <!-- <li class="list-group-item"><h2><%= competition.athleteName %></h2></li> -->
+                                <!-- <li class="list-group-item"><b>Difficulty: </b><%= competition.d1Score %></li>
                                 <li class="list-group-item"><b>Execution: </b><%= competition.eAvgScore %></li>
                                 <li class="list-group-item"><b>Extra Deduction: </b><%= competition.deduction %></li>
-                                <li class="list-group-item"><b>Final Score: </b><%= competition.totalScore %></li>
+                                <li class="list-group-item"><b>Final Score: </b><%= competition.totalScore %></li> -->
 
 
 
-                            </ul>
-                        </div>
+                            <!-- </ul> -->
+                        <!-- </div> -->
 
 
-                    </div>
-                </div>
+                    <!-- </div> -->
+                <!-- </div> -->
                 <br>
 
 

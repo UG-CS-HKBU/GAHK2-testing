@@ -38,6 +38,8 @@ module.exports.routes = {
   'GET /competition/chiefJudge/:id': 'CompetitionController.chiefJudge',
   'POST /competition/chiefJudge/:id': 'CompetitionController.chiefJudge',
 
+  'GET /competition/dJudge/:id': 'CompetitionController.dJudge',
+  'POST /competition/dJudge/:id': 'CompetitionController.dJudge',
 
   'GET /competition/json': 'CompetitionController.json',
 
@@ -84,7 +86,7 @@ module.exports.routes = {
   'GET /competition/ranking/': 'CompetitionController.ranking',
   'GET /competition/homepage': 'CompetitionController.homepage',
   'GET /competition/homepageCJ': 'CompetitionController.homepageCJ',
-  'GET /competition/homepageS': 'CompetitionController.homepageS',
+  'GET /competition/homepageD': 'CompetitionController.homepageD',
   'GET /competition/start/:id': 'CompetitionController.start',
   //'GET /competition/waiting/': 'CompetitionController.waiting',
   'GET /competition/scoreboard/:id': 'CompetitionController.scoreboard',

@@ -65,6 +65,11 @@
             <a class="nav-item nav-link" href="http://localhost:1337/competition/ranking#">Ranking</a>
           <%} %>
 
+          <%  if (req.session.role == "dJudge") {%>
+            <a class="nav-item nav-link" href="http://localhost:1337/competition/homepageD#">Home</a>
+            <a class="nav-item nav-link" href="http://localhost:1337/competition/ranking#">Ranking</a>
+          <%} %>
+
         </div>
 
       </div>
