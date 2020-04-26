@@ -27,13 +27,11 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css"
     integrity="sha256-9w7XtQnqRDvThmsQHfLmXdDbGasYsSjF6FSXrDh7F6g=" crossorigin="anonymous" />
 </head>
-<!--STYLES END-->
-</head>
 
 <body>
 
   <div class="container">
-    <%  if (req.session.role == "admin") {%>
+    <%  if (req.session.role != undefined) {%>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
 
@@ -45,39 +43,37 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
 
-  
+
           <%  if (req.session.role == "admin") {%>
           <a class="nav-item nav-link" href="http://localhost:1337/competition/homepage#">Home</a>
-          <a class="nav-item nav-link" href="http://localhost:1337/competition/homepage#>Admin</a> 
-          <a class="nav-item nav-link" href="http://localhost:1337/competition/import_xlsx#">Upload Competition Excel File</a> 
-          <a class="nav-item nav-link" href="http://localhost:1337/competition/ranking#">Ranking</a> 
-          <%}%>
+          <a class="nav-item nav-link" href="http://localhost:1337/competition/ranking#">Ranking</a>
+          <%} %>
 
-
-
-
-
-          <!-- <%  if (req.session.role == "user") {%>
-          <a class="nav-item nav-link" href="http://localhost:1337/estate/create#">Create Score</a>
-          <a class="nav-item nav-link" href="http://localhost:1337/athlete/transcript#">Transcript</a>
-
-          <%}%> -->
+          <%  if (req.session.role == "secretary") {%>
+          <a class="nav-item nav-link" href="http://localhost:1337/competition/homepageS#">Home</a>
+          <%} %>
 
          
+          <%  if (req.session.role == "chiefJudge") {%>
+            <a class="nav-item nav-link" href="http://localhost:1337/competition/homepageCJ#">Home</a>
+            <a class="nav-item nav-link" href="http://localhost:1337/competition/ranking#">Ranking</a>
+          <%} %>
+
+
         </div>
 
       </div>
 
       <div style="text-align:right">
         <%  if (req.session.role != undefined) {%>
-          Hi ,
-          <%=req.session.username %>.
-          <a href="/user/logout">(Logout)</a>
-          <%} else{%>
-          <a href="/user/login">(Login)</a> 
-        </div>
-        <%} %>
-          
+        Hi,
+        <%=req.session.username %>.
+        <a href="/user/logout">(Logout)</a>
+        <%} else{%>
+        <a href="/user/login">(Login)</a>
+      </div>
+      <%} %>
+
 
 
     </nav>
@@ -170,6 +166,28 @@
       integrity="sha256-ncetQ5WcFxZU3YIwggfwOwmewLVX4SHLBtDYnrsxooY=" crossorigin="anonymous"></script>
     <script>
       $('.datepicker').datepicker();
+
+      <% if (req.path == '/competition/waiting') {%>
+        /*io.socket.get('/api/chat-conversation-count', function (data, jwr) {
+
+          if (jwr.error) {
+              console.error('Could not subscribe:' + jwr.error);
+              return;
+          }
+          console.log('Successfully subscribed.');
+
+
+        });
+        io.socket.on('start', function test(resp) {
+          console.log('Switch.');
+          if (req.path.includes('updateE1')) {
+            window.location = "/competition/updateE1/"+resp.id;
+          }
+          if (req.path.includes('updateD1')) {
+            window.location = "/competition/updateD1/"+resp.id;
+          }
+        });*/
+        <% } %>
     </script>
 </body>
 
