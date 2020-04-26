@@ -78,8 +78,10 @@ module.exports = {
     totalScore: {
       type: "number",
     },
-    
-    
+
+    ranking: {
+      type: "number",
+    },
 
     ranking: {
       type: "number",
@@ -105,33 +107,26 @@ module.exports = {
       via: 'includes'
     },
 
-
-  },
-
-  // afterCreate(entry, cb) {
-  //   sails.sockets.broadcast('feed', 'new_entry', entry);
-  //   cb();
-  // },
+   },
 
   beforeUpdate(model, cb) {  
 
-    // me comment try to update total Score:
-    // let sortEScore = [model.e1Score, model.e2Score, model.e3Score, model.e4Score, model.e5Score].sort();
-    // model.eAvgScore = 10 - (sortEScore[1] + sortEScore[2] + sortEScore[3]) / 3;
+   // let sortEScore = [model.e1Score, model.e2Score, model.e3Score, model.e4Score, model.e5Score].sort();
+    //model.eAvgScore = 10 - (sortEScore[1] + sortEScore[2] + sortEScore[3]) / 3;
 
-    // model.totalScore = parseFloat((model.d1Score + model.eAvgScore).toPrecision(4));
+    //model.totalScore = parseFloat((model.d1Score + model.eAvgScore).toPrecision(4));
 
-    cb();
   },
 
   afterUpdate(model, cb) {
     console.log(model);
 
-    if (model.startTime != null && model.endTime == null) {
+    if (model.startTime && !model.endTime) {
+      console.log('start');
       sails.sockets.broadcast('feed', 'start', model);
     }
     cb();
   }
 
 };
-
+// };
