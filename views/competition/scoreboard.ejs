@@ -5,9 +5,7 @@
             <div class="card-body col-12">
 
                 <div>
-                    <h2>
-                        International Men's - <%=competition.competitionEvent%>
-                    </h2>
+                    <h2><center>International Men's - <%=competition.competitionEvent%></center></h2>
                     <h2>
                         <b></b>
                     </h2>
@@ -23,16 +21,20 @@
 
                             <!-- <ul class="list-group"> -->
                                 
-                                <h1><b><%= competition.athleteName %></b></h1>
+                                <h1><b><center><%= competition.athleteName %></center></b></h1>
                                 
                                 
                                 <div> 
-                                    <b>Difficulty: <%= competition.d1Score %></b>
-                                    <b>Execution: <%= competition.eAvgScore %></b>
+                                    <center>
+                                        <b>Difficulty: <%= competition.d1Score %></b>
+                                        <b>Execution: <%= competition.eAvgScore %></b>
+                                        <b>Extra Deduction: <%= competition.deduction %></b>
+                                    </center>
+                                    
                                 </div>
                                
-                                <b>Extra Deduction: </b><%= competition.deduction %>
-                                <h2><b>Final Score: <%= competition.totalScore %></b></h2>
+                                
+                                <h2><b><center>Final Score: <%= competition.totalScore %></center></b></h2>
                                 <!-- <li class="list-group-item"><h2><%= competition.athleteName %></h2></li> -->
                                 <!-- <li class="list-group-item"><b>Difficulty: </b><%= competition.d1Score %></li>
                                 <li class="list-group-item"><b>Execution: </b><%= competition.eAvgScore %></li>
