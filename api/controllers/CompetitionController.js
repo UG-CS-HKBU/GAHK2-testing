@@ -548,7 +548,7 @@ module.exports = {
             var models = await Competition.update(req.params.id).set({
                 d1Score: req.body.Competition.d1Score,
                 //endTimeD: req.body.Competition.endTimeD,
-                endTimeD: new Date(),
+                endTime: new Date(),
 
             }).fetch();
 
