@@ -825,14 +825,17 @@ module.exports = {
     
                 if (models.length == 0) return res.notFound();
     
-    
+                var model2 = await Competition.findOne(req.params.id).populate('belongsTo');
+
                 if (req.wantsJSON) {
                     return res.json({ 'competition': model });
                 } else {
-                    return res.redirect('/competition/homepageD/');
+                    return res.redirect('/competition/dJudge/'+model2.belongsTo[0].id);
+                    // return res.redirect('/competition/homepageD/');
                     // return res.ok("Scores updated.");
-                    //return res.redirect('competition/submitToAdmin/', { competition: model });
-                    //return res.view("competition/scoreboard/", { 'competition': model });
+                    // return res.redirect("competition/scoreboard/", { 'competition': model });
+                    // return res.redirect('/competition/scoreboard/'+model.id);
+                    
                 }
     
                 //return res.ok("Scores updated.");

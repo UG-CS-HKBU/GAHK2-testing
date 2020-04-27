@@ -32,7 +32,7 @@
               <th scope="col"></th>
               <th scope="col"></th>
               <th scope="col"></th>
-              <!-- <th scope="col"></th> -->
+              <th scope="col"></th>
   
             </tr>
           </thead>
@@ -83,7 +83,9 @@
               <% }%>                
   
               <% if(model.endTime != null && model.startTime != null ) { %>
-              <td><a href="/competition/scoreboard/<%= model.id %>">Publish Score</a></td>
+              <td><a href="/competition/scoreboard/<%= model.id %>">View Scoreboard</a></td>
+              <td><a href="/competition/ranking/">Publish Ranking</a></td>
+              
               <% } %>
   
   
