@@ -10,8 +10,10 @@ temp = temp.slice(0, (temp.indexOf("."))+5);
 competition.eAvgScore = Number(temp);
 
 
-competition.totalScore = competition.d1Score + competition.eAvgScore;
-
+tempFinal = competition.d1Score + competition.eAvgScore;
+temp2 = tempFinal.toString(); 
+temp2 = temp2.slice(0, (temp2.indexOf("."))+4); 
+tempFinal = Number(temp2);
  
 
 %>
@@ -26,7 +28,7 @@ competition.totalScore = competition.d1Score + competition.eAvgScore;
             <div class="col-12 col-sm-6 col-lg-6 col-xl-6">
 
 
-                <h3><%= competition.competitionEvent%> </h3>
+                <h3>International Men's - <%= competition.competitionEvent%> </h3>
                 <ul class="list-group">
 
                     <li class="list-group-item">Ahtlete Name: <%= competition.athleteName%></li>
@@ -36,56 +38,40 @@ competition.totalScore = competition.d1Score + competition.eAvgScore;
 
                 </ul>
 
-
-
-                <h5> Difficulty score : </h5>
-                <ul class="list-group">
-                    <!-- <li class="list-group-item">Difficulty Score: <input type="number" name="Competition[d1Score]" placeholder="0.0" step="0.1" min="0" width="50" required></li> -->
-                    <li class="list-group-item">D judge : <%= competition.d1Score %></li>
-                    <!-- <li class="list-group-item">D judge 2: <%= competition.d2Score %></li>
-                    <li class="list-group-item">D Average Score: <%= competition.dAvgScore %></li> -->
-                    <br><br>
-
-                </ul>
-
                 <h5> Execution score : </h5>
                 <ul class="list-group">
+                    <li class="list-group-item">E1: <input type="number" name="Competition[e1Score]" value="<%= competition.e1Score %>" placeholder="0.0" step="0.1" min="0" max="10" width="50" required></li>
+                    <li class="list-group-item">E2: <input type="number" name="Competition[e2Score]" value="<%= competition.e2Score %>" placeholder="0.0" step="0.1" min="0" max="10" width="50" required></li>
+                    <li class="list-group-item">E3: <input type="number" name="Competition[e3Score]" value="<%= competition.e3Score %>" placeholder="0.0" step="0.1" min="0" max="10" width="50" required></li>
+                    <li class="list-group-item">E4: <input type="number" name="Competition[e4Score]" value="<%= competition.e4Score %>" placeholder="0.0" step="0.1" min="0" max="10" width="50" required></li>
+                    <li class="list-group-item">E5: <input type="number" name="Competition[e5Score]" value="<%= competition.e5Score %>" placeholder="0.0" step="0.1" min="0" max="10" width="50" required></li>
 
-                    <li class="list-group-item">E judge 1: <%= competition.e1Score %></li>
+                    <!-- <li class="list-group-item">E judge 1: <%= competition.e1Score %></li>
                     <li class="list-group-item">E judge 2: <%= competition.e2Score %></li>
                     <li class="list-group-item">E judge 3: <%= competition.e3Score %></li>
                     <li class="list-group-item">E judge 4: <%= competition.e4Score %></li>
-                    <li class="list-group-item">E judge 5: <%= competition.e5Score %></li>
-                    <li class="list-group-item">E Average Score: <input name="Competition[eAvgScore]" value="<%= competition.eAvgScore %>" /></li>
-                    <!-- <li class="list-group-item">E Average Score: <%= competition.eAvgScore %></li> -->
+                    <li class="list-group-item">E judge 5: <%= competition.e5Score %></li> -->
+                    <!-- <li class="list-group-item">E Average Score: <input name="Competition[eAvgScore]" value="<%= competition.eAvgScore %>" /></li> -->
+                    <!-- <li class="list-group-item">E Final: <%= competition.eAvgScore %></li> -->
                     <br><br>
 
                 </ul>
-    
-                <h5> Score (<b>excluding</b> Extra Deduction) : </h5>
-                <ul class="list-group">
-                    <!-- <li class="list-group-item">Final Score (without Deduction): <input name="Competition[totalScore]" value="<%= competition.totalScore %>" /></li> -->
-                    <li class="list-group-item">Final score: <%= competition.totalScore %></li>
-                </ul>
-
-                <br><br>
-
-                <h5> Extra Deduction : </h5>
-                <ul class="list-group">
-
-                    <li class="list-group-item">Extra Deduction: <input type="number" name="Competition[deduction]" placeholder="0.0" step="0.1" min="0" width="50" required></li>
-
-                    
-                </ul>
-
-                <% competition.totalScore = competition.d1Score + competition.eAvgScore - competition.deduction; %>
 
 
-                <br><br>
 
-                <h5> Final score (<b>***including***</b> Extra Deduction) : </h5>   
-                    <!-- <li class="list-group-item">Final Score (<b>including</b> Deduction): <input name="Competition[totalScore]" placeholder="0.000" step="0.001" min="0" width="20" required/></li> -->
-                    <li class="list-group-item">Final Score (<b>including</b> Deduction): <input type="number" name="Competition[totalScore]" placeholder="0.000" step="0.001" min="0" width="50" required></li>
+                
+
+               
+
+                <!-- <% competition.totalScore = competition.d1Score + competition.eAvgScore - competition.deduction; %> -->
+
+
+                
+
+                <h5> Final score (<b>***Excluding***</b> Extra Deduction) : </h5>   
+                    <li class="list-group-item">Final Score (D + E Final): <%= tempFinal %></li>
+                    <!-- <li class="list-group-item">Final Score (D + E Final): <%= competition.totalScore %></li> -->
+                    <!-- <li class="list-group-item">Final Score (<b>including</b> Deduction): <input type="number" name="Competition[totalScore]" placeholder="0.000" step="0.001" min="0" width="50" required></li> -->
                 <br>
 
 
@@ -119,7 +105,7 @@ competition.totalScore = competition.d1Score + competition.eAvgScore;
                 </ul> -->
                 <br>
 
-                <a class="btn btn-primary" href="http://localhost:1337/competition/update/<%= competition.id%>"
+                <!-- <a class="btn btn-primary" href="http://localhost:1337/competition/update/<%= competition.id%>"
                     role="button">E1</a>
                 <a class="btn btn-primary" href="http://localhost:1337/competition/update/<%= competition.id%>"
                     role="button">E2</a>
@@ -128,16 +114,41 @@ competition.totalScore = competition.d1Score + competition.eAvgScore;
                 <a class="btn btn-primary" href="http://localhost:1337/competition/update/<%= competition.id%>"
                     role="button">E4</a>
                 <a class="btn btn-primary" href="http://localhost:1337/competition/update/<%= competition.id%>"
-                    role="button">E5</a>
+                    role="button">E5</a> -->
 
                 <button type="submit" class="btn btn-danger">Submit</button>
-                <!-- <button type="button" class="btn btn-primary"
-                    onclick="Finalize('<%= competition.id %>')">Finalize</button><br><br> -->
+                
 
 
-                <!-- <button type="button" class="btn btn-primary">Edit</button> -->
-                <!-- <a class="btn btn-primary" href="http://localhost:1337/competition/" role="button">Edit</a> -->
+            </div>
 
+            <div class="col-12 col-sm-6 col-lg-6 col-xl-6">
+                <br><br><br><br><br><br><br><br><br><br>
+                <h5> Score  : </h5>
+                <ul class="list-group">
+                    <!-- <li class="list-group-item">Difficulty Score: <input type="number" name="Competition[d1Score]" placeholder="0.0" step="0.1" min="0" width="50" required></li> -->
+                    <!-- <li class="list-group-item">D Score: <%= competition.d1Score %></li> -->
+                    <li class="list-group-item">D Score: <input name="Competition[d1Score]" value="<%= competition.d1Score %>" /></li>
+                    <li class="list-group-item">E Final: <input name="Competition[eAvgScore]" value="<%= competition.eAvgScore %>" /></li>
+                    <li class="list-group-item">Extra Deduction: <input type="number" name="Competition[deduction]" value="<%= competition.deduction %>" placeholder="0.0" step="0.1" min="0" width="50" required></li>
+                    <li class="list-group-item">Final Score (<b>Including</b> extra deduction): <input type="number" name="Competition[totalScore]" placeholder="0.000" step="0.001" min="0" width="50" required></li> 
+                   
+                    <br><br>
+
+                </ul>
+
+
+                <!-- <h5> Extra Deduction : </h5>
+                <ul class="list-group">
+                    <li class="list-group-item">Extra Deduction: <input type="number" name="Competition[deduction]" placeholder="0.0" step="0.1" min="0" width="50" required></li> 
+                </ul>
+
+                <br><br>
+    
+                <h5> Difficulty Score (<b>***including***</b> extra eduction) : </h5>
+                <ul class="list-group">
+                    <li class="list-group-item">Difficulty score: <%= competition.d1Score %></li>
+                </ul> -->
 
             </div>
 

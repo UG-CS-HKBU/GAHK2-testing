@@ -569,9 +569,11 @@ module.exports = {
 
             if (models.length == 0) return res.notFound();
 
-            return res.redirect('/competition/homepageD/');
+            var model2 = await Competition.findOne(req.params.id).populate('belongsTo');
+
+            return res.redirect('/competition/dJudge/'+model2.belongsTo[0].id);
+            //return res.redirect('/competition/homepageD/');
             // return res.ok("D Score is updated...");
-            // return res.redirect('/competition/dJudge/'+model.belongsTo[0].id);
 
         }
     },
