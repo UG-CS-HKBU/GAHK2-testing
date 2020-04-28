@@ -28,7 +28,7 @@ module.exports.routes = {
   'POST /user/login': 'UserController.login',
   'GET /user/logout': 'UserController.logout',
 
-
+  
   //Competition
   'POST /competition/create/': 'CompetitionController.create',
 
