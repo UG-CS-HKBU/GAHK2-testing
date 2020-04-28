@@ -25,7 +25,7 @@
                         <th scope="col">E3</th>
                         <th scope="col">E4</th>
                         <th scope="col">E5</th>
-                        <th scope="col">Average E Score</th>
+                        <th scope="col">Execution</th>
                         <th scope="col">Extra Deduction</th>
 
                         <th scope="col">Final Score</th>
@@ -96,7 +96,7 @@
                         <td><%= model.deduction%></td>
 
                         <td><%= model.totalScore %></td>
-                        <td><a href="/competition/update/<%= model.id %>">Check Scores</a></td>
+                        <td><a href="/competition/chiefjudgeView/<%= model.id %>">Check Scores</a></td>
                         <!-- <td><a href="/competition/scoreboard/<%= model.id %>">View Scoreboard</a></td> -->
                         <% }%>
 
