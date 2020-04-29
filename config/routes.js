@@ -28,7 +28,7 @@ module.exports.routes = {
   'POST /user/login': 'UserController.login',
   'GET /user/logout': 'UserController.logout',
 
-
+  
   //Competition
   'POST /competition/create/': 'CompetitionController.create',
 
@@ -38,11 +38,16 @@ module.exports.routes = {
   'GET /competition/chiefJudge/:id': 'CompetitionController.chiefJudge',
   'POST /competition/chiefJudge/:id': 'CompetitionController.chiefJudge',
 
+  'GET /competition/dJudge/:id': 'CompetitionController.dJudge',
+  'POST /competition/dJudge/:id': 'CompetitionController.dJudge',
 
   'GET /competition/json': 'CompetitionController.json',
 
   'GET /competition/update/:id': 'CompetitionController.update',
   'POST /competition/update/:id': 'CompetitionController.update',
+
+  'GET /competition/updateAll/:id': 'CompetitionController.updateAll',
+  'POST /competition/updateAll/:id': 'CompetitionController.updateAll',
 
   'GET /competition/updateFinalScore/:id': 'CompetitionController.updateFinalScore',
   'POST /competition/updateFinalScore/:id': 'CompetitionController.updateFinalScore',
@@ -84,7 +89,7 @@ module.exports.routes = {
   'GET /competition/ranking/': 'CompetitionController.ranking',
   'GET /competition/homepage': 'CompetitionController.homepage',
   'GET /competition/homepageCJ': 'CompetitionController.homepageCJ',
-  'GET /competition/homepageS': 'CompetitionController.homepageS',
+  'GET /competition/homepageD': 'CompetitionController.homepageD',
   'GET /competition/start/:id': 'CompetitionController.start',
   //'GET /competition/waiting/': 'CompetitionController.waiting',
   'GET /competition/scoreboard/:id': 'CompetitionController.scoreboard',

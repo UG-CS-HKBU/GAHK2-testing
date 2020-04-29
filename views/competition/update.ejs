@@ -4,6 +4,7 @@
       
 sortEScore = [competition.e1Score, competition.e2Score, competition.e3Score, competition.e4Score, competition.e5Score].sort();
 competition.eAvgScore = 10 - (sortEScore[1] + sortEScore[2] + sortEScore[3]) / 3;
+
 competition.totalScore = competition.d1Score + competition.eAvgScore;
 
 temp = competition.totalScore.toString(); 

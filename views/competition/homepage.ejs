@@ -10,8 +10,10 @@
     <tbody>
       <% events.forEach(function(event){ %>
         <tr>
-          <!-- <td><h3><a href="/competition/import_xlsx/<%=event.id%>"> <%=event.eventName%> </a> </h3></td> -->
           <td><h3><%=event.eventName%></h3></td>
+          <!-- <td><h3><a href="/competition/import_xlsx/<%=event.id%>"> <%=event.eventName%> </a> </h3></td> -->
+          <td><h3><a href="/competition/import_xlsx/<%=event.id%>"> Upload</a> </h3></td>
+          <td><h3><a href="/competition/export_xlsx/"> Download </a> </h3></td>
           <td><h3><a href="/competition/admin/<%=event.id%>">Admin</a></h3></td>
         </tr>
 

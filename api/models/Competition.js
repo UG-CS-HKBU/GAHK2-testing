@@ -78,10 +78,8 @@ module.exports = {
     totalScore: {
       type: "number",
     },
-
-    ranking: {
-      type: "number",
-    },
+    
+    
 
     ranking: {
       type: "number",
@@ -107,7 +105,13 @@ module.exports = {
       via: 'includes'
     },
 
-   },
+
+  },
+
+  // afterCreate(entry, cb) {
+  //   sails.sockets.broadcast('feed', 'new_entry', entry);
+  //   cb();
+  // },
 
   beforeUpdate(model, cb) {
     // model.dAvgScore = (model.d1Score + model.d2Score) / 2 ;
@@ -118,6 +122,7 @@ module.exports = {
 
     //model.totalScore = parseFloat((model.d1Score + model.eAvgScore).toPrecision(4));
 
+    cb();
   },
 
   afterUpdate(model, cb) {
@@ -131,4 +136,4 @@ module.exports = {
   }
 
 };
-// };
+

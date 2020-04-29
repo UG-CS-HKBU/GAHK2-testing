@@ -46,23 +46,21 @@
 
           <%  if (req.session.role == "admin") {%>
           <a class="nav-item nav-link" href="http://localhost:1337/competition/homepage#">Home</a>
-          <a class="nav-item nav-link" href="http://localhost:1337/competition/ranking#">Ranking</a>
-          <%} %>
-
-          <%  if (req.session.role == "secretary") {%>
-          <a class="nav-item nav-link" href="http://localhost:1337/competition/homepageS#">Home</a>
+          <a class="nav-item nav-link" href="http://localhost:1337/competition/ranking#">View Ranking</a>
+          <a class="nav-item nav-link" href="http://localhost:1337/competition/ranking#">Publish Ranking</a>
           <%} %>
 
          
           <%  if (req.session.role == "chiefJudge") {%>
             <a class="nav-item nav-link" href="http://localhost:1337/competition/homepageCJ#">Home</a>
-            <a class="nav-item nav-link" href="http://localhost:1337/competition/ranking#">Ranking</a>
+            <a class="nav-item nav-link" href="http://localhost:1337/competition/ranking#">View Ranking</a>
           <%} %>
 
-         
-          <%  if (req.session.role == "chiefJudge") {%>
-            <a class="nav-item nav-link" href="http://localhost:1337/competition/homepageCJ#">Home</a>
-            <a class="nav-item nav-link" href="http://localhost:1337/competition/ranking#">Ranking</a>
+
+          <%  if (req.session.role == "dJudge") {%>
+            <a class="nav-item nav-link" href="http://localhost:1337/competition/homepageD#">Home</a>
+            <a class="nav-item nav-link" href="http://localhost:1337/competition/ranking#">View Ranking</a>
+            <a class="nav-item nav-link" href="http://localhost:1337/competition/ranking#">Publish Ranking</a>
           <%} %>
 
         </div>

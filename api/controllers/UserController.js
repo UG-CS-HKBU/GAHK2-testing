@@ -40,6 +40,8 @@ module.exports = {
                     return res.redirect('/competition/homepageS');
                 } else if (req.session.role == "chiefJudge"){
                     return res.redirect('/competition/homepageCJ');
+                } else if(req.session.role == "dJudge"){
+                    return res.redirect('/competition/homepageD');
                 };
                 //return res.redirect('/competition/homepage');
             }

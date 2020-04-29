@@ -16,8 +16,8 @@
                         <th scope="col">Athlete Name</th>
                         <th scope="col">Competition Event</th>
                         <th scope="col">Start Time</th>
-                        <th scope="col">D Judge End Time</th>
-                        <th scope="col">C Judge End Time</th>
+                        <!-- <th scope="col">D Judge End Time</th> -->
+                        <th scope="col">End Time</th>
 
                         <th scope="col">D</th>
                         <th scope="col">E1</th>
@@ -25,7 +25,7 @@
                         <th scope="col">E3</th>
                         <th scope="col">E4</th>
                         <th scope="col">E5</th>
-                        <th scope="col">Average E Score</th>
+                        <th scope="col">Execution</th>
                         <th scope="col">Extra Deduction</th>
 
                         <th scope="col">Final Score</th>
@@ -42,14 +42,8 @@
                 <tbody>
                     <% competition.forEach (function(model) { 
         
-            <!-- model.dAvgScore = (model.d1Score + model.d2Score) / 2 -->
-            sortEScore = [model.e1Score, model.e2Score, model.e3Score, model.e4Score, model.e5Score].sort();
-            model.eAvgScore = 10 - (sortEScore[1] + sortEScore[2] + sortEScore[3]) / 3;
-            model.totalScore = model.d1Score + model.eAvgScore - model.deduction;
-  
-            temp = model.totalScore.toString(); 
-            temp = temp.slice(0, (temp.indexOf("."))+4); 
-            model.totalScore = Number(temp);
+            
+
              
             
             %>
@@ -63,7 +57,7 @@
                         <td><%= model.athleteName %></td>
                         <td><%= model.competitionEvent %></td>
                         <td><%= model.startTime %></td>
-                        <td><%= model.endTimeD %></td>
+                        <!-- <td><%= model.endTimeD %></td> -->
                         <td><%= model.endTime %></td>
 
                         <!-- <td><%= model.d1Score %></td>
@@ -102,8 +96,8 @@
                         <td><%= model.deduction%></td>
 
                         <td><%= model.totalScore %></td>
-                        <td><a href="/competition/update/<%= model.id %>">Re-score</a></td>
-                        <td><a href="/competition/scoreboard/<%= model.id %>">View Scoreboard</a></td>
+                        <td><a href="/competition/chiefjudgeView/<%= model.id %>">Check Scores</a></td>
+                        <!-- <td><a href="/competition/scoreboard/<%= model.id %>">View Scoreboard</a></td> -->
                         <% }%>
 
                         

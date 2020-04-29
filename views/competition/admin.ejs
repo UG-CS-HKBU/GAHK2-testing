@@ -16,8 +16,8 @@
             <th scope="col">Athlete Name</th>
             <th scope="col">Competition Event</th>
             <th scope="col">Start Time</th>
-            <th scope="col"> D Judge End Time</th>
-            <th scope="col"> C Judge End Time</th>
+            <!-- <th scope="col"> D Judge End Time</th> -->
+            <th scope="col">End Time</th>
 
             <th scope="col">D</th>
             <th scope="col">E1</th>
@@ -39,15 +39,7 @@
 
         <tbody>
           <% competition.forEach (function(model) { 
-      
-          sortEScore = [model.e1Score, model.e2Score, model.e3Score, model.e4Score, model.e5Score].sort();
-          model.eAvgScore = 10 - (sortEScore[1] + sortEScore[2] + sortEScore[3]) / 3;
-          model.totalScore = model.d1Score + model.eAvgScore - model.deduction;
-
-          temp = model.totalScore.toString(); 
-          temp = temp.slice(0, (temp.indexOf("."))+4); 
-          model.totalScore = Number(temp);
-           
+                 
           
           %>
 
@@ -60,7 +52,7 @@
             <td><%= model.athleteName %></td>
             <td><%= model.competitionEvent %></td>
             <td><%= model.startTime %></td>
-            <td><%= model.endTimeD %></td>
+            <!-- <td><%= model.endTimeD %></td> -->
             <td><%= model.endTime %></td>
 
 
@@ -97,7 +89,9 @@
             <% } %>
 
             <% if(model.endTime != null && model.endTimeD != null && model.startTime != null ) { %>
-            <td><a href="/competition/scoreboard/<%= model.id %>">Publish Score</a></td>
+            <!-- <td><a href="/competition/scoreboard/<%= model.id %>">View Scoreboard</a></td> -->
+            <!-- <td><a href="/competition/ranking/">Publish Ranking</a></td> -->
+            
             <% } %>
 
 

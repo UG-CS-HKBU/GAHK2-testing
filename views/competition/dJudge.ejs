@@ -1,0 +1,128 @@
+<div class="container">
+    <br>
+    <h1></h1>
+    <br>
+  
+  
+    <div class="row">
+      <!-- The 12 cards -->
+      <div class="col-12">
+        <br>
+        <table class="table">
+  
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Athlete Name</th>
+              <th scope="col">Competition Event</th>
+              <th scope="col">Start Time</th>
+              <th scope="col">End Time</th>
+              <!-- <th scope="col"> C Judge End Time</th> -->
+  
+              <th scope="col">D</th>
+              <th scope="col">E1</th>
+              <th scope="col">E2</th>
+              <th scope="col">E3</th>
+              <th scope="col">E4</th>
+              <th scope="col">E5</th>
+              <th scope="col">Execution</th>
+              <th scope="col">Extra Deduction</th>
+  
+              <th scope="col">Final Score</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+  
+            </tr>
+          </thead>
+  
+          <tbody>
+            <% competition.forEach (function(model) { 
+        
+
+             
+            
+            %>
+  
+  
+  
+  
+            <tr>
+              <th scope="row"></th>
+  
+              <td><%= model.athleteName %></td>
+              <td><%= model.competitionEvent %></td>
+              <td><%= model.startTime %></td>
+              <td><%= model.endTime %></td>
+              <!-- <td><%= model.endTime %></td> -->
+  
+  
+  
+
+
+
+              <% if(model.startTime == null) { %>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                
+                
+                <% } else { %>
+                  <td><%= model.d1Score %></td>
+                  <td><%= model.e1Score %></td>
+                  <td><%= model.e2Score %></td>
+                  <td><%= model.e3Score %></td>
+                  <td><%= model.e4Score %></td>
+                  <td><%= model.e5Score %></td>
+                  <td><%= model.eAvgScore %></td>
+                  <td><%= model.deduction%></td>     
+                  <td><%= model.totalScore %></td>
+                <% }%>  
+
+               
+
+             
+  
+  
+  
+              <% if(model.startTime == null) { %>
+              <td><a href="/competition/start/<%= model.id %>">Start Competition</a></td>
+              <td></td>
+              <td></td>
+              
+              <% } else { %>
+              <td><a href="/competition/updateD1/<%= model.id %>">Give D Score</a></td>  
+              <td><a href="/competition/updateAll/<%= model.id %>">Confirm all scores</a></td>
+              <% }%>                
+  
+              <% if(model.endTime != null && model.startTime != null ) { %>
+              <td><a href="/competition/scoreboard/<%= model.id %>">View Scoreboard</a></td>
+              
+              
+              <% } %>
+  
+  
+  
+            </tr>
+            <%}); %>
+  
+          </tbody>
+        </table>
+  
+      </div>
+  
+  
+  
+  
+  
+  
+    </div>
+  </div>
+  
